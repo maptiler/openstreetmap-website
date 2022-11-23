@@ -15,7 +15,7 @@ L.extend(L.LatLngBounds.prototype, {
   }
 });
 
-var OpenMapTiles = L.MaplibreGL.extend({
+var MapTiler = L.MaplibreGL.extend({
   options: {
     maxZoom: 23,
     attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://memomaps.de/" target="_blank">MeMoMaps</a>'
@@ -29,8 +29,9 @@ var OpenMapTiles = L.MaplibreGL.extend({
         var zoom = map.getZoom() - 1;
         var precision = Math.ceil((zoom * Math.LN2 + Math.log(256 / 360)) / Math.LN10);
 
-        el.href = el.href.replace(/#.*|$/, '#style=openstreetmap&lang=' + I18n.locale.replace(/-.*/, '')
-          + '&mode=3d&position=' + zoom + '/' + c.lng.toFixed(precision) + '/' + c.lat.toFixed(precision) + '/0.00/60.0');
+        el.href = el.href
+          .replace('{lang}', I18n.locale.replace(/-.*/, ''))
+          .replace('{pos}', zoom + '/' + c.lat.toFixed(precision) + '/' + c.lng.toFixed(precision) + '/30.00/60.00');
       }
     }
 
@@ -50,19 +51,19 @@ var OpenMapTiles = L.MaplibreGL.extend({
   }
 });
 
-var OpenMapTilesOsm = OpenMapTiles.extend({
+var OpenMapTiles = MapTiler.extend({
   options: {
     style: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=lmYA16sOOOz9r6DH7iA9',
   }
 });
 
-var OpenMapTilesStreets = OpenMapTiles.extend({
+var MapTilerStreets = MapTiler.extend({
   options: {
     style: 'https://api.maptiler.com/maps/streets/style.json?key=lmYA16sOOOz9r6DH7iA9',
   }
 });
 
-var OpenMapTilesOutdoor = OpenMapTiles.extend({
+var MapTilerOutdoor = MapTiler.extend({
   options: {
     style: 'https://api.maptiler.com/maps/outdoor/style.json?key=lmYA16sOOOz9r6DH7iA9',
   }
@@ -79,7 +80,21 @@ L.OSM.Map = L.Map.extend({
     var thunderforest = I18n.t("javascripts.map.thunderforest", { thunderforest_url: "https://www.thunderforest.com/" });
     var memomaps = I18n.t("javascripts.map.opnvkarte", { memomaps_url: "https://memomaps.de/" });
     var hotosm = I18n.t("javascripts.map.hotosm", { hotosm_url: "https://www.hotosm.org/", osmfrance_url: "https://openstreetmap.fr/" });
-    var openmaptiles = I18n.t("javascripts.map.openmaptiles", { openmaptiles_url: "https://openmaptiles.org/", maptiler_url: "https://www.maptiler.com/", terrain_3d_url: "https://www.maptiler.com/maps/" });
+    var openmaptiles = I18n.t("javascripts.map.openmaptiles", {
+      openmaptiles_url: "https://openmaptiles.org/",
+      maptiler_url: "https://www.maptiler.com/",
+      terrain_3d_url: "https://labs.maptiler.com/showcase/osm-3d-terrain/#style=openstreetmap&lang={lang}&mode=3d&position={pos}"
+    });
+    var maptilerStreets = I18n.t("javascripts.map.maptiler", {
+      openmaptiles_url: "https://openmaptiles.org/",
+      maptiler_url: "https://www.maptiler.com/",
+      terrain_3d_url: "https://www.maptiler.com/maps/#style=streets&lang={lang}&mode=3d&position={pos}"
+    });
+    var maptilerOutdoor = I18n.t("javascripts.map.maptiler", {
+      openmaptiles_url: "https://openmaptiles.org/",
+      maptiler_url: "https://www.maptiler.com/",
+      terrain_3d_url: "https://www.maptiler.com/maps/#style=outdoor&lang={lang}&mode=3d&position={pos}"
+    });
 
     this.baseLayers = [];
 
@@ -90,25 +105,11 @@ L.OSM.Map = L.Map.extend({
       name: I18n.t("javascripts.map.base.standard")
     }));
 
-    this.baseLayers.push(new OpenMapTilesOsm({
+    this.baseLayers.push(new OpenMapTiles({
       attribution: copyright + ". " + openmaptiles + ". " + terms,
       code: "V",
       keyid: "openmaptiles_osm",
       name: I18n.t("javascripts.map.base.openmaptiles_osm")
-    }));
-
-    this.baseLayers.push(new OpenMapTilesStreets({
-      attribution: copyright + ". " + openmaptiles + ". " + terms,
-      code: "S",
-      keyid: "openmaptiles_streets",
-      name: I18n.t("javascripts.map.base.openmaptiles_streets")
-    }));
-
-    this.baseLayers.push(new OpenMapTilesOutdoor({
-      attribution: copyright + ". " + openmaptiles + ". " + terms,
-      code: "R",
-      keyid: "openmaptiles_outdoor",
-      name: I18n.t("javascripts.map.base.openmaptiles_outdoor")
     }));
 
     this.baseLayers.push(new L.OSM.CyclOSM({
@@ -148,6 +149,20 @@ L.OSM.Map = L.Map.extend({
       code: "H",
       keyid: "hot",
       name: I18n.t("javascripts.map.base.hot")
+    }));
+
+    this.baseLayers.push(new MapTilerStreets({
+      attribution: copyright + ". " + maptilerStreets + ". " + terms,
+      code: "S",
+      keyid: "openmaptiles_streets",
+      name: I18n.t("javascripts.map.base.openmaptiles_streets")
+    }));
+
+    this.baseLayers.push(new MapTilerOutdoor({
+      attribution: copyright + ". " + maptilerOutdoor + ". " + terms,
+      code: "R",
+      keyid: "openmaptiles_outdoor",
+      name: I18n.t("javascripts.map.base.openmaptiles_outdoor")
     }));
 
     this.noteLayer = new L.FeatureGroup();

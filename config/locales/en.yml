@@ -2846,9 +2846,9 @@ en:
         transport_map: Transport Map
         hot: Humanitarian
         opnvkarte: ÖPNVKarte
-        openmaptiles_osm: OpenMapTiles OSM
-        openmaptiles_outdoor: OpenMapTiles Outdoor
-        openmaptiles_streets: OpenMapTiles Streets
+        openmaptiles_osm: OpenMapTiles
+        openmaptiles_outdoor: MapTiler Outdoor
+        openmaptiles_streets: MapTiler Streets
       layers:
         header: Map Layers
         notes: Map Notes
@@ -2863,6 +2863,7 @@ en:
       thunderforest: "Tiles courtesy of <a href='%{thunderforest_url}' target='_blank'>Andy Allan</a>"
       opnvkarte: "Tiles courtesy of <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>"
       openmaptiles: "Vector tiles from <a href='%{openmaptiles_url}' target='_blank'>OpenMapTiles</a> hosted by <a href='%{maptiler_url}' target='_blank'>MapTiler</a>. See <a id='terrain_3d_url' href='%{terrain_3d_url}' target='_blank'>3D terrain</a>"
+      maptiler: "Vector tiles from <a href='%{openmaptiles_url}' target='_blank'>OpenMapTiles</a> hosted by <a href='%{maptiler_url}' target='_blank'>MapTiler</a>. See <a id='terrain_3d_url' href='%{terrain_3d_url}' target='_blank'>3D terrain</a>"
       hotosm: "Tiles style by <a href='%{hotosm_url}' target='_blank'>Humanitarian OpenStreetMap Team</a> hosted by <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap France</a>"
     site:
       edit_tooltip: Edit the map
