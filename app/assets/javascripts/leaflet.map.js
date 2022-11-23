@@ -17,7 +17,6 @@ L.extend(L.LatLngBounds.prototype, {
 
 var OpenMapTiles = L.MaplibreGL.extend({
   options: {
-    style: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=lmYA16sOOOz9r6DH7iA9',
     maxZoom: 23,
     attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. Tiles courtesy of <a href="http://memomaps.de/" target="_blank">MeMoMaps</a>'
   },
@@ -43,9 +42,29 @@ var OpenMapTiles = L.MaplibreGL.extend({
     m.on('load', function () {
       m.setLanguage(I18n.locale.replace(/-.*/, ''));
     });
+    L.MaplibreGL.prototype._update.call(this, map);
   },
   onRemove: function (map) {
+    L.MaplibreGL.prototype.onRemove.call(this, map);
     map.off('moveend', map._update3dMapUrl);
+  }
+});
+
+var OpenMapTilesOsm = OpenMapTiles.extend({
+  options: {
+    style: 'https://api.maptiler.com/maps/openstreetmap/style.json?key=lmYA16sOOOz9r6DH7iA9',
+  }
+});
+
+var OpenMapTilesStreets = OpenMapTiles.extend({
+  options: {
+    style: 'https://api.maptiler.com/maps/streets/style.json?key=lmYA16sOOOz9r6DH7iA9',
+  }
+});
+
+var OpenMapTilesOutdoor = OpenMapTiles.extend({
+  options: {
+    style: 'https://api.maptiler.com/maps/outdoor/style.json?key=lmYA16sOOOz9r6DH7iA9',
   }
 });
 
@@ -71,11 +90,25 @@ L.OSM.Map = L.Map.extend({
       name: I18n.t("javascripts.map.base.standard")
     }));
 
-    this.baseLayers.push(new OpenMapTiles({
+    this.baseLayers.push(new OpenMapTilesOsm({
       attribution: copyright + ". " + openmaptiles + ". " + terms,
       code: "V",
-      keyid: "openmaptiles",
-      name: I18n.t("javascripts.map.base.openmaptiles")
+      keyid: "openmaptiles_osm",
+      name: I18n.t("javascripts.map.base.openmaptiles_osm")
+    }));
+
+    this.baseLayers.push(new OpenMapTilesStreets({
+      attribution: copyright + ". " + openmaptiles + ". " + terms,
+      code: "S",
+      keyid: "openmaptiles_streets",
+      name: I18n.t("javascripts.map.base.openmaptiles_streets")
+    }));
+
+    this.baseLayers.push(new OpenMapTilesOutdoor({
+      attribution: copyright + ". " + openmaptiles + ". " + terms,
+      code: "R",
+      keyid: "openmaptiles_outdoor",
+      name: I18n.t("javascripts.map.base.openmaptiles_outdoor")
     }));
 
     this.baseLayers.push(new L.OSM.CyclOSM({

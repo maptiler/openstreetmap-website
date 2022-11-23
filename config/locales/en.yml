@@ -2846,7 +2846,9 @@ en:
         transport_map: Transport Map
         hot: Humanitarian
         opnvkarte: ÖPNVKarte
-        openmaptiles: OpenMapTiles
+        openmaptiles_osm: OpenMapTiles OSM
+        openmaptiles_outdoor: OpenMapTiles Outdoor
+        openmaptiles_streets: OpenMapTiles Streets
       layers:
         header: Map Layers
         notes: Map Notes
