@@ -29,9 +29,9 @@ var MapTiler = L.MaplibreGL.extend({
         var zoom = map.getZoom() - 1;
         var precision = Math.ceil((zoom * Math.LN2 + Math.log(256 / 360)) / Math.LN10);
 
-        el.href = el.href
+        el.href = el.dataset['hrefTemplate']
           .replace('{lang}', I18n.locale.replace(/-.*/, ''))
-          .replace('{pos}', zoom + '/' + c.lat.toFixed(precision) + '/' + c.lng.toFixed(precision) + '/30.00/60.00');
+          .replace('{pos}', zoom + '/' + c.lat.toFixed(precision) + '/' + c.lng.toFixed(precision) + '/30.00/60.00' + Math.random());
       }
     }
 
