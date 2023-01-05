@@ -31,7 +31,7 @@ var MapTiler = L.MaplibreGL.extend({
 
         el.href = el.dataset['hrefTemplate']
           .replace('{lang}', I18n.locale.replace(/-.*/, ''))
-          .replace('{pos}', zoom + '/' + c.lat.toFixed(precision) + '/' + c.lng.toFixed(precision) + '/30.00/60.00' + Math.random());
+          .replace('{pos}', zoom + '/' + c.lat.toFixed(precision) + '/' + c.lng.toFixed(precision) + '/30.00/60.00');
       }
     }
 
@@ -88,12 +88,12 @@ L.OSM.Map = L.Map.extend({
     var maptilerStreets = I18n.t("javascripts.map.maptiler", {
       openmaptiles_url: "https://openmaptiles.org/",
       maptiler_url: "https://www.maptiler.com/",
-      terrain_3d_url: "https://www.maptiler.com/maps/#style=streets&lang={lang}&mode=3d&position={pos}"
+      terrain_3d_url: "https://labs.maptiler.com/showcase/osm-3d-terrain/#style=streets&lang={lang}&mode=3d&position={pos}"
     });
     var maptilerOutdoor = I18n.t("javascripts.map.maptiler", {
       openmaptiles_url: "https://openmaptiles.org/",
       maptiler_url: "https://www.maptiler.com/",
-      terrain_3d_url: "https://www.maptiler.com/maps/#style=outdoor&lang={lang}&mode=3d&position={pos}"
+      terrain_3d_url: "https://labs.maptiler.com/showcase/osm-3d-terrain/#style=outdoor&lang={lang}&mode=3d&position={pos}"
     });
 
     this.baseLayers = [];
