@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -9,7 +9,6 @@ RUN apt-get update \
       curl \
       default-jre-headless \
       file \
-      firefox-geckodriver \
       libarchive-dev \
       libffi-dev \
       libgd-dev \
@@ -21,8 +20,8 @@ RUN apt-get update \
       locales \
       nodejs \
       postgresql-client \
-      ruby2.7 \
-      ruby2.7-dev \
+      ruby3.0 \
+      ruby3.0-dev \
       tzdata \
       unzip \
       yarnpkg \
@@ -44,7 +43,7 @@ ADD Gemfile Gemfile.lock /app/
 RUN gem install bundler \
  && bundle install
 
-# Install NodeJS packages using yarnpkg
-# `bundle exec rake yarn:install` will not work
+# Install NodeJS packages using yarn
 ADD package.json yarn.lock /app/
-RUN yarnpkg --ignore-engines install
+ADD bin/yarn /app/bin/
+RUN bundle exec bin/yarn install

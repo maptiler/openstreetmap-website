@@ -52,7 +52,6 @@ az:
       message: Mesaj
       node: Nöqtə
       node_tag: Nöqtənin Teqi
-      notifier: Bildiriş
       old_node: Köhnə Nöqtə
       old_node_tag: Köhnə Nöqtənin Teqi
       old_relation: Köhnə Əlaqə
@@ -88,7 +87,7 @@ az:
         title: Mövzu
         latitude: En dairəsi
         longitude: Uzunluq dairəsi
-        language: Dil
+        language_code: Dil
       friend:
         user: İstifadəçi
         friend: Dost
@@ -167,16 +166,6 @@ az:
   browse:
     created: Yaradılıb
     closed: Bağlanıb
-    created_html: <abbr title='%{title}'>%{time} əvvəl</abbr> yaradılıb
-    closed_html: <abbr title='%{title}'>%{time} əvvəl</abbr> bağlanılıb
-    created_by_html: <abbr title='%{title}'>%{time} əvvəl</abbr> %{user} tərəfindən
-      yaradılıb
-    deleted_by_html: <abbr title='%{title}'>%{time} əvvəl</abbr>  %{user} tərəfindən
-      silinib
-    edited_by_html: <abbr title='%{title}'>%{time} əvvəl </abbr> %{user} tərəfindən
-      dəyişdirilib
-    closed_by_html: <abbr title='%{title}'>%{time} əvvəl </abbr> %{user} tərəfindən
-      bağlanılıb
     version: Versiya
     in_changeset: Dəyişikliklər
     anonymous: anonim
@@ -240,8 +229,6 @@ az:
         key: '%{key} teqini təsvir edən viki səhifəsi'
         tag: '%{key}=%{value} teqini təsvir edən viki səhifəsi'
       wikipedia_link: Vikipediyada %{page} məqaləsi
-    note:
-      description: Təsvir
   changesets:
     changeset_paging_nav:
       showing_page: Səhifə %{page}
@@ -347,13 +334,6 @@ az:
       heading: '%{user} dostluqdan silək?'
       button: Dostluqdan sil
   geocoder:
-    search:
-      title:
-        latlon_html: <a href="http://openstreetmap.org/">Daxili nəticələr</a>
-        ca_postcode_html: <a href="http://geocoder.ca/">Geocoder.CA</a> nəticələri
-        osm_nominatim_html: <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a> nəticələri
-        geonames_html: <a href="http://www.geonames.org/">GeoNames</a> nəticələri
     search_osm_nominatim:
       prefix:
         aeroway:
@@ -810,9 +790,7 @@ az:
     home: evə
     logout: çıxış
     log_in: daxil ol
-    log_in_tooltip: Mövcud hesab ilə daxil ol
     sign_up: qeydiyyatdan keç
-    sign_up_tooltip: Redaktə etmək üçün qeydiyyatdan keç
     edit: Redaktə
     history: Tarix
     export: İxrac
@@ -832,8 +810,6 @@ az:
     community: İcma
     community_blogs: İcma bloqları
     community_blogs_title: OpenStreetMap icmasının iştirakçılarının bloqları
-    foundation: OpenStreetMap Fondu
-    foundation_title: OpenStreetMap Fondu
     make_a_donation:
       title: OpenStreetMap-i dəstəkləmək üçün maddi yardım et
       text: Maddi yardım et
@@ -886,8 +862,6 @@ az:
     new:
       title: Mesaj göndər
       send_message_to_html: '%{name} yeni mesaj göndər'
-      subject: Mövzu
-      body: 'Mətn:'
       back_to_inbox: Gələnlərə geri qayıt
     create:
       message_sent: Mesaj göndərildi
@@ -905,12 +879,8 @@ az:
       people_mapping_nearby: yaxınlıqdakı istifadəçilərlə
     show:
       title: Mesajı oxu
-      from: Kimdən
-      subject: Mövzu
-      date: Tarix
       reply_button: Geri göndər
       unread_button: Oxunulmamış kimi işarələ
-      to: Kimə
     sent_message_summary:
       destroy_button: Sil
     mark:
@@ -944,7 +914,6 @@ az:
       remember: Məni xatırla
       login_button: Daxil ol
       register now: İndi qeydiyyatdan keç
-      new to osm: OpenStreetMap-də yenisiz?
       no account: İstifadəçi hesabınız yoxdur?
       openid_logo_alt: OpenID ilə hesabınıza daxil olun
     destroy:
@@ -962,26 +931,12 @@ az:
         mapping_link: kartoqrafiyalaşdırmağa başla
       legal_babble:
         title_html: Müəllif hüquqları və Lisenziyalar
-        intro_1_html: |-
-          OpenStreetMap <a
-          href="http://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database License</a> (ODbL) lisenziyası üzrə istifadə olunan <i>açıq məlumatlardan</i> ibarətdir.
         credit_title_html: OpenStreetMap-ə Necə istinad etmək olar
         attribution_example:
           alt: Nümunə üçün, veb-səhifədən OpenStreetMap-ə necə istinad vermək
           title: Müəllifin göstərilməsinin nümunəsi
         more_title_html: Daha ətraflı öyrən
         contributors_title_html: Kimlər bizim layihəyə töhfə verir
-        contributors_ca_html: <strong>Kanada</strong> GeoBase ®, GeoGratis (© Kanadanın
-          Təbii Ehtiyatlar Departamenti), CanVec (© Kanadanın Təbii Ehtiyatlar Departamenti)
-          və StatCan (Kanadanın Statistika şöbəsinin, Coğrafiya bölməsi) tərəfindən
-          məlumatlar.
-        contributors_fr_html: '<strong>Fransa</strong>: Baş Vergi İdarəsi tərəfindən
-          məlumatlar.'
-        contributors_nz_html: <strong>Yeni Zelandiya</strong> Yeni Zelandiyanın torpaq
-          resursları haqqında məlumatlardan. Crown Copyright reserved.
-        contributors_gb_html: <strong>Böyük Britaniya Krallığı</strong> Ordnance Survey
-          © Crown copyright tərəfindən məlumatlar. Verilənlər bazasına icazə 2010-12.
         infringement_title_html: Müəllif hüquqlarının pozulması
     index:
       shortlink: Qısa keçid
@@ -1085,8 +1040,6 @@ az:
   users:
     new:
       title: Hesab aç
-      email address: 'E-poçt ünvanları:'
-      display name: 'Gorüntülənən ad:'
       continue: Davam et
     terms:
       consider_pd_why: bu nədir?
@@ -1107,7 +1060,6 @@ az:
       status: 'Status:'
       create_block: bu istifadəçini blokla
       activate_user: Bu istifadəçini aktivləşdir
-      deactivate_user: Bu istifadəçini deaktivləşdir
       hide_user: Bu istifadəçini gizlət
       delete_user: bu istifadəçini sil
       confirm: Təsdiq et
@@ -1161,6 +1113,9 @@ az:
       revoker_name: Tərəfindən ləgv edilib
       next: Növbəti »
       previous: « Əvvəlki
+  notes:
+    show:
+      description: Təsvir
   javascripts:
     map:
       base:

@@ -34,7 +34,7 @@ ba:
       client_application:
         create: Теркәлеү
         update: Яңыртырға
-      doorkeeper_application:
+      oauth2_application:
         create: Теркәлеү
         update: Яңыртырға
       redaction:
@@ -64,7 +64,6 @@ ba:
       message: Хәбәр
       node: Төйөн
       node_tag: Төйөн тегы
-      notifier: Белдереүсе
       old_node: Иҫке нөктә
       old_node_tag: Нөктәнең иҫке тегы
       old_relation: Иҫке сағыштырма
@@ -108,7 +107,7 @@ ba:
         title: Тема
         latitude: Киңлек
         longitude: Оҙонлоҡ
-        language: Тел
+        language_code: Тел
       doorkeeper/application:
         name: Исем
         redirect_uri: Яңынан йүнәлтеү
@@ -170,10 +169,6 @@ ba:
           ҡулланып ҡарағыҙ.
         needs_view: Ҡулланыусыға блоктан сыҡҡансы системаға инергә рөхсәт итергәме?
       user:
-        email_confirmation: Һеҙҙең адресығыҙ асыҡ күренмәйәсәк, тулыраҡ мәғлүмәт алыу
-          өсөн беҙҙең <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy"
-          title="OSMF privacy policy including section on email addresses"> конфиденциаллек
-          сәйәсәтен</a> ҡарағыҙ.
         new_email: (күрһәтелмәй)
   datetime:
     distance_in_words_ago:
@@ -257,14 +252,6 @@ ba:
   browse:
     created: Булдырылған
     closed: Ябыҡ
-    created_html: Яһалған <abbr title='%{title}'>%{time}</abbr>
-    closed_html: Ябылған <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: Яһалған <abbr title='%{title}'>%{time}</abbr> ҡулланыусы тарафынан
-      %{user}
-    deleted_by_html: Юйылған <abbr title='%{title}'>%{time}</abbr>ҡулланыусы тарафынан%{user}
-    edited_by_html: Төҙәтелгән <abbr title='%{title}'>%{time}</abbr> ҡулланыусы тарафынан
-      %{user}
-    closed_by_html: Ябылған <abbr title='%{title}'>%{time}</abbr>ҡулланыусы тарафынан%{user}
     version: Версия
     in_changeset: Төҙәтеүҙәр пакеты
     anonymous: Аноним
@@ -290,10 +277,6 @@ ba:
       relation: Мөнәсәбәттәр (%{count})
       relation_paginated: Мөнәсәбәттәр (%{x}-%{y} %{count}нан)
       comment: Комментарийҙар (%{count})
-      hidden_commented_by_html: ' %{user} <abbr title=''%{exact_time}''>%{when}тан
-        йәшерен комментарий, кирегә</abbr>'
-      commented_by_html: Ҡулланыусы комментарийы %{user} <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
       changesetxml: Төҙәтеүҙәр пакетының XML-ы
       osmchangexml: osmChange XML
       feed:
@@ -372,31 +355,6 @@ ba:
       wikimedia_commons_link: Wikimedia Commonsта %{page} элемент
       telephone_link: Шылтыратырға %{phone_number}
       colour_preview: Төҫтәрҙе ҡарау %{colour_value}
-    note:
-      title: ' %{id} искәрмәһе'
-      new_note: Яңы мәҡәлә
-      description: Тасуирлама
-      open_title: 'Эшкәртелмәгән мәҡәлә #%{note_name}'
-      closed_title: 'Эшкәртелгән мәҡәләа #%{note_name}'
-      hidden_title: 'Йәшерелгән яҙма #%{note_name}'
-      opened_by_html: Ҡулланыусы тарафынан булдырылған %{user} <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      opened_by_anonymous_html: Аноним тарафынан булдырылған <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      commented_by_html: Ҡулланыусы комментарийы %{user} <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      commented_by_anonymous_html: Аноним комментарийы  <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      closed_by_html: Ҡулланыусы тарафынан эшкәртелгән %{user} <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      closed_by_anonymous_html: Аноним тарафынан рөхсәт ителгән <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      reopened_by_html: Ҡулланыусы тарафынан ҡабаттан асылған %{user} <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      reopened_by_anonymous_html: Аноним тарафынан ҡабаттан асылған <abbr title='%{exact_time}'>%{when}
-        кирегә</abbr>
-      hidden_by_html: Йәшерелгән %{user} <abbr title='%{exact_time}'>%{when} кирегә</abbr>
-      report: Был яҙма тураһында хәбәр итеү
     query:
       title: Объекттар тураһында мәғлүмәт
       introduction: Яҡындағы объекттарҙы табыу өсөн картаға баҫығыҙ
@@ -552,20 +510,6 @@ ba:
       success: '%{name} дуҫтарҙан алып ташланды.'
       not_a_friend: '%{name} һеҙҙең дуҫ түгел.'
   geocoder:
-    search:
-      title:
-        latlon_html: |2-
-
-          <a href="http://openstreetmap.org/">эсендәге һөҙөмтәләр</a>
-        ca_postcode_html: <a href="http://www.npemap.org.uk/">NPEMap / FreeThe Postcode</a>алынған
-          һөҙөмтәләр
-        osm_nominatim_html: <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>нан сыҡҡан һөҙөмтәләр
-        geonames_html: <a href="http://www.geonames.org/">GeoNames</a>нан сыҡҡан һөҙөмтәләр
-        osm_nominatim_reverse_html: <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>нан һөҙөмтәләр
-        geonames_reverse_html: <a href="http://www.geonames.org/">GeoNames</a>нан
-          сыҡҡан һөҙөмтәләр
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -1035,6 +979,16 @@ ba:
       latitude: 'Киңлек:'
       longitude: 'Оҙонлоҡ:'
       paste_html: Сайтҡа индереп ҡуйыу өсөн HTML-код
+  notes:
+    show:
+      title: ' %{id} искәрмәһе'
+      description: Тасуирлама
+      open_title: 'Эшкәртелмәгән мәҡәлә #%{note_name}'
+      closed_title: 'Эшкәртелгән мәҡәләа #%{note_name}'
+      hidden_title: 'Йәшерелгән яҙма #%{note_name}'
+      report: Был яҙма тураһында хәбәр итеү
+    new:
+      title: Яңы мәҡәлә
   javascripts:
     share:
       only_standard_layer: Бары стандарт ҡатлам ғына һүрәт кеүек экспортлана ала

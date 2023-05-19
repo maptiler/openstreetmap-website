@@ -10,8 +10,8 @@ jobs:
     name: Ubuntu ${{ matrix.ubuntu }}, Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
-        ubuntu: [20.04]
-        ruby: [2.7, 3.0]
+        ubuntu: [20.04, 22.04]
+        ruby: ['3.0', '3.1']
     runs-on: ubuntu-${{ matrix.ubuntu }}
     env:
       RAILS_ENV: test
@@ -40,8 +40,6 @@ jobs:
         sudo systemctl start postgresql
         sudo -u postgres createuser -s $(id -un)
         createdb openstreetmap
-        psql -c "CREATE EXTENSION btree_gist" openstreetmap
-        psql -f db/functions/functions.sql openstreetmap
     - name: Configure rails
       run: |
         cp config/github.database.yml config/database.yml
@@ -50,17 +48,19 @@ jobs:
     - name: Populate database
       run: |
         sed -f script/normalise-structure db/structure.sql > db/structure.expected
-        bundle exec rake db:migrate
+        bundle exec rails db:migrate
         sed -f script/normalise-structure db/structure.sql > db/structure.actual
         diff -uw db/structure.expected db/structure.actual
     - name: Export javascript strings
-      run: bundle exec rake i18n:js:export
+      run: bundle exec rails i18n:js:export
     - name: Install node modules
-      run: bundle exec rake yarn:install
+      run: bundle exec bin/yarn install
+    - name: Compile assets
+      run: bundle exec rails assets:precompile
     - name: Run tests
       run: bundle exec rails test:all
     - name: Report completion to Coveralls
-      uses: coverallsapp/github-action@1.1.3
+      uses: coverallsapp/github-action@v2.1.2
       with:
         github-token: ${{ secrets.github_token }}
         flag-name: ubuntu-${{ matrix.ubuntu }}-ruby-${{ matrix.ruby }}
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Report completion to Coveralls
-      uses: coverallsapp/github-action@1.1.3
+      uses: coverallsapp/github-action@v2.1.2
       with:
         github-token: ${{ secrets.github_token }}
         parallel-finished: true

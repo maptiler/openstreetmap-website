@@ -84,7 +84,7 @@ OpenStreetMap::Application.routes.draw do
     get "gpx/:id/data" => "api/traces#data", :as => :api_trace_data
 
     # Map notes API
-    resources :notes, :except => [:new, :edit, :update], :constraints => { :id => /\d+/ }, :controller => "api/notes" do
+    resources :notes, :except => [:new, :edit, :update], :constraints => { :id => /\d+/ }, :controller => "api/notes", :as => :api_notes do
       collection do
         get "search"
         get "feed", :defaults => { :format => "rss" }
@@ -113,8 +113,8 @@ OpenStreetMap::Application.routes.draw do
   get "/relation/:id/history" => "browse#relation_history", :id => /\d+/, :as => :relation_history
   get "/changeset/:id" => "browse#changeset", :as => :changeset, :id => /\d+/
   get "/changeset/:id/comments/feed" => "changeset_comments#index", :as => :changeset_comments_feed, :id => /\d*/, :defaults => { :format => "rss" }
-  get "/note/:id" => "browse#note", :id => /\d+/, :as => "browse_note"
-  get "/note/new" => "browse#new_note"
+  resources :notes, :path => "note", :only => [:show, :new]
+
   get "/user/:display_name/history" => "changesets#index"
   get "/user/:display_name/history/feed" => "changesets#feed", :defaults => { :format => :atom }
   get "/user/:display_name/notes" => "notes#index", :as => :user_notes
@@ -147,6 +147,7 @@ OpenStreetMap::Application.routes.draw do
   get "/help" => "site#help"
   get "/about/:about_locale" => "site#about"
   get "/about" => "site#about"
+  get "/communities" => "site#communities"
   get "/history" => "changesets#index"
   get "/history/feed" => "changesets#feed", :defaults => { :format => :atom }
   get "/history/comments/feed" => "changeset_comments#index", :as => :changesets_comments_feed, :defaults => { :format => "rss" }
@@ -225,7 +226,7 @@ OpenStreetMap::Application.routes.draw do
   get "/user/:display_name/diary" => "diary_entries#index"
   get "/diary/:language" => "diary_entries#index"
   scope "/user/:display_name" do
-    resources :diary_entries, :path => "diary", :only => [:edit, :update, :show]
+    resources :diary_entries, :path => "diary", :only => [:edit, :update, :show], :id => /\d+/
   end
   post "/user/:display_name/diary/:id/newcomment" => "diary_entries#comment", :id => /\d+/, :as => :comment_diary_entry
   post "/user/:display_name/diary/:id/hide" => "diary_entries#hide", :id => /\d+/, :as => :hide_diary_entry
@@ -259,12 +260,9 @@ OpenStreetMap::Application.routes.draw do
 
   # geocoder
   get "/search" => "geocoder#search"
-  get "/geocoder/search_latlon" => "geocoder#search_latlon"
-  get "/geocoder/search_ca_postcode" => "geocoder#search_ca_postcode"
-  get "/geocoder/search_osm_nominatim" => "geocoder#search_osm_nominatim"
-  get "/geocoder/search_geonames" => "geocoder#search_geonames"
-  get "/geocoder/search_osm_nominatim_reverse" => "geocoder#search_osm_nominatim_reverse"
-  get "/geocoder/search_geonames_reverse" => "geocoder#search_geonames_reverse"
+  post "/geocoder/search_latlon" => "geocoder#search_latlon"
+  post "/geocoder/search_osm_nominatim" => "geocoder#search_osm_nominatim"
+  post "/geocoder/search_osm_nominatim_reverse" => "geocoder#search_osm_nominatim_reverse"
 
   # directions
   get "/directions" => "directions#search"

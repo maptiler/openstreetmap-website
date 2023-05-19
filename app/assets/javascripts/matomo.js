@@ -10,10 +10,23 @@ if (OSM.MATOMO) {
       success: function () {
         matomoTracker = Matomo.getTracker(base + "matomo.php", OSM.MATOMO.site);
 
-        if (OSM.user) {
+        if (OSM.user && OSM.MATOMO.set_user) {
           matomoTracker.setUserId(OSM.user.toString());
         }
 
+        if (OSM.MATOMO.visitor_cookie_timeout) {
+          matomoTracker.setVisitorCookieTimeout(OSM.MATOMO.visitor_cookie_timeout);
+        }
+
+        if (OSM.MATOMO.referral_cookie_timeout) {
+          matomoTracker.setReferralCookieTimeout(OSM.MATOMO.referral_cookie_timeout);
+        }
+
+        if (OSM.MATOMO.session_cookie_timeout) {
+          matomoTracker.setSessionCookieTimeout(OSM.MATOMO.session_cookie_timeout);
+        }
+
+        matomoTracker.setSecureCookie(true);
         matomoTracker.trackPageView();
         matomoTracker.enableLinkTracking();
 

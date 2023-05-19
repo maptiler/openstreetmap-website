@@ -48,7 +48,6 @@ aln:
       message: Mesazh
       node: Nyjë
       node_tag: Nyja Tag
-      notifier: Notifier
       old_node: Nyja e Vjetër
       old_node_tag: Tag Nyja e Vjetër
       old_relation: Raporti i vjetër
@@ -81,7 +80,7 @@ aln:
         title: Titulli
         latitude: Gjerësi
         longitude: Gjatësi
-        language: Gjuha
+        language_code: Gjuha
       friend:
         user: Përdorues
         friend: Mik
@@ -136,18 +135,10 @@ aln:
         disabled: E çkyckur dhe smuni me i ndryshu të dhanat, të gjitha ndryshimet
           e ma hershme jan anonime.
         disabled link text: pse spo muj me i ndryshue?
-      public editing note:
-        heading: 'Ndryshime publike:'
-        html: Niher për niher ndryshimet e juaja janë anonime dhe njerëzit nuk mund
-          të ju dërgojnë mesazhe apo shohin vendndodhjen tuaj. Për të treguar atë
-          që e keni edituar dhe lejojnë njerëzit të lidhen me ju nëpërmjet internetit,
-          kliko butonin më poshtë. <b> Që nga ndryshimi 0,6 API, vetëm përdoruesit
-          e publikut mund të redaktoni të dhënat hartë </ b>. (<a Href="http://wiki.openstreetmap.org/wiki/Anonymous_edits">
-          gjeni se pse </ a>). <ul> <li> Adresa juaj e emailit nuk do të zbulohet
-          duke u bërë publik. </ Li > <li> Ky veprim nuk mund të kthehet dhe të gjithë
-          përdoruesit e rinj janë tashmë publik nga default. </ li> </ ul>
       save changes button: Ruaj Ndryshimet
-      make edits public button: Boni gjith ndryshimet e mija publike
+    go_public:
+      heading: 'Ndryshime publike:'
+      make_edits_public_button: Boni gjith ndryshimet e mija publike
     update:
       success_confirm_needed: Informatat e shfyrtezuesit u ndryshan me sukses. Shihni
         emailin per konfirmim.
@@ -293,13 +284,6 @@ aln:
       success: '%{name} u hek pi shokve tu'
       not_a_friend: '%{name} nuk osht njoni pi shokve tu.'
   geocoder:
-    search:
-      title:
-        latlon_html: Rezultatet prej <a href="http://openstreetmap.org/">Internal</a>
-        ca_postcode_html: Rezultatet prej <a href="http://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Rezultatet prej <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Rezultatet prej <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         amenity:
@@ -670,9 +654,7 @@ aln:
     home: shtëpi
     logout: logout
     log_in: log in
-    log_in_tooltip: Hyni që me një llogari ekzistuese
     sign_up: regjistrohu
-    sign_up_tooltip: Krijo një llogari për përpunim
     edit: Ndrysho
     history: Historia
     export: Eksport
@@ -711,8 +693,6 @@ aln:
       failed_to_import: 'nuk arriti të importit. Këtu është gabim:'
       subject: '[OpenStreetMap] te re dështimit Import'
     gpx_success:
-      loaded_successfully: ngarkuar me sukses me %{trace_points} nga një jetë e mundur
-        %{possible_points} piket.
       subject: '[OpenStreetMap] Import sukses te re'
     signup_confirm:
       subject: '[OpenStreetMap] Konfirmoje email adresën tonde'
@@ -758,8 +738,6 @@ aln:
     new:
       title: Qo mesazh
       send_message_to_html: Qoje një mesazh të ri te %{name}
-      subject: Titulli
-      body: Organ
       back_to_inbox: Kthehu në postë
     create:
       message_sent: Mesazhi u dërgu
@@ -783,12 +761,8 @@ aln:
         atij mesazhi.
     show:
       title: Lexo mesazhin
-      from: Prej
-      subject: Titulli
-      date: Data
       reply_button: Përgjigju
       unread_button: Bone si të palexum
-      to: Te
       wrong_user: Ju keni hy si `%{user}' por mesazhi që po doni me lexu nuk u dërgu
         për ose nga ai anëtar. Ju lutem hyni si anëtari korrekt nëse doni me lexu
         atë mesazh.
@@ -836,8 +810,6 @@ aln:
       remember: Kujtom mu
       lost password link: Keni harru fjalëkalimin tuaj?
       login_button: Kyçu
-      account not active: Na vjen keq, akonti juej nuk asht hala aktiv<br /> Ju lutemi
-        klikoni në linkun e dërguem në email për me aktivizu akountin tuej.
       auth failure: Na vjen keq, smunem me ju kyc me ato detaje.
     destroy:
       title: Dil
@@ -859,18 +831,6 @@ aln:
         mapping_link: fillo hartografimin
       legal_babble:
         title_html: Copyright
-        intro_1_html: |-
-          OpenStreetMap is <i>open data</i>, licensed under the <a
-          href="http://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database License</a> (ODbL).
-        intro_2_html: |-
-          Ju jeni të lirë ta kopjoni, shpërndani, përcjell dhe përshtatur hartat tona
-            dhe të dhënat, për aq kohë sa ju e kreditit OpenStreetMap e saj
-            kontribuesve. Nëse ju ndryshoni ose me ndërtimin e hartave tona ose të dhëna, ju
-            mund të shpërndani rezultat vetëm në bazë të licencës të njëjtën.
-            <Plotë një
-            href = "http://creativecommons.org/licenses/by-sa/2.0/legalcode"> ligjore
-            <Kod / a> shpjegon të drejtat tuaja dhe të përgjegjësive.
         credit_title_html: Si të kreditit OpenStreetMap
         credit_1_html: |-
           Nëse jeni duke përdorur harta imazhe OpenStreetMap, ne kërkojmë që
@@ -878,25 +838,7 @@ aln:
             kontribuesit, CC BY-SA ". Nëse jeni duke përdorur të dhëna vetëm në hartë,
             ne kerkojme "Organizimi i të dhënave © kontribuesit OpenStreetMap,
             CC BY-SA ".
-        credit_2_1_html: |-
-          Ku të jetë e mundur, duhet të jetë OpenStreetMap hyperlinked në <a
-            href = "http://www.openstreetmap.org/"> http://www.openstreetmap.org/ </ a>
-            dhe CC BY-SA për <a
-            href = "http://creativecommons.org/licenses/by-sa/2.0/"> http://creativecommons.org/licenses/by-sa/2.0/ </ a>. Nëse
-            ju jeni duke përdorur një të mesme, ku lidhjet nuk janë të mundshme (p.sh. një
-            shtypura punë), ne ju sugjerojmë lexuesit tuaj të drejtpërdrejtë të
-            www.openstreetmap.org (ndoshta duke zgjeruar
-            'OpenStreetMap' në këtë adresë të plotë) dhe të
-            www.creativecommons.org.
         more_title_html: Gjetja më shumë
-        more_1_html: |-
-          Lexo më shumë lidhje me përdorimin e të dhënave tona në <a
-            href = "http://wiki.openstreetmap.org/wiki/Legal_FAQ"> Ligjore
-            FAQ </ a>.
-        more_2_html: |-
-          OSM janë kontribuesit kujtoi kurrë për të shtuar të dhënat nga ndonjë
-            Burime copyright (p.sh. Google Maps apo të shtypura harta) pa
-            lejen shprehimisht nga mbajtësit të drejtën e autorit.
         contributors_title_html: kontribuesit tona
         contributors_intro_html: |-
           licencë CC BY-SA jonë kërkon që ju të "japin origjinal
@@ -907,22 +849,6 @@ aln:
             agjenci ose burim kryesor ka qenë i përfshirë në
             OpenStreetMap, ai mund të jetë e arsyeshme për kredi nga ana e tyre direkt
             riprodhimin e kreditit e tyre apo duke i lidhur me të në këtë faqe.
-        contributors_au_html: |-
-          <strong> Australi </ strong>: Përmban të dhëna të bazuara periferi
-             në Zyra Australiane e Statistikave të dhënave.
-        contributors_ca_html: |-
-          <strong> Kanada </ strong>: Përmban të dhëna nga
-             GeoBase ®, GeoGratis (© Departamenti i Natyrore
-             Burimet Kanada), CanVec (Departamenti i Natyrore ©
-             Burimet Kanada), dhe StatCan (Divizioni Gjeografia,
-             Statistika Kanada).
-        contributors_nz_html: |-
-          <strong> Zelanda e Re </ strong>: Përmban të dhëna me burim nga
-             Zelanda e Re Toka e informacionit. Crown Copyright rezervuara.
-        contributors_gb_html: |-
-          <strong> Mbretëria e Bashkuar </ strong>: Përmban të pajisjeve
-             Anketa të dhënat © Crown copyright bazës së të dhënave dhe të drejtë
-             2010.
         contributors_footer_2_html: |2-
             Përfshirja e të dhënave në OpenStreetMap nuk do të thotë që origjinal
             dhënave miraton ofrues OpenStreetMap, ofron çdo garanci ose
@@ -947,8 +873,6 @@ aln:
       osm_xml_data: OpenStreetMap XML të dhana
       embeddable_html: HTML e trupzueshme
       licence: Licensa
-      export_details_html: T'dhanat e OpenStreetMap jan te licensume nën <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
-        Commons Attribution-ShareAlike 2.0 license</a>.
       too_large:
         body: Kjo zonë është shum e madhe që të eksportohet si XML në OpenStreetMap.
           Të lutna afroje ma ngat ose mere një zonë ma të vogel.
@@ -1174,12 +1098,6 @@ aln:
     new:
       title: Krijo akount
       no_auto_account_create: Për momentin spo mujm me ju kriju akount automatikisht.
-      contact_support_html: Ju lutna kontaktoni <a href="%{support}">webmaster</a>
-        per më caktu ni akount që të ju krijohet - na do të merremi me kërkesën sa
-        ma shpejt që tjet e mundshme.
-      email address: 'Email Adresa:'
-      confirm email address: 'Konfirmo Adresën e Emailit:'
-      display name: 'Emni i pamshem:'
       display name description: Emni jot publik. Ju muni me ndrru ma von në preferencat
         e tua.
       continue: Vazhdo
@@ -1200,7 +1118,6 @@ aln:
         shkrimin, ose nashta linku ku keni kliku asht gabim.
     show:
       my diary: ditari im
-      new diary entry: hyrje e re ne ditar
       my edits: ndryshimet e mia
       my traces: gjurmët e mia
       my settings: preferencat e mia
@@ -1217,8 +1134,6 @@ aln:
       created from: 'U krijue prej:'
       status: 'Statuti:'
       spam score: 'Piket e Badihavgjive:'
-      description: Përshkrimi
-      user location: Veni i shfrytëzuesit
       role:
         administrator: Ky shfrytëzues asht aministrator
         moderator: Ky shfrytëzues asht moderator
@@ -1232,14 +1147,11 @@ aln:
       moderator_history: shihe kan e ke blloku
       create_block: blloko ket shfrytzues
       activate_user: aktivizo kët shfrytezues
-      deactivate_user: ç'aktivizoje kët shfrytezues
       confirm_user: konfirmo ket perdorus
       hide_user: mshife kët shfrytëzues
       unhide_user: shfaqe kët shfrytzues
       delete_user: fshije kët shfrytzues
       confirm: Konfirmo
-    set_home:
-      flash success: Veni i shpis u ruajt me sukses
     go_public:
       flash success: Gjitha ndryshimet tuja janë publike tash, edhe tash t'lejohet
         me ndryshue
@@ -1257,15 +1169,6 @@ aln:
     suspended:
       title: Llogaria u Suspendu
       heading: Llogaria u Suspendu
-      body_html: |-
-        <p>
-          Me na fal, por llogaria juaj automatikisht osht suspendu
-          për shkak të aktivitetit të dyshimt.
-        </p>
-        <p>
-          Ky vendim së shpejti ka mu rishiku prej një administratori, ose
-          ju muni me kontaktu me %{webmaster} nëse doni me diskutu ma shumë.
-        </p>
   user_role:
     filter:
       not_a_role: Lidhja `%{role}' nuk asht rol valid.
@@ -1299,10 +1202,6 @@ aln:
       title: Krijimi i bllokuar në %{name}
       heading_html: Krijimi i bllokuar në %{name}
       period: Sa kohë, duke filluar nga tani, përdoruesi do të bllokohet nga API për.
-      tried_contacting: Unë kam kontaktuar me përdorues dhe u kërkoi atyre për të
-        ndaluar.
-      tried_waiting: Unë kam dhënë një sasi të arsyeshme kohore për përdoruesit për
-        t,iu përgjigjur atyre të komunikimit.
       back: Shiko të gjitha blloqet e
     edit:
       title: Editimi bllokuar në %{name}
@@ -1315,10 +1214,6 @@ aln:
       block_period: Periudha e bllokuar duhet të jetë një nga vlerat selectable në
         drop-down list.
     create:
-      try_contacting: Ju lutemi provoni kontaktuar përdorues para se bllokimi i tyre
-        dhe duke u dhënë atyre një kohë të arsyeshme për t,u përgjigjur.
-      try_waiting: Ju lutemi provoni duke i dhënë përdoruesit një kohë të arsyeshme
-        për t,u përgjigjur para se bllokimi i tyre.
       flash: Krijuar një bllok të përdorues %{name}.
     update:
       only_creator_can_edit: Vetëm moderatori i cili krijoi këtë bllok mund ta redaktojnë.

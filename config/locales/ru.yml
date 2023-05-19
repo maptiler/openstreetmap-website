@@ -75,6 +75,7 @@
 # Author: PlushBoy
 # Author: Pplex.vhs
 # Author: Putnik
+# Author: Pvwww
 # Author: Redredsonia
 # Author: Riliam
 # Author: Rivka Silinsky
@@ -117,7 +118,7 @@ ru:
       prompt: Выберите файл
     submit:
       diary_comment:
-        create: Сохранить
+        create: Комментировать
       diary_entry:
         create: Опубликовать
         update: Обновить
@@ -128,7 +129,7 @@ ru:
       client_application:
         create: Зарегистрироваться
         update: Обновить
-      doorkeeper_application:
+      oauth2_application:
         create: Зарегистрироваться
         update: Обновить
       redaction:
@@ -158,7 +159,6 @@ ru:
       message: Сообщение
       node: Точка
       node_tag: Тег точки
-      notifier: Уведомитель
       old_node: Старая точка
       old_node_tag: Старый тег точки
       old_relation: Старое отношение
@@ -202,7 +202,7 @@ ru:
         title: Тема
         latitude: Широта
         longitude: Долгота
-        language: Язык
+        language_code: Язык
       doorkeeper/application:
         name: имя
         redirect_uri: Перенаправления
@@ -266,10 +266,6 @@ ru:
         needs_view: Позволить ли пользователю входить в систему, прежде, чем блокировка
           будет снята?
       user:
-        email_confirmation: Ваш адрес не будет отображаться публично, смотрите нашу
-          <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" title="OSMF
-          privacy policy including section on email addresses">политику конфиденциальности</a>
-          для получения дополнительной информации.
         new_email: (не будет показан)
   datetime:
     distance_in_words_ago:
@@ -400,17 +396,6 @@ ru:
         enabled link text: что это?
         disabled: Отключён и не может вносить правки, все предыдущие изменения анонимны.
         disabled link text: почему я не могу вносить изменения?
-      public editing note:
-        heading: Общедоступная правка
-        html: В настоящий момент ваши правки анонимны и никто не может отправлять
-          вам сообщения или видеть ваше местоположение. Чтобы указать авторство своих
-          правок и позволить другим связываться с вами через вебсайт, нажмите на кнопку
-          внизу. <b>После перехода на API  версии 0.6, только доступные для связи
-          пользователи могут править данные карты</b>. (<a href="https://wiki.openstreetmap.org/wiki/RU:%D0%90%D0%BD%D0%BE%D0%BD%D0%B8%D0%BC%D0%BD%D1%8B%D0%B5_%D0%BF%D1%80%D0%B0%D0%B2%D0%BA%D0%B8">узнайте,
-          почему</a>).<ul> <li>Ваш адрес электронной почты не будет раскрыт для других,
-          но связаться с вами будет возможно.</li> <li>Это действие не имеет обратной
-          силы, а все новые пользователи теперь доступны для связи по умолчанию.</li>
-          </ul>
       contributor terms:
         heading: Условия участия
         agreed: Вы согласились с новыми Условиями участия.
@@ -422,8 +407,11 @@ ru:
         link: https://wiki.openstreetmap.org/wiki/RU:Open_Database_License/Contributor_Terms?uselang=ru
         link text: что это?
       save changes button: Сохранить изменения
-      make edits public button: Сделать все мои правки доступными
       delete_account: Удалить учётную запись…
+    go_public:
+      heading: Общедоступная правка
+      find_out_why: узнать почему
+      make_edits_public_button: Сделать все мои правки доступными
     update:
       success_confirm_needed: Информация о пользователе успешно обновлена. Проверьте
         свою электронную почту для подтверждения вашего нового адреса.
@@ -433,13 +421,8 @@ ru:
   browse:
     created: Создано
     closed: Закрыто
-    created_html: Создано <abbr title='%{title}'>%{time}</abbr>
-    closed_html: Закрыто <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: Создано <abbr title='%{title}'>%{time}</abbr> пользователем %{user}
-    deleted_by_html: Удалено <abbr title='%{title}'>%{time}</abbr> пользователем %{user}
-    edited_by_html: Отредактировано <abbr title='%{title}'>%{time}</abbr> пользователем
-      %{user}
-    closed_by_html: Закрыто <abbr title='%{title}'>%{time}</abbr> пользователем %{user}
+    created_ago_html: Создано %{time_ago}
+    edited_ago_by_html: Редактировал %{time_ago} %{user}
     version: Версия
     in_changeset: Пакет правок
     anonymous: аноним
@@ -469,8 +452,6 @@ ru:
       relation: Отношения (%{count})
       relation_paginated: Отношения (%{x}-%{y} из %{count})
       comment: Комментарии (%{count})
-      hidden_commented_by_html: Скрытый комментарий от %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: Комментарий от %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: XML пакета правок
       osmchangexml: osmChange XML
       feed:
@@ -555,23 +536,7 @@ ru:
       wikimedia_commons_link: Элемент %{page} на Викискладе
       telephone_link: Позвонить %{phone_number}
       colour_preview: Просмотр цвета %{colour_value}
-    note:
-      title: 'Заметка: %{id}'
-      new_note: Новая заметка
-      description: Описание
-      open_title: 'Незакрытая заметка #%{note_name}'
-      closed_title: 'Закрытая заметка #%{note_name}'
-      hidden_title: 'Скрытая заметка #%{note_name}'
-      opened_by_html: Создана %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous_html: Создано анонимно <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: Комментарий от %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous_html: Анонимный комментарий <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_html: Закрыта %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous_html: Закрыта анонимно <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_html: Переоткрыта %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous_html: Переоткрыта анонимно <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by_html: Скрыта %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      report: пожаловаться на эту заметку
+      email_link: Электронная почта %{email}
     query:
       title: Что здесь?
       introduction: Нажмите на карту, чтобы найти ближайшие объекты
@@ -595,6 +560,7 @@ ru:
     index:
       title: Пакеты правок
       title_user: Пакеты правок пользователя %{user}
+      title_user_link_html: Пакеты правок пользователя %{user_link}
       title_friend: Пакеты правок друзей
       title_nearby: Пакеты правок соседних участников
       empty: Пакеты правок не найдены.
@@ -726,6 +692,9 @@ ru:
       applications:
         create:
           notice: Приложение зарегистрировано.
+  errors:
+    not_found:
+      title: Файл не найден
   friendships:
     make_friend:
       heading: Добавить %{user} в друзья?
@@ -741,16 +710,6 @@ ru:
       success: '%{name} удалён из друзей.'
       not_a_friend: '%{name} не является вашим другом.'
   geocoder:
-    search:
-      title:
-        latlon_html: <a href="https://openstreetmap.org/">Внутренние результаты</a>
-        ca_postcode_html: Результаты от <a href="http://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Результаты от <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Результаты от <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Результаты от <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: Результаты от <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -977,6 +936,7 @@ ru:
           winery: Винодельня
           "yes": Мастерская
         emergency:
+          access_point: Точка доступа
           ambulance_station: Станция скорой медицинской помощи
           assembly_point: Место сбора
           defibrillator: Дефибриллятор
@@ -990,6 +950,7 @@ ru:
           bus_stop: Автобусная остановка
           construction: Ремонт/строительство дороги
           corridor: Проход через здание
+          crossing: Перекрёсток
           cycleway: Велодорожка
           elevator: Лифт
           emergency_access_point: Пункт первой помощи
@@ -1113,6 +1074,7 @@ ru:
           marina: Пристань
           miniature_golf: Минигольф
           nature_reserve: Заповедник
+          outdoor_seating: Сидения на открытом воздухе
           park: Парк
           picnic_table: Стол для пикника
           pitch: Спортивная площадка
@@ -1263,6 +1225,7 @@ ru:
           locality: Заброшенная деревня, урочище, необитаемая местность
           municipality: Муниципалитет
           neighbourhood: Соседство
+          plot: Имение
           postcode: Почтовый индекс
           quarter: Район города
           region: Регион
@@ -1332,12 +1295,13 @@ ru:
           convenience: Продовольственный магазин
           copyshop: Услуги копирования
           cosmetics: Косметика
+          craft: Магазин товаров для рукоделия
           curtain: Магазин штор
           dairy: Молочный магазин
           deli: Магазин деликатесов
           department_store: Универсам
           discount: Магазин распродаж
-          doityourself: Магазин випа «Сделай сам»
+          doityourself: Магазин типа «Сделай сам»
           dry_cleaning: Химчистка
           e-cigarette: Магазин электронных сигарет
           electronics: Магазин электроники
@@ -1359,6 +1323,8 @@ ru:
           hairdresser: Парикмахерская
           hardware: Хозяйственный магазин
           health_food: Магазин здоровой пищи
+          hearing_aids: Слуховые аппараты
+          herbalist: травник
           hifi: Магазин аудио-/видео-аппаратуры
           houseware: Магазин посуды
           ice_cream: Магазин мороженного
@@ -1371,12 +1337,15 @@ ru:
           lottery: Лотерея
           mall: Молл
           massage: Массаж
+          medical_supply: Магазин медицинских товаров
           mobile_phone: Магазин мобильных телефонов
+          money_lender: Кредитор
           motorcycle: Магазин по продаже мотоциклов
           motorcycle_repair: Ремонт мотоциклов
           music: Музыкальный магазин
           musical_instrument: Музыкальные инструменты
           newsagent: Газетный киоск
+          nutrition_supplements: Пищевые добавки
           optician: Оптика
           organic: Магазин органических продуктов
           outdoor: Магазин для активного отдыха
@@ -1406,6 +1375,7 @@ ru:
           variety_store: Магазин одной цены
           video: Магазин видеозаписей
           video_games: Магазин видеоигр
+          wholesale: Оптовый магазин
           wine: Винный магазин
           "yes": Магазин
         tourism:
@@ -1487,9 +1457,6 @@ ru:
       status: Статус
       reports: Сообщения
       last_updated: Последнее изменение
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: <abbr title='%{title}'>%{time}</abbr> пользователем
-        %{user}
       link_to_reports: Просмотр сообщений
       reports_count:
         one: 1 сообщение
@@ -1499,10 +1466,6 @@ ru:
         ignored: Проигнорировано
         open: Открыто
         resolved: Обработано
-    update:
-      new_report: Ваше сообщение было успешно зарегистрировано
-      successful_update: Ваше сообщение было успешно обновлено
-      provide_details: Пожалуйста, сообщите дополнительные детали
     show:
       title: '%{status} Проблема #%{issue_id}'
       reports:
@@ -1539,6 +1502,7 @@ ru:
   issue_comments:
     create:
       comment_created: Ваш комментарий был успешно создан
+      issue_reassigned: Ваш комментарий был создан, и проблема была переадресована.
   reports:
     new:
       title_html: Сообщение %{link}
@@ -1581,10 +1545,8 @@ ru:
     home: Домой
     logout: Выйти
     log_in: Войти
-    log_in_tooltip: Войти под существующей учётной записью
     sign_up: Зарегистрироваться
     start_mapping: Начать картографировать
-    sign_up_tooltip: Создать учётную запись для редактирования
     edit: Правка
     history: История
     export: Экспорт
@@ -1604,6 +1566,7 @@ ru:
     hosting_partners_html: Хостинг поддерживается %{ucl}, %{fastly}, %{bytemark} и
       другими %{partners}.
     partners_ucl: UCL
+    partners_fastly: Fastly
     partners_bytemark: Bytemark Hosting
     partners_partners: партнёрами
     tou: Условия использования
@@ -1615,11 +1578,10 @@ ru:
     help: Помощь
     about: О проекте
     copyright: Авторские права
+    communities: Сообщества
     community: Сообщество
     community_blogs: Блоги сообщества
     community_blogs_title: Блоги членов сообщества OpenStreetMap
-    foundation: Фонд OpenStreetMap
-    foundation_title: Фонд OpenStreetMap
     make_a_donation:
       title: Поддержите OpenStreetMap денежным пожертвованием
       text: Поддержать проект
@@ -1668,11 +1630,6 @@ ru:
       subject: '[OpenStreetMap] Сбой импорта GPX'
     gpx_success:
       hi: Здравствуйте, %{to_user},
-      loaded_successfully:
-        one: успешно загружена %{trace_points} точка из %{possible_points} возможной.
-        few: успешно загружены %{trace_points} точки из %{possible_points} возможных.
-        many: успешно загружено %{trace_points} точек из %{possible_points} возможных.
-        other: ""
       subject: '[OpenStreetMap] Импорт GPX прошёл успешно'
     signup_confirm:
       subject: '[OpenStreetMap] Добро пожаловать в OpenStreetMap'
@@ -1773,8 +1730,7 @@ ru:
       success: Ваша учётная запись подтверждена, спасибо за регистрацию!
       already active: Эта учётная запись уже подтверждена.
       unknown token: Такой код подтверждения истек или не существует.
-      reconfirm_html: Если хотите, чтобы мы выслали ещё одно подтверждение по электронной
-        почте, <a href="%{reconfirm}">нажмите здесь</a>.
+      click_here: кликните сюда
     confirm_resend:
       failure: Участник %{name} не найден.
     confirm_email:
@@ -1820,8 +1776,6 @@ ru:
     new:
       title: Отправить сообщение
       send_message_to_html: Отправить новое сообщение для %{name}
-      subject: 'Тема:'
-      body: 'Текст:'
       back_to_inbox: Назад ко входящим
     create:
       message_sent: Сообщение отправлено
@@ -1858,14 +1812,10 @@ ru:
         Вы вошли как `%{user}', но ответ на ваш вопрос был отправлен не этому пользователю. Пожалуйста, войдите как соответствующий вашему вопросу пользователь, чтобы прочитать ответ.
     show:
       title: Просмотр сообщения
-      from: От
-      subject: Тема
-      date: Дата
       reply_button: Ответить
       unread_button: Пометить как непрочитанное
       destroy_button: Удалить
       back: Назад
-      to: 'Кому:'
       wrong_user: Вы вошли как пользователь `%{user}', но ответ на ваш вопрос был
         отправлен не этим или не этому пользователю. Пожалуйста, войдите как соответствующий
         вашему вопросу пользователь, чтобы прочитать его.
@@ -1943,20 +1893,8 @@ ru:
       lost password link: Забыли пароль?
       login_button: Представиться
       register now: Зарегистрируйтесь
-      with username: 'У вас уже есть учётная запись OpenStreetMap? Пожалуйста, войдите
-        с вашим именем пользователя и паролем:'
       with external: 'Кроме того, можете воспользоваться аккаунтом на другом сайте:'
-      new to osm: Впервые на OpenStreetMap?
-      to make changes: Чтобы вносить изменения в данные OpenStreetMap, вы должны иметь
-        учётную запись.
-      create account minute: Создайте учётную запись. Это займёт не больше минуты.
       no account: Нет учётной записи?
-      account not active: Извините, ваша учётная запись ещё не активирована.<br />Чтобы
-        активировать её, пожалуйста, нажмите на ссылку в отправленном вам письме,
-        или <a href="%{reconfirm}">запросите отправку нового письма-подтверждения</a>.
-      account is suspended: Извините, ваша учётная запись была приостановлена из-за
-        подозрительной активности.<br />Пожалуйста, свяжитесь со <a href="%{webmaster}">службой
-        поддержки</a>, если вы хотите выяснить подробности.
       auth failure: Извините, вход с этими именем или паролем невозможен.
       openid_logo_alt: Войти с помощью OpenID
       auth_providers:
@@ -1988,9 +1926,14 @@ ru:
       title: Выйти
       heading: Выйти из OpenStreetMap
       logout_button: Выйти
+    suspended_flash:
+      suspended: К сожалению, ваша учетная запись была заблокирована из-за подозрительной
+        активности.
+      contact_support_html: Пожалуйста, свяжитесь с %{support_link}, если вы хотите
+        обсудить это.
+      support: поддержка
   shared:
     markdown_help:
-      title_html: Разобрано с помощью <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>
       headings: Заголовки
       heading: Заголовок
       subheading: Подзаголовок
@@ -2009,7 +1952,6 @@ ru:
   site:
     about:
       next: Далее
-      copyright_html: <span>&copy;</span>Участники<br />OpenStreetMap
       used_by_html: '%{name} предоставляет данные для тысяч сайтов, мобильных приложений
         и устройств'
       lede_text: OpenStreetMap создан сообществом картографов, которые добавляют и
@@ -2020,29 +1962,11 @@ ru:
         Участники также используют аэрофотоснимки, GPS-устройства и низкотехнологичных
         карты земель для проверки того, что данные OSM являются точными и актуальными.
       community_driven_title: Силами сообщества
-      community_driven_html: |-
-        Сообщество OpenStreetMap — разнообразное, неравнодушное и растущее с каждым днём.
-        Наши участники — это энтузиасты-картографы, ГИС-профессионалы, инженеры, содержащие серверы OSM, люди, отмечающие районы, пострадавшие от бедствий, и многие другие.
-        Чтобы узнать больше о сообществе, читайте <a href='https://blog.openstreetmap.org'>блог OpenStreetMap </a>, <a href='%{diary_path}'>дневники участников</a>, <a href='https://blogs.openstreetmap.org/'>блоги сообщества</a> и сайт <a href='https://www.osmfoundation.org/'>Фонда OSM</a>.
       open_data_title: Открытые данные
-      open_data_html: 'OpenStreetMap являются <i>открытыми данными</i>: вы можете
-        использовать их для любых целей до тех пор, пока вы указываете авторские права
-        OpenStreetMap и его участников. Если вы изменяете данные или определенным
-        образом основываетесь на них, вы можете распространять свой результат только
-        под той же лицензией. Смотрите <a href=''%{copyright_path}''>Авторские права
-        и лицензирование</a> для более подробной информации.'
+      open_data_open_data: открытые данные
       legal_title: Юридические вопросы
-      legal_1_html: Этот веб-сайт и многие связанные с ними услуги находятся в ведении
-        <a href='https://osmfoundation.org/'>OpenStreetMap Foundation</a> (OSMF),
-        действующего от имени сообщества OSM. Использование предоставляемых OSMF услуг
-        является предметом наших <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">Условий
-        использования</a>, <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">Политики
-        приемлемого использования</a> и нашей <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">Политики
-        конфиденциальности</a>.
-      legal_2_html: |-
-        Пожалуйста, <a href='https://osmfoundation.org/Contact'>свяжитесь с OSMF</a>, если у вас есть вопросы относительно лицензирования, авторских прав либо других правовых вопросов.
-        <br>
-        OpenStreetMap, логотип OpenStreetMap в виде увеличительного стекла и State of the Map — <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">зарегистрированные товарные знаки организации OSMF</a>.
+      legal_1_1_terms_of_use: Условия использования
+      legal_1_1_privacy_policy: Политика конфиденциальности
       partners_title: Партнёры
     copyright:
       foreign:
@@ -2059,94 +1983,29 @@ ru:
         mapping_link: начать картографирование
       legal_babble:
         title_html: Авторские права и лицензирование
-        intro_1_html: |-
-          OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> содержит <i>свободные данные</i>, распространяемые по лицензии <a
-          href="https://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database License</a> (ODbL) организацией  <a
-          href="https://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF).
-        intro_2_html: Вы можете свободно копировать, распространять, передавать и
-          дорабатывать наши данные до тех пор, пока вы ссылаетесь на OpenStreetMap
-          и его сообщество. Если вы изменяете или берёте наши данные за основу, то
-          вы должны распространять результат только по такой же лицензии. Полный <a
-          href="https://opendatacommons.org/licenses/odbl/1.0/">юридический текст
-          лицензии</a> разъясняет ваши права и обязанности.
-        intro_3_1_html: Наша документация распространяются по лицензии <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Attribution-ShareAlike 2.0</a> (CC BY-SA 2.0).
         credit_title_html: Как сослаться на OpenStreetMap
         credit_1_html: 'Если вы используете данные OpenStreetMap, вы должны выполнить
           следующие два условия:'
-        credit_2_1_html: |-
-          <ul>
-            <li>Обеспечьте упоминание «OpenStreetMap», отобразив также наше уведомление об авторском праве.</li>
-            <li>Явно укажите, что данные доступны по лицензии Open Database License.</li>
-          </ul>
-        credit_3_1_html: 'У нас есть различные требования к тому, как должно отображаться
-          наше уведомление об авторских правах: всё зависит от того, как вы используете
-          наши данные. Например, действуют разные правила при отображении уведомления
-          об авторских правах в разных случаях: создали ли вы просматриваемую карту,
-          печатную карту или статичное изображение. Полную информацию о требованиях
-          можно найти в <a href="https://wiki.osmfoundation.org/wiki/Licence/Attribution_Guidelines">Руководстве
-          по указанию авторства</a>.'
-        credit_4_html: |-
-          Чтобы явно указать, что данные доступны по лицензии Open Database License, вы можете сослаться на <a href="https://www.openstreetmap.org/copyright"> эту страницу об авторском праве</a>.
-          В качестве альтернативы, а также в качестве требования, если вы распространяете OSM в виде набора данных, вы можете назвать лицензию(и) и дать на неё(них) прямую ссылку.
-          В СМИ, где ссылки физически невозможны (например, в печатных изданиях), мы предлагаем вам направлять читателей на сайт openstreetmap.org (возможно, расширив написание «OpenStreetMap» до полного веб-адреса) и на opendatacommons.org.
-          В этом примере, упоминание находится в углу карты.
         attribution_example:
           alt: Пример того, как сослаться на OpenStreetMap с веб-страницы
           title: Пример указания авторства
         more_title_html: Узнайте больше
-        more_1_html: Прочитайте больше об использовании наших данных и о том, как
-          указывать нас, на <a href="https://osmfoundation.org/Licence?uselang=ru">странице
-          Лицензии OSMF</a>.
-        more_2_html: Хотя данные OpenStreetMap открыты для использования, мы не в
-          состоянии предоставить бесплатный API к нашим картам для сторонних разработчиков.
-          См. <a href="https://operations.osmfoundation.org/policies/api/">Правила
-          использования API</a>, <a href="https://operations.osmfoundation.org/policies/tiles/">Правила
-          использования частей карты</a> и <a href="https://operations.osmfoundation.org/policies/nominatim/">Правила
-          использования службы Nominatim</a> .
         contributors_title_html: Кто вносит вклад в наш проект
         contributors_intro_html: 'Участниками проекта являются тысячи отдельных людей.
           Проект также включает данные под свободными лицензиями от национальных картографических
           агентств и от других источников, среди которых:'
-        contributors_at_html: |-
-          <strong>Австрия.</strong> Данные <a href="https://data.wien.gv.at/">города Вена</a> (на условиях <a href="https://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a>), а также земель <a href="https://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Форарльберга</a> и
-             Тироля (на условиях <a href="https://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC BY AT с дополнениями</a>).
-        contributors_au_html: |-
-          <strong>Австралия</strong>: Включено или разработано с использованием административных границ и копии;
-          <a href="https://geoscape.com.au/legal/data-copyright-and-disclaimer/">Geoscape Australia</a>
-          под лицензией Содружества Австралии по
-          <a href="https://creativecommons.org/licenses/by/4.0/">международной лицензии Creative Commons Attribution 4.0 (CC BY 4.0)</a>.
-        contributors_ca_html: <strong>Канада.</strong> Данные от GeoBase ®, GeoGratis
-          (© Департамент природных ресурсов Канады), CanVec (© Департамент природных
-          ресурсов Канады) и StatCan (Отдел Географии, Статистическое ведомство Канады).
-        contributors_fi_html: |-
-          <strong>Финляндия</strong>: Содержит данные из топографической базы национальной земельной службы Финляндии
-           и других наборов данных, под
-          <a href="https://www.maanmittauslaitos.fi/en/opendata-licence-version1">лицензией NLSFI</a>.
-        contributors_fr_html: '<strong>Франция</strong>: Данные от Главного налогового
-          управления.'
-        contributors_nl_html: '<strong>Нидерланды</strong>: Contains &copy; AND data,
-          2007 (<a href="https://www.and.com">www.and.com</a>)'
-        contributors_nz_html: <strong>Новая Зеландия:</strong> содержит данные из
-          сервиса <a href="https://data.linz.govt.nz/">LINZ</a>согласно лицензии <a
-          href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
-        contributors_si_html: '<strong>Словения</strong>: содержит данные от <a href="http://www.gu.gov.si/en/">Геодезического
-          и картографического управления</a> и <a href="http://www.mkgp.gov.si/en/">Министерства
-          сельского, лесного хозяйства и продовольствия</a> (открытая информация Словении).'
-        contributors_es_html: |-
-          <strong>Испания</strong>: Содержит данные, полученные от
-          Испанского национального географического института (<a href="http://www.ign.es/">IGN</a>) и
-          Национальной картографической системы (<a href="http://www.scne.es/">SCNE</a>) и лицензированные для повторного использования в соответствии с <a href="https://creativecommons.org/licenses/by/4.0/deed.ru">CC BY 4.0</a>.
-        contributors_za_html: |-
-          <strong>ЮАР</strong>: Имеются данные из
-          <a href="http://www.ngi.gov.za/">Главное управление:
-          Национальная геоинформационная система</a>, права принадлежат государству.
-        contributors_gb_html: <strong>Великобритания.</strong> Данные Ordnance Survey
-          © Crown copyright и права на базы данных 2010-19.
-        contributors_footer_1_html: Более подробную информацию об этих и других источниках,
-          использованных для наполнения OpenStreetMap, смотрите на <a href="https://wiki.openstreetmap.org/wiki/Contributors">странице
-          Contributors</a> вики-сервера OpenStreetMap.
+        contributors_at_austria: Австрия
+        contributors_at_land_vorarlberg: Земля Форарльберг
+        contributors_au_australia: Австралия
+        contributors_ca_canada: Канада
+        contributors_fi_finland: Финляндия
+        contributors_fr_france: Франция
+        contributors_nl_netherlands: Нидерланды
+        contributors_nz_new_zealand: Новая Зеландия
+        contributors_si_slovenia: Словения
+        contributors_es_spain: Испания
+        contributors_za_south_africa: Южная Африка
+        contributors_gb_united_kingdom: Великобритания
         contributors_footer_2_html: Включение данных в OpenStreetMap не означает,
           что поставщик первичных данных каким-либо образом поддерживает OpenStreetMap,
           предоставляет гарантии или принимает на себя какую-любую ответственность.
@@ -2155,18 +2014,7 @@ ru:
           данных из любых защищённых авторским правом источников (например, с Google
           Maps или печатных карт) не должно проводиться без явного предварительного
           согласия правообладателей.
-        infringement_2_html: |-
-          Если вы считаете, что защищённый авторским правом материал был неправомерно
-           добавлен к базе OpenStreetMap или к этому сайту, пожалуйста, обратитесь
-           к нашей <a href="https://wiki.osmfoundation.org/wiki/License/Takedown_procedure">процедуре
-           изымания</a> или непосредственно на нашу
-          <a href="https://dmca.openstreetmap.org/">вебстраницу регистрации</a>.
-        trademarks_title_html: <span id="trademarks"></span>Товарные знаки
-        trademarks_1_html: OpenStreetMap, логотип с увеличительным стеклом и State
-          of the Map являются зарегистрированными товарными знаками Фонда OpenStreetMap.
-          Если у вас есть вопросы об использовании этих знаков, пожалуйста, ознакомьтесь
-          с <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">Политикой
-          в области товарных знаков</a>.
+        trademarks_1_1_trademark_policy: Политика в отношении товарных знаков
     index:
       js_1: Вы используете браузер, в котором не поддерживается или отключён JavaScript.
       js_2: OpenStreetMap использует JavaScript для отображения карт.
@@ -2197,8 +2045,6 @@ ru:
       map_image: Изображение карты (показывает стандартный слой)
       embeddable_html: Встраиваемый HTML
       licence: Лицензия
-      export_details_html: Данные OpenStreetMap распространяются по <a href="https://opendatacommons.org/licenses/odbl/1.0/">лицензии
-        Open Data Commons Open Database License</a> (ODbL).
       too_large:
         advice: 'Если этот экспорт пройдёт неудачно, пожалуйста, попробуйте один из
           перечисленных ниже источников:'
@@ -2216,9 +2062,6 @@ ru:
           title: Загрузки Geofabrik
           description: Регулярно обновляемые выгрузки континентов, стран и отдельных
             городов
-        metro:
-          title: Выгрузки городов
-          description: Выгрузки крупных городов мира и окружающих их районов
         other:
           title: Другие источники
           description: Дополнительные источники, перечисленные в вики OpenStreetMap
@@ -2244,16 +2087,9 @@ ru:
             отсутствие дороги или вашего адреса, лучший способ для дальнейших действий
             — вступить в сообщество OpenStreetMap и добавить или восстановить данные
             самостоятельно.
-        add_a_note:
-          instructions_html: |-
-            Просто нажмите <a class='icon note'></a> или на тот же значок на карте.
-            Это добавит на карту маркер, который можно передвигать перетаскиванием. Добавьте сообщение, а затем нажмите кнопку сохранения, и другие картографы увидят его.
       other_concerns:
         title: Другие проблемы
-        explanation_html: |-
-          Если у вас есть вопросы о том, как используются наши данные, или о содержимом сайта, обратитесь к нашей
-          <a href='/copyright'>странице авторских прав</a> для получения дополнительной правовой информации или свяжитесь с  соответствующий
-          <a href='https://wiki.osmfoundation.org/wiki/Working_Groups'>рабочей группой OSMF</a>.
+        copyright: страница авторского права
     help:
       title: Получение справки
       introduction: На OpenStreetMap есть несколько ресурсов, где можно узнать о проекте,
@@ -2274,9 +2110,6 @@ ru:
         title: Списки рассылок
         description: Задайте вопрос или обсудите насущные вопросы в списке рассылок
           (количество активных пользователей зависит от языка).
-      forums:
-        title: Форумы (устаревшее)
-        description: Вопросы и обсуждения для тех, кто предпочитает форумы для общения.
       community:
         title: Форум сообщества
         description: Общедоступное место для разговоров об OpenStreetMap.
@@ -2299,11 +2132,13 @@ ru:
       removed: Ваш редактор OpenStreetMap по умолчанию - Potlach. Поскольку поддержка
         Adobe Flash Player была приостановлена, Potlatch больше не доступен для использования
         в веб-браузере.
-      desktop_html: Вы всё еще можете использовать Potlatch, <a href="https://www.systemed.net/potlatch/">загрузив
-        приложение для Mac и Windows</a>.
-      id_html: В качестве альтернативы вы можете установить в качестве редактора по
-        умолчанию iD, который запускается в вашем веб-браузере, как раньше это делал
-        Potlatch. <a href="%{settings_url}">Измените свои настройки здесь</a>.
+      desktop_application_html: Вы по-прежнему можете использовать Potlatch с помощью
+        %{download_link}.
+      id_editor_html: Как альтернатива, вы можете установить iD в качестве редактора
+        по умолчанию, который запускается в вашем веб-браузере, как это раньше делал
+        Potlatch. %{change_preferences_link}.
+    any_questions:
+      title: Остались вопросы?
     sidebar:
       search_results: Результаты поиска
       close: Закрыть
@@ -2391,52 +2226,43 @@ ru:
           toilets: Туалет
     welcome:
       title: Добро пожаловать!
-      introduction_html: Добро пожаловать на OpenStreetMap, открытую и свободную карту
+      introduction: Добро пожаловать на OpenStreetMap, открытую и свободную карту
         мира. Теперь, когда регистрация завершена, можно начинать картографировать.
         Вот небольшая инструкция по самым важным вещам, которые необходимо знать.
       whats_on_the_map:
         title: Что находится на карте
-        on_html: |-
-          На карте OpenStreetMap расположены объекты, которые <em>существуют в данный момент</em> -
-          то есть миллионы зданий, дорог и других элементов местности. Вы вольны отмечать любые детали окружающего мира, которые вам интересны.
-        off_html: Карта <em>не</em> включает оценочные данные вроде рейтингов, бывшие
-          или гипотетические постройки, и информацию из источников, защищённых авторским
-          правом. Если вы не получили специального разрешения, не копируйте данные
-          с любых других карт.
       basic_terms:
         title: Небольшой словарь картографа
-        paragraph_1_html: У OpenStreetMap выработался локальный сленг. Вот несколько
-          понятий, которые стоит иметь ввиду.
-        editor_html: <strong>Редактор</strong> — это программа или веб-сайт, которые
-          можно использовать для редактирования карты.
-        node_html: <strong>Точка</strong> (node) — простейший элемент карты, вроде
-          входа в ресторан или отдельного дерева.
-        way_html: <strong>Линия</strong> — это отрезок или кривая, соединяющая точки,
-          обозначающая, к примеру, дорогу, ручей, контур озера или здания.
-        tag_html: <strong>Тег</strong> – это единица описания точки или линии, например
-          название ресторана или скоростное ограничение конкретной дороги.
+        paragraph_1: У OpenStreetMap выработался локальный сленг. Вот несколько понятий,
+          которые стоит иметь ввиду.
+        an_editor_html: '%{editor} – это программа или веб-сайт, который вы можете
+          использовать для редактирования карты.'
+        editor: редактор
       rules:
         title: Правила!
-        paragraph_1_html: В OpenStreetMap есть лишь несколько формальных правил, но
-          мы бы хотели, чтоб все участники сотрудничали и взаимодействовали с сообществом.
-          Если речь идёт о любых действиях, кроме редактирования вручную, пожалуйста,
-          прочитайте рекомендацияи по <a href="https://wiki.openstreetmap.org/wiki/Import/Guidelines">импорту</a>
-          и <a href="https://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct">автоматизированным
-          правкам</a> и следуйте им в дальнейшем.
-      questions:
-        title: Остались вопросы?
-        paragraph_1_html: |-
-          У OpenStreetMap есть несколько ресурсов, где можно узнать о проекте, задать вопросы, или ответить на них, и совместно обсудить темы, касающиеся картографии.
-          <a href='%{help_url}'>Помощь находится здесь</a>. А если вы из организации, которая хочет работать с OpenStreetMap, <a href='https://welcome.openstreetmap.org/'>то вам сюда</a>.
+        para_1_html: |-
+          В OpenStreetMap несколько формальных правил, но мы ожидаем, что все участники будут сотрудничать
+          с сообществом и общаться с ним. Если вы планируете
+          какие-либо действия, кроме редактирования вручную, прочтите и следуйте инструкциям:
+          %{imports_link} и %{automated_edits_link}.
+        automated_edits: Автоматические правки
       start_mapping: Начать картографировать
       add_a_note:
         title: Нет времени отредактировать карту? Добавьте заметку!
-        paragraph_1_html: Если нужно сделать небольшое уточнение, ради которого слишком
-          долго регистрироваться и изучать правила правки, можно просто добавить заметку
+        para_1: Если нужно сделать небольшое уточнение, ради которого слишком долго
+          регистрироваться и изучать правила правки, можно просто добавить заметку
           на карту.
-        paragraph_2_html: |-
-          Просто перейдите <a href='%{map_url}'>к карте</a> и нажмите на иконку заметок:
-          <span class='icon note'></span>. Это добавит на карту маркер, который можно перетаскивать. Просто напишите сообщение и нажмите "Добавить", и другие участники увидят его.
+    communities:
+      title: Сообщества
+      lede_text: "Люди со всего мира вносят свой вклад или используют OpenStreetMap.\nНесмотря
+        на то, что многие участвуют поодиночке, другие сформировали сообщества.\nЭти
+        группы бывают разных размеров и представляют географические регионы от небольших
+        городов до крупных регионов с несколькими странами. \nОни также могут быть
+        формальными или неформальными."
+      local_chapters:
+        title: Местные отделения
+      other_groups:
+        title: Другие группы
   traces:
     visibility:
       private: Частный (доступно только анонимно, неупорядоченные точки)
@@ -2523,8 +2349,7 @@ ru:
       public_traces_from: Общедоступные треки пользователя %{user}
       description: Просмотр последних загруженных GPS-треков
       tagged_with: 'с тегами: %{tags}'
-      empty_html: Пока здесь ничего нет. <a href='%{upload_link}'>Загрузите новый
-        трек</a> или почитайте про GPS-треки на <a href='https://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>вики-странице</a>.
+      empty_title: Здесь пока ничего нет
       upload_trace: Загрузить треки
       all_traces: Все треки
       my_traces: Мои треки
@@ -2602,6 +2427,7 @@ ru:
       read_gpx: Читать частные GPS-треки
       write_gpx: Загрузить GPS-треки
       write_notes: Изменить заметки
+      read_email: Читать адрес электронной почты пользователя
   oauth_clients:
     new:
       title: Зарегистрировать новое приложение
@@ -2699,18 +2525,9 @@ ru:
       title: Регистрация
       no_auto_account_create: К сожалению, сейчас мы не можем автоматически создать
         для вас учётную запись.
-      contact_support_html: Пожалуйста, свяжитесь со <a href="%{support}">службой
-        поддержки</a> с просьбой создать подобную учётную запись. Мы попробуем и ответим
-        настолько быстро, насколько сможем.
+      support: поддержка
       about:
         header: Свободно редактируемая
-        html: |-
-          <p>В отличие от других карт, OpenStreetMap полностью создаются такими же людьми, как и вы,
-          и они свободны для исправления, обновления, загрузки и использования каждым.</p>
-          <p>Зарегистрируйтесь, чтобы сделать свой вклад. Мы отправим вам письмо, чтобы подтвердить ваш аккаунт.</p>
-      email address: 'Адрес эл. почты:'
-      confirm email address: 'Подтвердите адрес эл. почты:'
-      display name: 'Отображаемое имя:'
       display name description: Ваше имя, как оно будет видно другим пользователям.
         Вы сможете изменить его позже в настройках.
       external auth: 'Внешний сайт с учётной записью:'
@@ -2719,6 +2536,7 @@ ru:
         он необходим
       continue: Зарегистрироваться
       terms accepted: Спасибо за принятие новых условий участия!
+      privacy_policy: политика конфиденциальности
     terms:
       title: Условия
       heading: Условия сотрудничества
@@ -2736,8 +2554,7 @@ ru:
         вклад находится в общественном достоянии
       consider_pd_why: что это значит?
       consider_pd_why_url: https://wiki.osmfoundation.org/wiki/Licence_and_Legal_FAQ/Why_would_I_want_my_contributions_to_be_public_domain?uselang=ru
-      guidance_html: 'Информация, которая поможет понять эти условия: <a href="%{summary}">краткое
-        описание</a> и несколько <a href="%{translations}">неофициальных переводов</a>'
+      readable_summary: удобочитаемое резюме
       continue: Продолжить
       declined: https://wiki.openstreetmap.org/wiki/Contributor_Terms_Declined?uselang=ru
       decline: Отклонить
@@ -2761,7 +2578,6 @@ ru:
       deleted: удалено
     show:
       my diary: Мой дневник
-      new diary entry: новая запись
       my edits: Мои правки
       my traces: Мои треки
       my notes: Мои заметки
@@ -2790,8 +2606,6 @@ ru:
       created from: 'Создано из:'
       status: 'Статус:'
       spam score: 'Оценка спама:'
-      description: Описание
-      user location: Местонахождение пользователя
       role:
         administrator: Этот пользователь является администратором
         moderator: Этот пользователь является модератором
@@ -2806,7 +2620,6 @@ ru:
       comments: Комментарии
       create_block: Блокировать этого пользователя
       activate_user: Активировать этого пользователя
-      deactivate_user: Деактивировать этого пользователя
       confirm_user: Подтвердить этого пользователя
       unconfirm_user: Не подтверждать эту учётную запись
       unsuspend_user: Разблокировать эту учётную запись
@@ -2815,8 +2628,6 @@ ru:
       delete_user: Удалить этого пользователя
       confirm: Подтвердить
       report: Сообщить об этом пользователе
-    set_home:
-      flash success: Домашнее местоположение сохранено
     go_public:
       flash success: Все ваши правки теперь общедоступны, и вы теперь можете редактировать.
     index:
@@ -2834,15 +2645,11 @@ ru:
       title: Учётная запись приостановлена
       heading: Учётная запись приостановлена
       support: поддержка
-      body_html: |-
-        <p>
-          Извините, ваша учётная запись была автоматически приостановлена из-за
-          подозрительной активности.
-        </p>
-        <p>
-          Это решение может быть вскоре пересмотрено администратором, или
-          вы можете связаться с %{webmaster}, если вы хотите это обсудить.
-        </p>
+      automatically_suspended: Извините, ваша учетная запись была автоматически заблокирована
+        из-за подозрительной активности.
+      contact_support_html: Это решение будет рассмотрено администратором в ближайшее
+        время, или вы можете связаться с %{support_link}, если вы хотите обсудить
+        это.
     auth_failure:
       connection_failed: Не удалось соединиться с сервером авторизации
       invalid_credentials: Недопустимые учётные данные для аутентификации
@@ -2891,9 +2698,6 @@ ru:
       heading_html: Создание блокировки для пользователя %{name}
       period: Как долго, начиная с этого момента, пользователь будет заблокирован
         от API.
-      tried_contacting: Я связывался с пользователем и просил его остановиться.
-      tried_waiting: Я дал достаточно времени пользователю, чтобы он отреагировал
-        на те сообщения.
       back: Показать все блокировки
     edit:
       title: Правка блокировки пользователя %{name}
@@ -2907,10 +2711,6 @@ ru:
       block_period: Период блокировки должен быть одним из значений, выбираемых из
         выпадающего списка.
     create:
-      try_contacting: Пожалуйста, перед блокировкой пользователя попробуйте связаться
-        с ним и дать ему разумное время для ответа.
-      try_waiting: Пожалуйста, дайте пользователю разумное время для ответа перед
-        тем, как блокировать его.
       flash: Создана блокировка для пользователя %{name}.
     update:
       only_creator_can_edit: Только модератор, который создал эту блокировку, может
@@ -2997,11 +2797,41 @@ ru:
       title: Заметки, созданные или прокомментированный участником %{user}
       heading: Заметки участника %{user}
       subheading_html: Заметки, созданные или прокомментированные участником %{user}
+      no_notes: Нет заметок
       id: Идентификатор
       creator: Автор
       description: Описание
       created_at: Создана
       last_changed: Изменена
+    show:
+      title: 'Заметка: %{id}'
+      description: Описание
+      open_title: 'Незакрытая заметка #%{note_name}'
+      closed_title: 'Закрытая заметка #%{note_name}'
+      hidden_title: 'Скрытая заметка #%{note_name}'
+      report: пожаловаться на эту заметку
+      anonymous_warning: Эта заметка содержит комментарии анонимных участников. Требуется
+        независимая проверка сведений.
+      hide: Скрыть
+      resolve: Закрыть
+      reactivate: Открыть снова
+      comment_and_resolve: Закрыть с комментарием
+      comment: Комментировать
+      report_link_html: Если эта заметка содержит чувствительную информацию, которую
+        нужно удалить, вы можете %{link}.
+      other_problems_resolve: При всех других проблемах с заметкой, закройте её, пожалуйста,
+        самостоятельно с комментарием.
+      other_problems_resolved: При всех других проблемах, достаточно закрытия заметки.
+      disappear_date_html: Закрытая заметка исчезнет с карты через %{disappear_in}.
+    new:
+      title: Новая заметка
+      intro: Заметили ошибку или отсутствие чего-либо? Дайте знать об этом другим
+        картографам, чтобы они могли это исправить. Переместите маркер в нужное место
+        и напечатайте сообщение, объясняющее проблему.
+      advice: Ваша заметка является общедоступной и может использоваться для обновления
+        карты, поэтому не вводите личную информацию, информацию из защищённых авторскими
+        правами карт или справочников.
+      add: Добавить заметку
   javascripts:
     close: Закрыть
     share:
@@ -3062,18 +2892,6 @@ ru:
         gps: Общедоступные GPS-треки
         overlays: Включить наложения для устранения неисправностей карты
         title: Слои
-      copyright: © <a href='%{copyright_url}'>Участники OpenStreetMap</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Сделать пожертвование</a>
-      terms: <a href='%{terms_url}' target='_blank'>Условия использования сайта и
-        API</a>
-      cyclosm: Оформление тайлов выполнено <a href='%{cyclosm_url}' target='_blank'>CyclOSM</a>,
-        хостинг от <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap France</a>
-      thunderforest: Тайлы предоставлены <a href='%{thunderforest_url}' target='_blank'>Andy
-        Allan</a>
-      opnvkarte: Тайлы любезно предоставлены <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>
-      hotosm: Оформление тайлов выполнено <a href='%{hotosm_url}' target='_blank'>Humanitarian
-        OpenStreetMap Team</a>, хостинг от <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
-        France</a>
     site:
       edit_tooltip: Править карту
       edit_disabled_tooltip: Увеличить масштаб для редактирования карты
@@ -3090,23 +2908,6 @@ ru:
         unsubscribe: Отписаться
         hide_comment: скрыть
         unhide_comment: показать
-    notes:
-      new:
-        intro: Заметили ошибку или отсутствие чего-либо? Дайте знать об этом другим
-          картографам, чтобы они могли это исправить. Переместите маркер в нужное
-          место и напечатайте сообщение, объясняющее проблему.
-        advice: Ваша заметка является общедоступной и может использоваться для обновления
-          карты, поэтому не вводите личную информацию, информацию из защищённых авторскими
-          правами карт или справочников.
-        add: Добавить заметку
-      show:
-        anonymous_warning: Эта заметка содержит комментарии анонимных участников.
-          Требуется независимая проверка сведений.
-        hide: Скрыть
-        resolve: Закрыть
-        reactivate: Открыть снова
-        comment_and_resolve: Закрыть с комментарием
-        comment: Комментировать
     edit_help: Передвиньте карту и увеличьте место, которые вы хотите править, затем
       кликните здесь.
     directions:
@@ -3118,6 +2919,9 @@ ru:
         graphhopper_bicycle: На велосипеде (GraphHopper)
         graphhopper_car: На машине (GraphHopper)
         graphhopper_foot: Пешком (GraphHopper)
+        fossgis_valhalla_bicycle: На велосипеде (Valhalla)
+        fossgis_valhalla_car: На машине (Valhalla)
+        fossgis_valhalla_foot: Пешком (Valhalla)
       descend: Спуск
       directions: Маршрут
       distance: Расстояние

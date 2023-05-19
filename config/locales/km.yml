@@ -10,20 +10,34 @@ km:
     formats:
       friendly: ថ្ងៃ%e ខែ%B ឆ្នាំ%Y នៅម៉ោង %H:%M
   helpers:
+    file:
+      prompt: ជ្រើសរើស​ឯកសារ
     submit:
       diary_comment:
-        create: រក្សាទុក​
+        create: មតិយោបល់
       diary_entry:
         create: បោះផ្សាយ
+        update: ធ្វើបច្ចុប្បន្នភាព
+      issue_comment:
+        create: បន្ថែមមតិ
       message:
         create: ផ្ញើ​
       client_application:
         create: ចុះឈ្មោះ​
-        update: កែប្រែ​
+        update: អាប់ដេត
+      oauth2_application:
+        create: ចុះឈ្មោះ
+        update: អាប់ដេត
       trace:
         create: ផ្ទុកឡើង​
         update: រក្សាទុក​បន្លាស់ប្តូរនានា​
+      user_block:
+        create: បង្កើតប្លុក
+        update: អាប់ដេតប្លុក
   activerecord:
+    errors:
+      messages:
+        invalid_email_address: មិន​ទំនង​ជា​អាសយដ្ឋាន​អ៊ីមែល​ត្រឹមត្រូវ​ទេ
     models:
       changeset: សំណុំបន្លាស់ប្តូរ​
       changeset_tag: ស្លាកនៃសំណុំបន្លាស់ប្តូរ​
@@ -31,11 +45,11 @@ km:
       diary_comment: មតិយោបល់​នៃសៀវភៅកំណត់ហេតុ​
       diary_entry: ប្រកាសក្នុងកំណត់ហេតុ
       friend: មិត្ត​
+      issue: បញ្ហា
       language: ភាសា​
       message: សារ​
       node: ខ្នែង
       node_tag: ផ្លាកខ្នែង
-      notifier: ជូនដំណឹង
       old_node: ខ្នែងចាស់
       old_node_tag: ផ្លាកខ្នែងចាស់
       old_relation: ទំនាក់ទំនង​ចាស់​
@@ -47,6 +61,7 @@ km:
       relation: ទំនាក់ទំនង​
       relation_member: សមាជិកនៃទំនាក់ទំនង
       relation_tag: ស្លាកនៃទំនាក់ទំនង​
+      report: របាយការណ៍
       user: អ្នកប្រើប្រាស់​
       user_preference: ចំណូលចិត្ត​អ្នកប្រើប្រាស់
       way: ផ្លូវ​
@@ -58,7 +73,7 @@ km:
         title: ប្រធានបទ​
         latitude: រយៈកម្ពស់
         longitude: រយៈបណ្ដោយ
-        language: ភាសា​
+        language_code: ភាសា​
       friend:
         user: អ្នកប្រើប្រាស់​
         friend: មិត្ត​
@@ -97,12 +112,6 @@ km:
   browse:
     created: បាន​បង្កើត​
     closed: បាន​បិទ
-    created_html: បានបង្កើត <abbr title='%{title}'>%{time} មុន</abbr>
-    closed_html: បានបិទ <abbr title='%{title}'>%{time} មុន</abbr>
-    created_by_html: បានបង្កើត <abbr title='%{title}'>%{time} មុន</abbr> ដោយ %{user}
-    deleted_by_html: បានលុបចោល <abbr title='%{title}'>%{time} មុន</abbr> ដោយ %{user}
-    edited_by_html: បានកែប្រែ <abbr title='%{title}'>%{time} មុន</abbr> ដោយ %{user}
-    closed_by_html: បានបិទ <abbr title='%{title}'>%{time} មុន</abbr> ដោយ %{user}
     version: កំណែ
     in_changeset: សំណុំបន្លាស់ប្ដូរ
     anonymous: អនាមិក
@@ -170,16 +179,6 @@ km:
     tag_details:
       tags: ស្លាក​
       wikipedia_link: អត្ថបទ %{page} នៅលើវិគីភីឌា
-    note:
-      title: កំណត់សម្គាល់៖ %{id}
-      new_note: កំណត់សម្គាល់ថ្មី
-      description: ការពិពណ៌នា
-      opened_by_html: បង្កើតដោយ %{user} <abbr title='%{exact_time}'>%{when} មុន</abbr>
-      opened_by_anonymous_html: បង្កើតឡើងដោយជនអនាមិក <abbr title='%{exact_time}'>%{when}
-        មុន</abbr>
-      commented_by_html: មតិពី %{user} <abbr title='%{exact_time}'>%{when} មុន</abbr>
-      commented_by_anonymous_html: មតិពីជនអនាមិក <abbr title='%{exact_time}'>%{when}
-        មុន</abbr>
   changesets:
     changeset_paging_nav:
       showing_page: ទំព័រ %{page}
@@ -261,11 +260,6 @@ km:
     remove_friend:
       not_a_friend: '%{name} មិនមែនជាមិត្តរបស់អ្នកទេ​។'
   geocoder:
-    search:
-      title:
-        latlon_html: លទ្ធផលពី <a href="http://openstreetmap.org/">Internal</a>
-        ca_postcode_html: លទ្ធផលពី <a href="http://geocoder.ca/">Geocoder.CA</a>
-        geonames_html: លទ្ធផលពី <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -616,7 +610,6 @@ km:
   layouts:
     logout: កត់ឈ្មោះចេញ
     log_in: កត់ឈ្មោះចូល
-    log_in_tooltip: កត់ឈ្មោះចូលជាមួយគណនីមានហើយ
     sign_up: ចុះឈ្មោះ​ចូល
     edit: កែប្រែ​
     history: ប្រវត្តិ​
@@ -663,17 +656,11 @@ km:
       subject: ប្រធានបទ​
       date: កាលបរិច្ឆេទ​
     new:
-      subject: ប្រធានបទ​
       back_to_inbox: ត្រឡប់ទៅប្រអប់សំបុត្រ​
     outbox:
       to: ទៅ​
       subject: ប្រធានបទ​
       date: កាលបរិច្ឆេទ​
-    show:
-      from: ពី​
-      subject: ប្រធានបទ​
-      date: កាលបរិច្ឆេទ​
-      to: ទៅ​
   sessions:
     new:
       title: កត់ឈ្មោះចូល
@@ -800,7 +787,12 @@ km:
       edits: កំណែប្រែ​
       remove as friend: ដកចេញជាមិត្ត​
       add as friend: បន្ថែមជាមិត្ត​
-      description: បរិយាយ​
+  notes:
+    show:
+      title: កំណត់សម្គាល់៖ %{id}
+      description: ការពិពណ៌នា
+    new:
+      title: កំណត់សម្គាល់ថ្មី
   javascripts:
     embed:
       report_problem: រាយការណ៍​បញ្ហា

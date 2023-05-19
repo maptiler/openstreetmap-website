@@ -2,12 +2,14 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: A Retired User
+# Author: Adreamy
 # Author: Alattalatta
 # Author: Alex00728
 # Author: Apzp79
 # Author: Asdfqwer51
 # Author: B891202
 # Author: CYAN
+# Author: Cerulean
 # Author: Codenstory
 # Author: Cubbe
 # Author: D6283
@@ -32,6 +34,7 @@
 # Author: Sukjong0406
 # Author: Theshinster123
 # Author: Twotwo2019
+# Author: Wehwei
 # Author: Wrightbus
 # Author: Ykhwong
 # Author: Ysjbserver
@@ -54,7 +57,7 @@ ko:
       prompt: 파일 선택
     submit:
       diary_comment:
-        create: 저장
+        create: 의견
       diary_entry:
         create: 게시
         update: 업데이트
@@ -65,7 +68,7 @@ ko:
       client_application:
         create: 등록
         update: 업데이트
-      doorkeeper_application:
+      oauth2_application:
         create: 등록
         update: 업데이트
       redaction:
@@ -95,7 +98,6 @@ ko:
       message: 메시지
       node: 교점
       node_tag: 교점 태그
-      notifier: 알리미
       old_node: 이전 교점
       old_node_tag: 이전 교점 태그
       old_relation: 이전 관계
@@ -136,12 +138,14 @@ ko:
       diary_entry:
         user: 사용자
         title: 제목
+        body: 내용
         latitude: 위도
         longitude: 경도
-        language: 언어
+        language_code: 언어
       doorkeeper/application:
         name: 이름
         redirect_uri: URI 리다이렉트
+        confidential: 기밀 애플리케이션
         scopes: 허가
       friend:
         user: 사용자
@@ -255,7 +259,18 @@ ko:
     deletions:
       show:
         title: 내 계정 삭제
+        warning: 경고! 계속 진행하면 계정이 삭제되며 되돌릴 수 없습니다.
         delete_account: 계정 삭제
+        delete_introduction: 아래 버튼을 사용하여 OpenStreetMap 계정을 삭제할 수 있습니다. 다음 세부 사항에 유의하십시오.
+        delete_profile: 아바타, 설명, 집 위치를 포함한 프로필 정보가 제거됩니다.
+        delete_display_name: 표시되는 이름이 삭제되며 다른 계정에서 재사용될 수 있습니다.
+        retain_caveats: 그러나, 귀하의 정보가 삭제된 후 OpenStreetMap에서 일부 정보가 유지될 수 있습니다.
+        retain_edits: 지도 데이터베이스에 편집 내역이 있을 경우 그대로 유지됩니다.
+        retain_traces: 업로드된 경로가 있는 경우 그대로 유지됩니다.
+        retain_diary_entries: 일기 항목과 일기에 달린 댓글이 있는 경우 유지되지만 보기에서 숨겨집니다.
+        retain_notes: 지도 메모와 메모에 달린 댓글이 있는 경우 유지되지만 보기에서 숨겨집니다.
+        retain_changeset_discussions: 바뀜집합 토론이 있는 경우 유지됩니다.
+        retain_email: 이메일 주소는 그대로 유지됩니다.
         confirm_delete: 확실합니까?
         cancel: 취소
   accounts:
@@ -269,26 +284,25 @@ ko:
       public editing:
         heading: 공개 편집
         enabled: 활성화했습니다. 익명이 아니며 데이터를 편집할 수 있습니다.
+        enabled link: https://wiki.openstreetmap.org/wiki/Anonymous_edits
         enabled link text: 무엇인가요?
         disabled: 바활성화되어 데이터를 편집할 수 없으며, 모든 이전 편집은 익명입니다.
         disabled link text: 왜 편집할 수 없나요?
-      public editing note:
-        heading: 공개 편집
-        html: 현재 편집은 익명으로 나타나며, 다른 사람에게서 메시지를 받을 수 없고 자신의 위치가 공개되지 않습니다. 자신이 편집한 것을
-          드러내고 다른 사람이 웹 사이트를 통해 연락할 수 있게 하려면 아래 버튼을 클릭하세요. <b>0.6 API 개편 이후 공개 사용자만
-          지도 데이터를 편집할 수 있습니다</b>. (<a href="https://wiki.openstreetmap.org/wiki/Anonymous_edits">이유
-          알아보기</a>).<ul><li>공개 사용자가 되더라도 이메일 주소는 공개되지 않습니다.</li><li>이 동작은 취소할 수 없으며,
-          모든 새로운 사용자는 현재 기본적으로 공개 계정입니다.</li></ul>
       contributor terms:
         heading: 기여자 약관
         agreed: 새 기여자 약관에 동의했습니다.
         not yet agreed: 아직 새 기여자 약관에 동의하지 않았습니다.
-        review link text: 검토할 사용자의 편의에 이 링크를 따르고 새 기여자 약관에 동의하세요.
+        review link text: 원하는 시간에 이 링크를 따라 새로운 기여자 약관을 검토하고 수락하세요.
         agreed_with_pd: 또한 자신의 편집이 퍼블릭 도메인에 있어야 한다고 생각하는 것도 선언하고 있습니다.
+        link: https://wiki.osmfoundation.org/wiki/Licence/Contributor_Terms
         link text: 무엇인가요?
       save changes button: 변경사항 저장
-      make edits public button: 내 편집을 공개하기
       delete_account: 계정 삭제...
+    go_public:
+      heading: 공개 편집
+      currently_not_public: 현재 귀하가 편집한 내용은 익명이며 사람들은 귀하에게 메시지를 보내거나 귀하의 위치를 볼 수 없습니다.
+        수정한 내용을 표시하고 사람들이 웹사이트를 통해 연락할 수 있도록 하려면 아래 버튼을 클릭하세요.
+      make_edits_public_button: 내 편집을 공개하기
     update:
       success_confirm_needed: 사용자 정보를 성공적으로 업데이트했습니다. 새 이메일 주소를 확인하기 위해 이메일을 확인하세요.
       success: 사용자 정보를 성공적으로 업데이트했습니다.
@@ -297,12 +311,6 @@ ko:
   browse:
     created: 만들어짐
     closed: 닫힘
-    created_html: <abbr title='%{title}'>%{time}</abbr>에 만들어짐
-    closed_html: <abbr title='%{title}'>%{time}</abbr>에 닫힘
-    created_by_html: <abbr title='%{title}'>%{time}</abbr>에 %{user}님이 만듦
-    deleted_by_html: <abbr title='%{title}'>%{time}</abbr>에 %{user} 님이 삭제함
-    edited_by_html: <abbr title='%{title}'>%{time}</abbr>에 %{user}님이 편집함
-    closed_by_html: <abbr title='%{title}'>%{time}</abbr>에 %{user}님이 닫음
     version: 버전
     in_changeset: 바뀜집합
     anonymous: 익명
@@ -325,9 +333,6 @@ ko:
       relation: 관계(%{count})
       relation_paginated: 관계(%{count}개 중 %{x}-%{y})
       comment: 의견(%{count}개)
-      hidden_commented_by_html: '%{user}님의 <abbr title=''%{exact_time}''>%{when}</abbr>
-        숨겨진 의견'
-      commented_by_html: '%{user}님의 <abbr title=''%{exact_time}''>%{when}</abbr> 의견'
       changesetxml: 바뀜집합 XML
       osmchangexml: osmChange XML
       feed:
@@ -405,26 +410,7 @@ ko:
       wikimedia_commons_link: 위키미디어 공용의 %{page} 항목
       telephone_link: '%{phone_number}(으)로 전화 걸기'
       colour_preview: '%{colour_value}색 미리 보기'
-    note:
-      title: '참고: %{id}'
-      new_note: 새로운 참고
-      description: 설명
-      open_title: '해결되지 않은 참고 #%{note_name}'
-      closed_title: '해결된 참고 #%{note_name}'
-      hidden_title: '숨겨진 참고 #%{note_name}'
-      opened_by_html: '%{user}님이 <abbr title=''%{exact_time}''>%{when}</abbr>에 만듦'
-      opened_by_anonymous_html: 익명이 <abbr title='%{exact_time}'>%{when}</abbr>에 만듦
-      commented_by_html: '%{user}님의 <abbr title=''%{exact_time}''>%{when}</abbr> 의견'
-      commented_by_anonymous_html: 익명 사용자의 <abbr title='%{exact_time}'>%{when}</abbr>
-        의견
-      closed_by_html: '%{user}님이 <abbr title=''%{exact_time}''>%{when}</abbr>에 해결함'
-      closed_by_anonymous_html: 익명이 <abbr title='%{exact_time}'>%{when}</abbr>에 해결함
-      reopened_by_html: '%{user} 님이 <abbr title=''%{exact_time}''>%{when}</abbr>에
-        다시 활성화함'
-      reopened_by_anonymous_html: 익명이 <abbr title='%{exact_time}'>%{when}</abbr>에
-        다시 활성화함
-      hidden_by_html: '%{user}님이 <abbr title=''%{exact_time}''>%{when}</abbr>에 숨김'
-      report: 이 참고 신고
+      email_link: 이메일 %{email}
     query:
       title: 지물 정보
       introduction: 근처의 지물을 찾으려면 지도에서 클릭하세요.
@@ -448,6 +434,7 @@ ko:
     index:
       title: 바뀜집합
       title_user: '%{user}님의 바뀜집합'
+      title_user_link_html: '%{user_link}님의 바뀜집합'
       title_friend: 내 친구의 바뀜집합
       title_nearby: 근처 사용자의 바뀜집합
       empty: 찾는 바뀜집합이 없습니다.
@@ -480,6 +467,7 @@ ko:
       friend: 친구
     show:
       title: 내 대시보드
+      no_home_location_html: '%{edit_profile_link}을 하여 집 위치를 설정하면 주변 사용자를 볼 수 있습니다.'
       edit_your_profile: 내 프로파일 편집
       my friends: 내 친구
       no friends: 아직 어떠한 친구도 추가하지 않았습니다.
@@ -556,6 +544,10 @@ ko:
         title: 오픈스트리트맵 일기 항목
         description: 오픈스트리트맵 사용자의 최근 일기 항목
     comments:
+      title: '%{user}님이 추가한 일기 댓글'
+      heading: '%{user}의 일기 댓글'
+      subheading_html: '%{user}님이 추가한 일기 댓글'
+      no_comments: 일기 댓글이 없습니다.
       post: 게시물
       when: 날짜
       comment: 의견
@@ -566,6 +558,20 @@ ko:
       applications:
         create:
           notice: 애플리케이션을 등록했습니다.
+  errors:
+    contact:
+      contact_url_title: 다양한 연락 방법이 설명되어 있습니다.
+      contact: 여러 연락 수단
+      contact_the_community_html: 끊어진 링크나 버그를 발견했다면 언제든지 OpenStreetMap 커뮤니티에 %{contact_link}으로
+        알려주십시오. 요청의 정확한 URL을 기록해 두십시오.
+    forbidden:
+      title: 접근 거부됨
+      description: OpenStreetMap 서버에 요청한 이 작업은 관리자만 사용할 수 있습니다(HTTP 403).
+    internal_server_error:
+      title: 애플리케이션 오류
+    not_found:
+      title: 파일을 찾을 수 없습니다
+      description: OpenStreetMap 서버에서 해당 이름으로 파일/디렉토리/API 작업을 찾을 수 없습니다(HTTP 404).
   friendships:
     make_friend:
       heading: '%{user} 님을 친구로 추가할까요?'
@@ -573,6 +579,7 @@ ko:
       success: '%{name}님은 이제 친구입니다!'
       failed: 죄송합니다, %{name}님을 친구로 추가하는 데 실패했습니다.
       already_a_friend: 이미 %{name}님과 친구입니다.
+      limit_exceeded: 최근에 많은 사용자와 친구가 되었습니다. 친구 추가를 시도하기 전에 잠시 기다리십시오.
     remove_friend:
       heading: '%{user}님을 친구 제거할까요?'
       button: 친구 제거
@@ -581,15 +588,7 @@ ko:
   geocoder:
     search:
       title:
-        latlon_html: <a href="https://openstreetmap.org/">내부</a> 결과
-        ca_postcode_html: <a href="https://geocoder.ca/">Geocoder.CA</a>에서의 결과
-        osm_nominatim_html: <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>에서의 결과
-        geonames_html: <a href="http://www.geonames.org/">GeoNames</a>에서의 결과
-        osm_nominatim_reverse_html: <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>에서의 결과
-        geonames_reverse_html: <a href="http://www.geonames.org/">GeoNames</a>에서의
-          결과
+        latlon: 내부
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -597,14 +596,16 @@ ko:
           chair_lift: 체어 리프트
           drag_lift: 드래그 리프트
           gondola: 곤돌라 리프트
+          magic_carpet: 매직 카펫 리프트
           platter: 플래터 리프트
           pylon: 송전탑
           station: 케이블 카 정류장
           t-bar: 티 바 리프트
+          "yes": 항공로
         aeroway:
           aerodrome: 비행장
           airstrip: 활주로
-          apron: 에이프런
+          apron: 공항 에이프런
           gate: 공항 게이트
           hangar: 격납고
           helipad: 헬기 착륙장
@@ -615,9 +616,10 @@ ko:
           taxilane: 유도선
           taxiway: 유도로
           terminal: 공항 터미널
+          windsock: 바람자루
         amenity:
           animal_shelter: 동물 보호소
-          arts_centre: 아트 센터
+          arts_centre: 예술의 전당
           atm: ATM
           bank: 은행
           bar: 주점
@@ -652,6 +654,7 @@ ko:
           drinking_water: 음수대
           driving_school: 운전 학원
           embassy: 대사관
+          events_venue: 이벤트 장소
           fast_food: 패스트 푸드
           ferry_terminal: 페리 부두
           fire_station: 소방서
@@ -697,7 +700,7 @@ ko:
           shelter: 대피소
           shower: 샤워장
           social_centre: 사회 센터
-          social_facility: 공공 시설
+          social_facility: 사회 복지 시설
           studio: 스튜디오
           swimming_pool: 수영장
           taxi: 택시 정류장
@@ -705,6 +708,7 @@ ko:
           theatre: 극장
           toilets: 화장실
           townhall: 마을 회관
+          training: 교육시설
           university: 대학
           vending_machine: 자동 판매기
           veterinary: 동물병원
@@ -800,6 +804,7 @@ ko:
           defibrillator: 제세동기
           landing_site: 비상 착륙지
           phone: 긴급 전화
+          siren: 비상 사이렌
           water_tank: 긴급 물탱크
         highway:
           abandoned: 버려진 고속도로
@@ -842,6 +847,7 @@ ko:
           tertiary: 3급 도로
           tertiary_link: 3급 도로
           track: 오솔길
+          traffic_mirror: 도로반사경
           traffic_signals: 교통 신호
           trunk: 간선 도로
           trunk_link: 간선 도로
@@ -887,8 +893,8 @@ ko:
           basin: 유역
           brownfield: 재개발지역
           cemetery: 묘지
-          commercial: 상업 지역
-          conservation: 보존
+          commercial: 상업/관공서 지역
+          conservation: 보존 지역
           construction: 공사 지역
           farmland: 농지
           farmyard: 농지
@@ -1040,6 +1046,7 @@ ko:
           stone: 돌
           strait: 해협
           tree: 나무
+          tree_row: 나무 열
           tundra: 툰드라
           valley: 골짜기
           volcano: 화산
@@ -1062,7 +1069,9 @@ ko:
           insurance: 보험 회사 사옥
           it: IT 오피스
           lawyer: 변호사 사무실
+          newspaper: 신문사
           ngo: 비정부 기구 사무실
+          research: 연구실
           tax_advisor: 세무사
           telecommunication: 통신 회사 사옥
           travel_agent: 여행사
@@ -1150,7 +1159,7 @@ ko:
           coffee: 커피 상점
           computer: 컴퓨터 상점
           confectionery: 과자 가게
-          convenience: 편의점
+          convenience: 편의점/소형 슈퍼마켓
           copyshop: 복사점
           cosmetics: 화장품 상점
           craft: 공예품 공급점
@@ -1159,7 +1168,7 @@ ko:
           deli: 델리카트슨
           department_store: 백화점
           discount: 할인점
-          doityourself: DIY
+          doityourself: DIY 매장
           dry_cleaning: 드라이클리닝
           e-cigarette: 전자담배 상점
           electronics: 전자 제품 가게
@@ -1171,6 +1180,7 @@ ko:
           fishing: 낚시용품점
           florist: 꽃집
           food: 음식 가게
+          frame: 액자 가게
           funeral_directors: 장례식장
           furniture: 가구점
           garden_centre: 원예 용품점
@@ -1220,7 +1230,8 @@ ko:
           shoes: 신발 가게
           sports: 스포츠용품점
           stationery: 문구점
-          supermarket: 수퍼마켓
+          storage_rental: 창고 대여
+          supermarket: 대형 슈퍼마켓
           tailor: 양복점
           tattoo: 문신소
           tea: 다방
@@ -1233,6 +1244,7 @@ ko:
           variety_store: 잡화점
           video: 비디오 가게
           video_games: 게임 판매점
+          wholesale: 도매점
           wine: 와인 상점
           "yes": 상점
         tourism:
@@ -1241,11 +1253,11 @@ ko:
           artwork: 예술 작품
           attraction: 관광 명소
           bed_and_breakfast: 민박
-          cabin: 오두막
+          cabin: 여행자 오두막
           camp_site: 캠프장
           caravan_site: 캐러밴 사이트
           chalet: 샬렛
-          gallery: 갤러리
+          gallery: 미술관
           guest_house: 게스트 하우스
           hostel: 호스텔
           hotel: 호텔
@@ -1313,9 +1325,6 @@ ko:
       status: 상태
       reports: 보고서
       last_updated: 최근 업데이트
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: <abbr title='%{title}'>%{time}</abbr> (%{user}님에
-        의해)
       link_to_reports: 보고서 보기
       reports_count:
         one: 보고서 1개
@@ -1325,10 +1334,6 @@ ko:
         ignored: 무시됨
         open: 열림
         resolved: 해결됨
-    update:
-      new_report: 보고서가 성공적으로 등록되었습니다
-      successful_update: 보고서가 성공적으로 업데이트되었습니다
-      provide_details: 필수 상세 정보를 지정해 주십시오
     show:
       title: '%{status} 문제 #%{issue_id}'
       reports:
@@ -1407,10 +1412,8 @@ ko:
     home: 현재 위치로 가기
     logout: 로그아웃
     log_in: 로그인
-    log_in_tooltip: 기존 계정으로 로그인
     sign_up: 가입하기
     start_mapping: 매핑 시작
-    sign_up_tooltip: 편집을 위한 계정 만들기
     edit: 편집
     history: 역사
     export: 내보내기
@@ -1426,7 +1429,7 @@ ko:
     intro_header: OpenStreetMap에 오신 것을 환영합니다!
     intro_text: OpenStreetMap은 여러분과 같은 사람들이 만들어, 개방형 라이선스에 따라 자유롭게 사용할 수 있는 세계 지도입니다.
     intro_2_create_account: 사용자 계정을 만드세요
-    hosting_partners_html: 호스팅은 %{ucl}, %{bytemark}, 다른 %{partners}에서 지원합니다.
+    hosting_partners_html: 호스팅은 %{ucl}, %{fastly}, %{bytemark}, 다른 %{partners}에서 지원합니다.
     partners_ucl: UCL
     partners_bytemark: 바이트마크 호스팅
     partners_partners: 협력단체
@@ -1437,11 +1440,10 @@ ko:
     help: 도움말
     about: 소개
     copyright: 저작권
+    communities: 커뮤니티
     community: 공동체
     community_blogs: 공동체 블로그
-    community_blogs_title: OpenStreetMap 커뮤니티의 회원에서의 블로그
-    foundation: 재단
-    foundation_title: OpenStreetMap 재단
+    community_blogs_title: OpenStreetMap 커뮤니티 회원 블로그
     make_a_donation:
       title: 금전적인 기부와 OpenStreetMap 지원
       text: 기부하기
@@ -1473,7 +1475,6 @@ ko:
       subject: '[OpenStreetMap] GPX 가져오기 실패'
     gpx_success:
       hi: 안녕하세요 %{to_user}님,
-      loaded_successfully: 가능한 %{possible_points} 점 중 %{trace_points} 점을 성공적으로 불러왔습니다.
       subject: '[OpenStreetMap] GPX 가져오기 성공'
     signup_confirm:
       subject: '[OpenStreetMap] OpenStreetMap에 오신 것을 환영합니다'
@@ -1538,7 +1539,6 @@ ko:
       success: 계정을 확인했습니다, 가입해주셔서 감사합니다!
       already active: 이 계정은 이미 확인했습니다.
       unknown token: 확인 코드가 만료되었거나 존재하지 않습니다.
-      reconfirm_html: 확인 이메일을 다시 보낼 필요가 있다면, <a href="%{reconfirm}">여기를 클릭하세요</a>.
     confirm_resend:
       failure: '%{name} 사용자를 찾을 수 없습니다.'
     confirm_email:
@@ -1560,7 +1560,7 @@ ko:
       old_messages:
         one: 오래된 메시지 %{count}개
         other: 오래된 메시지 %{count}개
-      from: 보낸이
+      from: 보낸 사람
       subject: 제목
       date: 날짜
       no_messages_yet_html: 아직 메시지가 없습니다. %{people_mapping_nearby_link}에서 마음에 드는 친구를
@@ -1574,8 +1574,6 @@ ko:
     new:
       title: 메시지 보내기
       send_message_to_html: '%{name}에게 새 메시지 보내기'
-      subject: 제목
-      body: 본문
       back_to_inbox: 받은 쪽지함으로 돌아가기
     create:
       message_sent: 메시지를 보냈습니다
@@ -1602,14 +1600,10 @@ ko:
         하려면 올바른 사용자로 로그인하세요.'
     show:
       title: 메시지 읽기
-      from: 보낸이
-      subject: 제목
-      date: 날짜
       reply_button: 답글
       unread_button: 읽지 않음으로 표시
       destroy_button: 삭제
       back: 뒤로
-      to: 받는이
       wrong_user: '''%{user}''님으로 로그인하고 있지만 읽기를 요청한 메시지가 해당 사용자에게 보내지지 않았습니다. 읽으려면
         올바른 사용자로 로그인하세요.'
     sent_message_summary:
@@ -1656,7 +1650,6 @@ ko:
       image: 이미지
       gravatar:
         gravatar: Gravatar 사용
-        link: https://wiki.openstreetmap.org/wiki/Gravatar
         what_is_gravatar: Gravatar는 무엇입니까?
         disabled: 그라바타가 비활성화되었습니다.
         enabled: 그라바타의 표시가 활성화되었습니다
@@ -1682,16 +1675,8 @@ ko:
       lost password link: 비밀번호를 잊으셨나요?
       login_button: 로그인
       register now: 지금 등록하세요
-      with username: '이미 OpenStreetMap 계정을 가지고 있나요? 계정 이름과 비밀번호로 로그인하세요:'
       with external: 다른 제3자 로그인 방식 사용하기
-      new to osm: OpenStreetMap이 처음이세요?
-      to make changes: OpenStreetMap 데이터를 바꾸려면 계정이 있어야 합니다.
-      create account minute: 계정을 만듭니다. 1분도 걸리지 않습니다.
       no account: 계정이 없나요?
-      account not active: 죄송합니다, 계정을 아직 활성화하지 않았습니다.<br />계정을 활성화하려면 계정 확인 이메일에 있는
-        링크를 사용하거나 <a href="%{reconfirm}">새 확인 이메일을 요청하세요</a>.
-      account is suspended: 죄송합니다, 의심스러운 활동으로 인해 계정이 일시 중지되었습니다.<br />이 문제를 토론하려면
-        <a href="%{webmaster}">웹마스터</a>에게 문의하세요.
       auth failure: 죄송합니다, 입력한 정보로 로그인할 수 없습니다.
       openid_logo_alt: OpenID로 로그인
       auth_providers:
@@ -1723,10 +1708,12 @@ ko:
       title: 로그아웃
       heading: OpenStreetMap에서 로그아웃
       logout_button: 로그아웃
+    suspended_flash:
+      suspended: 죄송합니다. 의심스러운 활동으로 인해 계정이 정지되었습니다.
+      contact_support_html: 이에 대해 논의하려면 %{support_link}에 문의하세요.
+      support: 지원
   shared:
     markdown_help:
-      title_html: <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>으로
-        구문 분석됨
       headings: 문단 제목
       heading: 문단 제목
       subheading: 하위 문단 제목
@@ -1745,33 +1732,16 @@ ko:
   site:
     about:
       next: 다음
-      copyright_html: <span>&copy;</span>OpenStreetMap<br>기여자
       used_by_html: '%{name}은 수많은 웹사이트와 모바일 앱, 하드웨어 장치를 위해 지도 자료를 제공합니다'
-      lede_text: OpenStreetMap은 도로나 오솔길, 카페, 기차역 등에 대한 전세계에 있는 자료를 유지하고 기여하는 지도 제작자
-        공동체로부터 제작됩니다.
+      lede_text: OpenStreetMap은 전 세계의 도로나 오솔길, 카페, 기차역을 비롯한 다양한 정보를 관리하고 기여하는 지도 편집자
+        공동체가 만들어 나갑니다.
       local_knowledge_title: 지역 지식
       local_knowledge_html: OpenStreetMap은 지역 지식을 강조합니다. 기여자는 OSM이 정확하고 최신 상태라는 것이
         확인되는 항공 사진이나 GPS 장치, 저차원 기술분야 지도를 사용합니다.
       community_driven_title: 공동체 주도
-      community_driven_html: |-
-        OpenStreetMap의 공동체는 다양하고, 열정적이며, 날마다 자라납니다. 열성적인 지도 제작자, GIS 전문가, OSM 서버를 작동시키는 기술자, 재해 지역의 지도를 제작하는 인도주의자 등이 우리의 기여자입니다.
-        공동체에 대해 알고 싶다면 <a href='%{diary_path}'>사용자 일기</a>, <a href='https://blog.openstreetmap.org'>OpenStreetMap 블로그</a>, <a href='https://blogs.openstreetmap.org/'>공동체 블로그</a>, <a href='https://www.osmfoundation.org/'>OpenStreetMap 재단</a> 웹사이트를 방문해보세요.
       open_data_title: 개방형 자료
-      open_data_html: 'OpenStreetMap은 개방형 자료입니다: OpenStreetMap 및 기여자를 저작자로 명시하는 한
-        어떠한 목적으로도 자유롭게 이용할 수 있습니다. 만일 어떤 방법으로 자료를 변경하거나 2차 제작을 한다면, 동일한 라이선스에 한하여
-        그 결과물을 배포할 수 있습니다. 자세한 내용은 <a href=''%{copyright_path}''>저작권 및 라이선스 문서</a>에서
-        확인하세요.'
       legal_title: 법률
-      legal_1_html: 이 사이트 및 많은 다른 관련된 부문은 공동체를 대표하여 <a href='https://osmfoundation.org/'>OpenStreetMap
-        재단</a>에서 정식적으로 운영합니다. OpenStreetMap 재단이 운영하는 부문의 이용은 <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">이용
-        약관</a>, <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">허용할
-        수 있는 이용 정책</a> 및 <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">개인정보처리방침</a>
-        조건 하에서 이루어집니다.
-      legal_2_html: |-
-        라이선스나 저작권, 법률 관련 의문점이 있다면
-        <a href='https://osmfoundation.org/Contact'>OpenStreetMap 재단으로 문의</a>해주세요.
-        <br>
-        OpenStreetMap, 오픈스트리트맵, 돋보기와 지도 로고는 <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">OpenStreetMap 재단의 등록 상표입니다</a>.
+      legal_1_1_terms_of_use: 이용 약관
       partners_title: 파트너
     copyright:
       foreign:
@@ -1786,95 +1756,16 @@ ko:
         mapping_link: 매핑을 시작
       legal_babble:
         title_html: 저작권 및 라이선스
-        intro_1_html: |-
-          OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup>은 <i>오픈 데이터</i>로 <a
-          href="https://osmfoundation.org/">OpenStreetMap 재단</a> (OSMF)의 <a
-          href="https://opendatacommons.org/licenses/odbl/">오픈 데이터
-          커먼즈 오픈 데이터베이스 라이선스</a>(ODbL)에 따라 사용할 수 있습니다.
-        intro_2_html: |-
-          OpenStreetMap 기여자를 명시하는 한, OpenStreetMap 데이터를 자유롭게 복사, 배포, 전송 및 적용할 수 있습니다.
-          데이터를 바꾸거나 데이터를 기초로 작업할 때는 오로지
-          같은 라이선스에 따라서만 결과를 배포할 수 있습니다.
-          <a href="https://opendatacommons.org/licenses/odbl/1.0/">전문</a>은
-          당신의 권리와 책임을 설명합니다.
-        intro_3_1_html: |-
-          설명문서는
-          <a href="https://creativecommons.org/licenses/by-sa/2.0/">크리에이티브
-          커먼즈 저작자표시-동일조건변경허락 2.0</a> 라이선스(CC BY-SA)에 따라 사용할 수 있습니다.
         credit_title_html: OpenStreetMap 제작진 넣는 방법
-        credit_1_html: '&ldquo;&copy; OpenStreetMap 기여자&rdquo;를 저작자로 사용해야 합니다.'
-        credit_2_1_html: |-
-          또한 데이터는 오픈 데이터베이스 라이선스에 따라 사용할 수 있으며, 지도 제작은
-          지도 타일을 사용할 때에 CC-BY-SA로 허가한다는 내용을 명확하게 통지해야 합니다.
-          <a href="https://www.openstreetmap.org/copyright">이 저작권 문서</a>로
-          링크하여 이렇게 할 수 있습니다.
-          또한 데이터 형식으로 OSM을 배포할 때는 라이선스 이름과
-          라이선스에 직접 링크를 할 수 있습니다. 링크할 수 없는
-          매체(예를 들어 인쇄 작업)에서는 opendatacommons.org와
-          openstreetmap.org('OpenStreetMap'을 전체 주소로 확장)로
-          독자에 직접 알려주세요. 관련 있다면 creativecommons.org로 알려주세요.
-        credit_4_html: |-
-          찾아볼 수 있는 전자 지도에 대해서는 제작진은 지도의 모서리에 보여야만 합니다.
-          예를 들어:
+        credit_1_html: OpenStreetMap 데이터를 사용하는 경우 다음 두 가지를 수행해야 합니다.
         attribution_example:
           alt: 웹페이지에 OpenStreetMap에 표시하는 방법의 예
           title: 권리 표시 예
         more_title_html: 자세히 찾기
-        more_1_html: |-
-          데이터를 사용하는 방법과 제작진을 표시하는 방법에 대해서는 <a
-          href="https://osmfoundation.org/Licence">OSMF 라이선스 문서
-          </a>를 자세히 읽으세요.
-        more_2_html: |-
-          OpenStreetMap은 오픈 데이터이지만 타사 개발자를 위한
-          지도 API는 무료로 제공할 수 없습니다.
-          <a href="https://operations.osmfoundation.org/wiki/policies/api/">API 사용 정책</a>,
-          <a href="https://operations.osmfoundation.org/policies/tiles/">타일 사용 정책</a>과
-          <a href="https://operations.osmfoundation.org/policies/nominatim/">Nominatim(이름) 사용 정책</a>를 참조하세요.
         contributors_title_html: 우리의 기여자
         contributors_intro_html: |-
           우리의 기여자는 수천 명입니다. 또한 국립지도 제작 기관과
           같은 다른 소스의 공개 라이선스의 데이터를 포함하고 있습니다:
-        contributors_at_html: |-
-          <strong>오스트리아</strong>: <a href="https://data.wien.gv.at/">Stadt Wien</a>
-          (<a href="https://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a>에 따름),
-          <a href="https://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Land Vorarlberg</a>와
-          Land Tirol (<a href="https://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">개정된 CC-BY AT</a>에 따름)에서의
-          데이터를 포함합니다.
-        contributors_au_html: '<strong>오스트레일리아</strong>: <a href="https://creativecommons.org/licenses/by/4.0/">CC
-          BY 4.0</a> 하에 오스트레일리아 연방이 허가한 <a href="https://www.psma.com.au/psma-data-copyright-and-disclaimer">PSMA
-          오스트레일리아 유한회사</a>가 제공한 자료를 담고 있습니다.'
-        contributors_ca_html: '<strong>캐나다</strong>: GeoBase&reg;, GeoGratis(&copy;
-          캐나다 자연자원부), CanVec(&copy; 캐나다 자연자원부), StatCan(캐나다 연방통계청 지리과)의 데이터를 포함합니다.'
-        contributors_fi_html: |-
-          <strong>핀란드</strong>: <a href="https://www.maanmittauslaitos.fi/en/opendata-licence-version1">NLSFI 라이선스</a>에 따른,
-          National Land Survey of Finland's Topographic Database와
-          다른 데이터집합에서의 데이터를 포함합니다.
-        contributors_fr_html: |-
-          <strong>프랑스</strong>: Direction Générale des Impôts에서의
-          데이터를 포함합니다.
-        contributors_nl_html: |-
-          <strong>네덜란드</strong>: &copy; AND 데이터, 2007년
-          (<a href="https://www.and.com">www.and.com</a>)을 포함합니다.
-        contributors_nz_html: '<strong>뉴질랜드</strong>: <a href="https://data.linz.govt.nz/">LINZ
-          데이터 서비스</a>의 데이터를 포함하며, <a href="https://creativecommons.org/licenses/by/4.0/">CC
-          BY 4.0</a>에 따라 재사용될 수 있습니다.'
-        contributors_si_html: |-
-          <strong>슬로베니아</strong>: <a href="http://www.gu.gov.si/en/">Surveying and Mapping Authority</a>와
-          <a href="http://www.mkgp.gov.si/en/">Ministry of Agriculture, Forestry and Food</a>
-          (슬로베니아의 공개 정보)에서의 데이터를 포함합니다.
-        contributors_za_html: |-
-          <strong>남아프리카 공화국</strong>: <a href="http://www.ngi.gov.za/">Chief Directorate:
-          National Geo-Spatial Information</a>에서의 데이터를
-          포함합니다. 국가가 저작권을 소유합니다.
-        contributors_gb_html: |-
-          <strong>영국</strong>: 육지 측량 데이터
-          &copy; Crown 저작권 및 데이터베이스 권리
-          2010-19를 포함합니다.
-        contributors_footer_1_html: |-
-          자세한 내용과 OpenStreetMap을 개선하는 데 도움이 되는 데 사용한
-          기타 자료에 대해서는 OpenStreetMap 위키에 있는 <a
-          href="https://wiki.openstreetmap.org/wiki/Contributors">기여자 문서</a>
-          를 참조하세요.
         contributors_footer_2_html: |-
           OpenStreetMap에 포함된 데이터는 원래 데이터 제공자가
           OpenStreetMap을 보증하거나 어떠한 보증도 제공하거나
@@ -1884,15 +1775,6 @@ ko:
           OSM 기여자는 저작권 소유자로부터 명시적 허가 없이
           저작권이 있는 자료(예를 들어 Google 지도 또는 인쇄된 지도)에서
           데이터를 반입하지 않도록 주의하여야 합니다.
-        infringement_2_html: |-
-          저작권을 가진 자료가 부적절하게 OpenStreetMap 데이터베이스나 이 사이트에
-          추가되었다고 생각하면 <a href="https://www.osmfoundation.org/wiki/License/Takedown_procedure">게시
-          중단 절차</a>를 참고하거나 <a href="https://dmca.openstreetmap.org/">온라인
-          신고 페이지</a>에서 직접 제출하세요.
-        trademarks_title_html: <span id="trademarks"></span>등록 상표
-        trademarks_1_html: OpenStreetMap, 돋보기 로고, 스테이트 오브 맵은 OpenStreetMap 재단의 등록상표입니다.
-          상표의 사용에 대해 의문이 있는 경우, 관련된 질문을 <a href="https://wiki.osmfoundation.org/wiki/Licensing_Working_Group">라이선싱
-          작업 그룹</a>으로 보내 주세요.
     index:
       js_1: 자바스크립트를 지원하지 않는 브라우저를 사용 중이거나, 자바스크립트가 활성화되어 있지 않습니다.
       js_2: OpenStreetMap은 매끄러운 지도를 위해 자바스크립트를 사용합니다.
@@ -1919,8 +1801,6 @@ ko:
       map_image: 지도 그림 (표준 레이어 보이기)
       embeddable_html: 내장된 HTML
       licence: 라이선스
-      export_details_html: OpenStreetMap 데이터는 <a href="https://opendatacommons.org/licenses/odbl/1.0/">오픈
-        데이터 커먼즈 오픈 데이터베이스 라이선스</a>(ODbL)에 따라 사용할 수 있습니다.
       too_large:
         advice: '위의 내보내기가 실패하면, 아래에 나열된 원본 중 하나를 사용하는 것을 고려해주세요:'
         body: 이 지역은 OpenStreetMap XML 데이터로 내보내는 데 너무 넓습니다. 확대하거나 작은 지역을 선택하거나, 대량
@@ -1934,9 +1814,6 @@ ko:
         geofabrik:
           title: Geofabrik 다운로드
           description: 대륙, 국가 및 선택한 도시가 정기적으로 업데이트되는 추출본
-        metro:
-          title: 대도시 추출본
-          description: 세계 주요 도시와 그 주변 지역에 대한 추출본
         other:
           title: 다른 원본
           description: OpenStreetMap 위키에 나와있는 추가 원본
@@ -1961,17 +1838,8 @@ ko:
           explanation_html: |-
             우리의 지도 데이터에, 예를 들어 도로가 없거나 여러분의 주소에 문제가 있음을 보았다면, 진행하는 가장 좋은 방법은
             OpenStreetMap 공동체에 가입하고 스스로 데이터를 추가하거나 고치는 것입니다.
-        add_a_note:
-          instructions_html: |-
-            <a class='icon note'></a>나 지도에 표시되는 같은 아이콘을 클릭하세요.
-            끌어서 움직일 수 있는, 지도에 표시를 추가할 것입니다.
-            메시지를 추가하고 나서, 저장을 클릭하면, 다른 매퍼가 조사할 것입니다.
       other_concerns:
         title: 기타 문제
-        explanation_html: |-
-          우리의 데이터가 사용되는 방법이나 내용에 대한 문제가 있다면 더 많은 법률
-          정보에 대한 우리의 <a href='/copyright'>저작권 문서</a>를 참조하거나 해당
-          <a href='https://wiki.osmfoundation.org/wiki/Working_Groups'>OSMF 작업 그룹</a>에 문의하시기 바랍니다.
     help:
       title: 도움말 얻기
       introduction: |-
@@ -1979,23 +1847,21 @@ ko:
         매핑 주제를 협력하여 토론하고 문서하기 위한 여러 자료가 있습니다.
       welcome:
         url: /welcome
-        title: OpenStreetMap에 오신 것을 환영합니다
-        description: OpenStreetMap 기초를 다루는 이 퀵 가이드로 시작합니다.
+        title: 오픈스트리트맵에 잘 오셨습니다.
+        description: 오픈스트리트맵의 기본 사항을 다루는 이 빠른 길라잡이와 함께 시작하세요.
       beginners_guide:
         url: https://wiki.openstreetmap.org/wiki/Ko:%EC%B4%88%EB%B3%B4%EC%9E%90_%EC%95%88%EB%82%B4%EC%84%9C
-        title: 초보자 가이드
-        description: 커뮤니티에서 유지하는 초보자 가이드
+        title: 초보자 길라잡이
+        description: 커뮤니티에서 관리하는 초보자 길라잡이
       help:
         title: 도움말 포럼
         description: OpenStreetMap의 질문 및 답변 사이트에서 질문하거나 답변을 찾아보세요.
       mailing_lists:
         title: 메일링 리스트
         description: 국소 또는 지역의 메일링 리스트의 넓은 범위에서 관심사에 대해 질문하거나 토론을 합니다.
-      forums:
-        title: 포럼 (레거시)
-        description: 게시판 스타일 인터페이스를 선호하는 것에 대한 질문과 토론입니다.
       community:
         title: 공동체 포럼
+        description: 오픈스트리트맵과 관련한 대화를 나누는 장소입니다.
       irc:
         title: IRC
         description: 다양한 주제에서 많은 다른 언어로 된 대화형 채트입니다.
@@ -2008,6 +1874,8 @@ ko:
       wiki:
         title: OpenStreetMap 위키
         description: 깊이 있는 OpenStreetMap 설명문서에 대해서는 위키를 찾아보세요.
+    any_questions:
+      title: 궁금한 것이 있으신가요?
     sidebar:
       search_results: 검색 결과
       close: 닫기
@@ -2063,7 +1931,7 @@ ko:
           - 정원
           retail: 소매 지역
           industrial: 산업 지역
-          commercial: 상업 지역
+          commercial: 상업/관공서 지역
           heathland: 황무지
           lake:
           - 호수
@@ -2093,52 +1961,38 @@ ko:
           bicycle_parking: 자전거 주차장
           toilets: 화장실
     welcome:
-      title: 환영합니다!
-      introduction_html: |-
-        세계의 자유롭고 편집할 수 있는 지도인, OpenStreetMap에 오신 것을 환영합니다. 지금 가입하면,
-        시작된 매핑을 얻도록 모두 설정됩니다. 여기에서 알아야 하는 가장 중요한 것들로 된
-        빠른 가이드가 있습니다.
+      title: 어서 오십시오!
+      introduction: 편집 가능한 무료 세계 지도인 오픈스트리트맵에 잘 오셨습니다. 이제 가입을 하셨으니 지도 제작을 할 준비가 되었습니다.
+        다음은 여러분이 알아야 할 가장 중요한 사항을 담은 빠른 길라잡이입니다.
       whats_on_the_map:
-        title: 지도는 무엇입니까
-        on_html: |-
-          OpenStreetMap은 <em>현실과 현재</em>를 전부 매핑하기 위한 장소입니다 -
-          장소에 대한 건물, 도로, 그리고 그밖의 자세한 수백만 가지 정보를 포함합니다. 흥미있는
-          현실 세계 지물은 무엇이든 매핑할 수 있습니다.
-        off_html: |-
-          장소에 대한 평가, 역사에 관한 것이나 추측에 의한 정보, 그리고 저작권이 있는 정보처럼
-          독단적인 데이터는 들어갈 수 <em>없습니다</em>. 특별히 허용받지 않으셨다면
-          온라인 지도나 종이 지도에서 복사해오지 마십시오.
+        title: 지도의 내용
       basic_terms:
-        title: 매핑하는데 필요한 기본 용어
-        paragraph_1_html: OpenStreetMap에서는 자체 용어가 몇 가지 사용됩니다. 여기에 편리하게 사용할 수 있는 몇
-          가지 핵심 단어가 있습니다.
-        editor_html: <strong>편집기</strong>는 지도를 편집하는 데 사용할 수 있는 프로그램이나 웹사이트입니다.
-        node_html: <strong>점</strong>은 지도상의 한 점으로, 한 군데의 음식점이나 나무 한 그루가 이에 속합니다.
-        way_html: <strong>길</strong>은 지도상의 선이나 구역을 말하며, 도로, 개울, 호수나 건물을 나타냅니다.
-        tag_html: <strong>태그</strong>는 노드나 길을 보충하는 데이터로, 음식점의 이름이나 도로의 속도 제한 같은 것을
-          말합니다.
+        title: 매핑하는데 필요한 기본 낱말
+        paragraph_1: OpenStreetMap에서는 자체 용어가 몇 가지 사용됩니다. 여기에 편리하게 사용할 수 있는 몇 가지 핵심
+          단어가 있습니다.
       rules:
-        title: 여기서 규칙!
-        paragraph_1_html: "OpenStreetMap은 몇 가지 형식적인 규칙이 있지만 우리는 모든 참가자가 협력하고, 공동체와
-          소통하기를 바랍니다.\n여러분이 직접 편집하지 않는 다른 활동을 고려한다면, \n<a href='https://wiki.openstreetmap.org/wiki/Import/Guidelines'>가져오기</a>와
-          \n<a href='https://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>자동화된
-          편집</a>에서의\n다음 가이드라인을 읽고 따라주시기 바랍니다."
-      questions:
-        title: 질문이 있습니까?
-        paragraph_1_html: |-
-          OpenStreetMap에는 프로젝트에 대해 배우고, 질문을 묻고 답하고,
-          매핑 주제를 협력하여 토론하고 문서화하기 위한 여러 자료가 있습니다.
-          <a href='%{help_url}'>여기서 도움을 얻으세요</a>. OpenStreetMap에 기여할 계획을 가진 조직에 속해 있나요? <a href='https://welcome.openstreetmap.org/'>Welcome Mat</a>을 방문해보세요.
-      start_mapping: 매핑 시작
+        title: 규칙?!
+      start_mapping: 매핑 시작하기
       add_a_note:
-        title: 편집할 시간이 없습니까? 참고를 추가하세요!
-        paragraph_1_html: |-
-          그냥 한 가지 간단한 것이 고칠 게 있다거나 가입하면서 편집하는 방법을 배우기에 시간이 없다면,
-          참고를 추가하는 것이 낫습니다.
-        paragraph_2_html: |-
-          <a href='%{map_url}'>지도</a>로 가고 나서 참고 아이콘을 클릭하세요:
-          <span class='icon note'></span>. 드래그하여 이동할 수 있는 표시가 지도에 추가됩니다.
-          메시지를 추가하고 나서, 저장을 클릭하면, 다른 매퍼가 조사할 것입니다.
+        title: 편집할 짬을 내기가 어려우신가요? 손쉽게 [https://wiki.openstreetmap.org/wiki/Ko:노트 노트]를
+          덧붙이세요!
+        para_1: 가입한 다음 편집 방법을 배울 시간이 없거나 자잘한 사항만 고치고 싶은 경우, '''[https://wiki.openstreetmap.org/wiki/Ko:노트
+          노트]'''를 덧붙여서 알려주면 쉽습니다.
+    communities:
+      title: 커뮤니티
+      lede_text: |-
+        전 세계의 사람들이 OpenStreetMap을 사용하고 OpenStreetMap에 기여합니다.
+        많은 기여자들이 개인적으로 참여하는 반면 어떤 기여자들은 커뮤니티를 형성하기도 합니다.
+        다양한 규모의 커뮤니티가 형성되어있으며 작은 마을에서 대규모 다국적 지역에 이르기까지 다양합니다.
+        공식적이거나 비공식적일 수 있습니다.
+      local_chapters:
+        title: 지역 지부
+        about_text: 지역 지부는 비영리 법인 설립의 공식적인 단계를 밟은 국가, 지역 수준의 그룹입니다. 그들은 지방 정부, 기업
+          및 미디어를 다룰 때 해당 지역의 지도 및 지도 작성자를 나타냅니다. 그들은 또한 OSMF(OpenStreetMap Foundation)와
+          제휴를 형성하여 법적 및 저작권 관리 기관에 대한 링크를 제공합니다.
+        list_text: 다음 커뮤니티는 공식적으로 지역 지부로 설립되었습니다.
+      other_groups:
+        title: 기타 그룹
   traces:
     visibility:
       private: 비공개(익명으로 공유됨, 정렬되지 않은 점)
@@ -2211,14 +2065,14 @@ ko:
       in: 위치
     index:
       public_traces: 공개 GPS 궤적
+      my_gps_traces: 내 GPS 궤적
       public_traces_from: '%{user}님의 공개 GPS 궤적'
       description: 최근의 GPS 궤적 업로드 항목 둘러보기
       tagged_with: '%{tags}(으)로 태그함'
-      empty_html: 여기에는 아직 아무것도 없습니다. <a href='%{upload_link}'>새 궤적 올리기</a>를 사용하거나
-        <a href='https://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>위키 문서</a>에서
-        GPS 궤적에 대해 더 알아보세요.
       upload_trace: 궤적 올리기
+      all_traces: 모든 궤적
       my_traces: 내 발자취
+      traces_from: '%{user}님의 공개 GPS 궤적'
       remove_tag_filter: 태그 필터 제거
     destroy:
       scheduled_for_deletion: 삭제 계획중인 궤적
@@ -2282,6 +2136,7 @@ ko:
     scopes:
       read_prefs: 사용자 환경 설정 읽기
       write_prefs: 사용자 환경 설정 수정
+      write_diary: 일기 항목을 생성하고 덧글을 남기며 친구를 만듭니다.
       write_api: 지도 수정
       read_gpx: 비공개 GPS 궤적 읽기
       write_gpx: GPS 궤적 업로드
@@ -2331,6 +2186,8 @@ ko:
   oauth2_applications:
     index:
       title: 내 클라이언트 애플리케이션
+      no_applications_html: '%{oauth2} 표준을 사용하여 등록하려는 애플리케이션이 있습니까? 이 서비스에 OAuth 요청을
+        하려면 먼저 애플리케이션을 등록해야 합니다.'
       new: 새 애플리케이션 등록
       name: 이름
       permissions: 권한
@@ -2348,8 +2205,13 @@ ko:
       confirm_delete: 이 애플리케이션을 삭제하시겠습니까?
       client_id: 클라이언트 ID
       permissions: 권한
+      redirect_uris: URI 리다이렉트
+    not_found:
+      sorry: 죄송합니다. 해당 애플리케이션을 찾을 수 없습니다.
   oauth2_authorizations:
     new:
+      title: 승인 필요
+      introduction: 다음 권한으로 계정에 액세스할 수 있도록 %{application}을(를) 승인하시겠습니까?
       authorize: 인가
       deny: 거부
     error:
@@ -2361,21 +2223,17 @@ ko:
       title: 내 인증한 애플리케이션
       application: 애플리케이션
       permissions: 권한
+      no_applications_html: 아직 %{oauth2} 애플리케이션을 승인하지 않았습니다.
+    application:
+      revoke: 접근 취소
+      confirm_revoke: 이 애플리케이션에 대한 액세스 권한을 취소하시겠습니까?
   users:
     new:
       title: 가입하기
       no_auto_account_create: 불행하게도 현재로서는 자동으로 계정을 만들 수 없습니다.
-      contact_support_html: 계정을 만들 수 있도록 <a href="%{support}">웹마스터</a>에게 문의하세요. 희망에
-        대응하기 위해 노력하고 가능한 빨리 요청을 처리합니다.
+      support: 지원
       about:
         header: 자유롭게 편집 가능
-        html: |-
-          <p>다른 지도와는 달리, OpenStreetMap은 완전히 여러분과 같은 사람들이 만들어,
-          누구나 자유롭게 고치고, 갱신하며, 내려받아 사용할 수 있습니다.</p>
-          <p>기여를 시작하려면 가입하세요. 계정 확인용 이메일을 보내드립니다.</p>
-      email address: '이메일 주소:'
-      confirm email address: '이메일 주소 확인:'
-      display name: '표시 이름:'
       display name description: 공개적으로 표시되는 사용자 이름입니다. 나중에 환경 설정에서 바꿀 수 있습니다.
       external auth: '제3자 인증:'
       use external auth: 다른 제3자 로그인 방식 사용하기
@@ -2389,12 +2247,14 @@ ko:
       read and accept with tou: 기여자 동의 및 사용 약관을 읽고 두 개의 체크 상자에 체크한 다음 계속 버튼을 눌러 주십시오.
       contributor_terms_explain: 이 동의는 기존 기여와 앞으로의 기여자의 약관에 적용됩니다.
       read_ct: 상기의 기여자 약관을 읽었고 동의합니다
+      tou_explain_html: 이러한 %{tou_link}는 오픈스트리트맵 재단에서 제공하는 웹사이트 및 기타 인프라 사용을 관리합니다.
+        링크를 클릭하여 텍스트를 읽고 동의하십시오.
       read_tou: 이용약관을 읽었으며 동의합니다
       consider_pd: 위의 내용 외에도 내 기여가 퍼블릭 도메인에 있다고 간주합니다
       consider_pd_why: 무엇인가요?
-      guidance_html: '약관을 이해하는 데 유용한 정보: <a href="%{summary}">사람이 읽을 수 있는 요약</a>과
-        일부 <a href="%{translations}">비공식 번역</a>'
+      consider_pd_why_url: https://wiki.osmfoundation.org/wiki/Licence_and_Legal_FAQ/Why_would_I_want_my_contributions_to_be_public_domain
       continue: 계속
+      declined: https://wiki.openstreetmap.org/wiki/Contributor_Terms_Declined
       decline: 거부
       you need to accept or decline: 계속하려면 새 기여자 약관을 읽고 나서 동의나 거부하세요.
       legale_select: '거주 국가:'
@@ -2403,7 +2263,10 @@ ko:
         italy: 이탈리아
         rest_of_world: 나머지 국가
     terms_declined_flash:
+      terms_declined_html: 새 기여자 약관에 동의하지 않기로 결정하셨습니다. 자세한 내용은 %{terms_declined_link}를
+        참조하세요.
       terms_declined_link: 이 위키 문서
+      terms_declined_url: https://wiki.openstreetmap.org/wiki/Contributor_Terms_Declined
     no_such_user:
       title: 이러한 사용자는 없습니다
       heading: '%{user} 사용자는 존재하지 않습니다'
@@ -2411,7 +2274,6 @@ ko:
       deleted: 삭제됨
     show:
       my diary: 내 일기
-      new diary entry: 새 일기 항목
       my edits: 내 편집
       my traces: 내 궤적
       my notes: 내 참고
@@ -2431,7 +2293,7 @@ ko:
       notes: 지도 참고
       remove as friend: 친구 제거
       add as friend: 친구 추가
-      mapper since: '이후 매퍼:'
+      mapper since: '가입일:'
       ct status: '기여자 약관:'
       ct undecided: 정의되지 않음
       ct declined: 거부됨
@@ -2440,8 +2302,6 @@ ko:
       created from: '만든 위치:'
       status: '상태:'
       spam score: '스팸 점수:'
-      description: 설명
-      user location: 사용자 위치
       role:
         administrator: 이 사용자는 관리자입니다
         moderator: 이 사용자는 운영자입니다
@@ -2456,15 +2316,13 @@ ko:
       comments: 의견
       create_block: 이 사용자를 차단
       activate_user: 이 사용자 활성화
-      deactivate_user: 이 사용자 비활성화
       confirm_user: 이 사용자 확인
+      unsuspend_user: 이 사용자 정지 해제
       hide_user: 이 사용자를 숨기기
       unhide_user: 이 사용자를 숨기기 취소
       delete_user: 이 사용자를 삭제
       confirm: 확인
       report: 신고
-    set_home:
-      flash success: 집 위치를 성공적으로 저장했습니다
     go_public:
       flash success: 지금 모든 편집을 공개하고, 편집을 허용하지 않습니다.
     index:
@@ -2482,15 +2340,8 @@ ko:
       title: 계정 정지
       heading: 계정 정지
       support: 지원
-      body_html: |-
-        <p>
-          죄송합니다, 의심스러운 활동으로 인해 계정이 자동으로
-          일시 중지되었습니다.
-        </p>
-        <p>
-          이 결정은 곧 관리자가 검토할 것입니다. 또는
-          이 문제를 토론하려면 %{webmaster}에게 문의할 수 있습니다.
-        </p>
+      automatically_suspended: 죄송합니다. 의심스러운 활동으로 인해 귀하의 계정이 자동으로 정지되었습니다.
+      contact_support_html: 곧 관리자에게 검토됩니다. 논의를 원하시면 %{support_link}에 연락하실 수 있습니다.
     auth_failure:
       connection_failed: 인증 제공자와 연결하는 데 실패했습니다
       invalid_credentials: 잘못된 인증 자격 증명
@@ -2532,8 +2383,6 @@ ko:
       title: '%{name} 사용자 차단'
       heading_html: '%{name} 사용자 차단'
       period: 사용자가 지금부터 얼마나 오랫동안 API에서 차단하나요.
-      tried_contacting: 사용자에게 연락하여 이를 멈추도록 요청했습니다.
-      tried_waiting: 의사 소통에 대답한 사용자에게 충분한 시간을 주었습니다.
       back: 모든 차단 보기
     edit:
       title: '%{name} 사용자에 대한 차단 편집'
@@ -2545,8 +2394,6 @@ ko:
       block_expired: 차단은 이미 만료되었고 편집할 수 없습니다.
       block_period: 차단 기간은 드롭 다운 목록에서 선택할 수 있는 값 중 하나여야 합니다.
     create:
-      try_contacting: 차단하기 전에 사용자에게 연락하여 사용자가 대답할 수 있는 충분한 시간을 주세요.
-      try_waiting: 차단하기 전에 사용자에게 대답할 수 있는 충분한 시간을 주세요.
       flash: '%{name} 사용자를 차단했습니다.'
     update:
       only_creator_can_edit: 이 차단을 한 운영자만 편집할 수 있습니다.
@@ -2625,11 +2472,35 @@ ko:
       title: '%{user} 님이 제출했거나 덧글을 남긴 참고'
       heading: '%{user}의 참고'
       subheading_html: '%{user} 님이 제출했거나 덧글을 남긴 참고'
+      no_notes: 메모 없음
       id: ID
       creator: 만든이
       description: 설명
       created_at: 만든 날짜
       last_changed: 마지막으로 바뀜
+    show:
+      title: '참고: %{id}'
+      description: 설명
+      open_title: '해결되지 않은 참고 #%{note_name}'
+      closed_title: '해결된 참고 #%{note_name}'
+      hidden_title: '숨겨진 참고 #%{note_name}'
+      report: 이 참고 신고
+      anonymous_warning: 이 참고에는 익명 사용자의 덧글도 있으므로 별도로 확인해야 합니다.
+      hide: 숨기기
+      resolve: 해결
+      reactivate: 다시 활성화
+      comment_and_resolve: 의견 및 해결
+      comment: 의견
+      report_link_html: 이 참고에 삭제해야 하는 민감한 정보가 포함되어 있으면 %{link}할 수 있습니다.
+      other_problems_resolve: 참고의 다른 모든 문제는 댓글로 직접 해결하시기 바랍니다.
+      other_problems_resolved: 다른 모든 문제는 해결하는 것으로 충분합니다.
+      disappear_date_html: 이 해결된 참고는 %{disappear_in}에 지도에서 사라집니다.
+    new:
+      title: 새로운 참고
+      intro: 실수했거나 없는 무언가를 발견했나요? 다른 매퍼에게 알려주어 고칠 수 있게 해주세요. 마커를 올바른 위치로 이동하고, 참고를
+        남겨 문제를 설명해주세요.
+      advice: 노트는 공개되어 지도 업데이트에 쓰일 수 있으므로 개인정보 또는 저작권이 있는 지도나 디렉터리 리스팅의 정보를 입력하지 마십시오.
+      add: 참고 추가
   javascripts:
     close: 닫기
     share:
@@ -2684,9 +2555,7 @@ ko:
         gps: 공개 GPS 궤적
         overlays: 지도 문제를 해결하기 위해 오버레이를 활성화
         title: 레이어
-      copyright: © <a href='%{copyright_url}'>OpenStreetMap 기여자</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>기부하기</a>
-      terms: <a href='%{terms_url}' target='_blank'>웹 사이트 및 API 약관</a>
+      make_a_donation: 기부하기
     site:
       edit_tooltip: 지도 편집
       edit_disabled_tooltip: 지도를 편집하려면 확대
@@ -2703,20 +2572,6 @@ ko:
         unsubscribe: 구독 해지
         hide_comment: 숨기기
         unhide_comment: 숨기기 취소
-    notes:
-      new:
-        intro: 실수했거나 없는 무언가를 발견했나요? 다른 매퍼에게 알려주어 고칠 수 있게 해주세요. 마커를 올바른 위치로 이동하고, 참고를
-          남겨 문제를 설명해주세요.
-        advice: 노트는 공개되어 지도 업데이트에 쓰일 수 있으므로 개인정보 또는 저작권이 있는 지도나 디렉터리 리스팅의 정보를 입력하지
-          마십시오.
-        add: 참고 추가
-      show:
-        anonymous_warning: 이 참고에는 익명 사용자의 덧글도 있으므로 별도로 확인해야 합니다.
-        hide: 숨기기
-        resolve: 해결
-        reactivate: 다시 활성화
-        comment_and_resolve: 의견 및 해결
-        comment: 의견
     edit_help: 편집하려는 위치에 지도를 이동하고 확대한 다음, 여기를 클릭하세요.
     directions:
       ascend: 올라가기
@@ -2727,9 +2582,14 @@ ko:
         graphhopper_bicycle: 자전거 (GraphHopper)
         graphhopper_car: 자동차(GraphHopper)
         graphhopper_foot: 도보(GraphHopper)
+        fossgis_valhalla_bicycle: 자전거 (Valhalla)
+        fossgis_valhalla_car: 자동차 (Valhalla)
+        fossgis_valhalla_foot: 도보 (Valhalla)
       descend: 내려가기
       directions: 길
       distance: 거리
+      distance_m: '%{distance}m'
+      distance_km: '%{distance}km'
       errors:
         no_route: 두 장소 사이의 경로를 찾을 수 없습니다.
         no_place: 안타깝게도, ‘%{place}’의 위치를 찾을 수 없습니다.

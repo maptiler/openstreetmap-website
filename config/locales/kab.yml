@@ -33,7 +33,7 @@ kab:
       client_application:
         create: Sekles
         update: Setrer
-      doorkeeper_application:
+      oauth2_application:
         create: Jerred
         update: Leqqem
       redaction:
@@ -63,7 +63,6 @@ kab:
       message: Izen
       node: Tikerrist
       node_tag: Imyerr n tkerrist
-      notifier: Lɣu
       old_node: Tikerrist taqburt
       old_node_tag: Imyerr n tkerrist taqburt
       old_relation: Assaɣ aqbur
@@ -106,7 +105,7 @@ kab:
         title: Asentel
         latitude: Tarrut
         longitude: Tazegrart
-        language: Tutlayt
+        language_code: Tutlayt
       doorkeeper/application:
         name: Isem
         redirect_uri: Beddel abrid i tansiwin URI
@@ -223,24 +222,18 @@ kab:
         heading: Taẓrigt tazayezt
         enabled link text: d acu-t wa?
         disabled link text: Acu zemreɣ ad beddleɣ?
-      public editing note:
-        heading: Taẓrigt tazayezt
       contributor terms:
         heading: 'Tiwtilin n iwiziw:'
         link text: what is this?
       save changes button: Sekles asnifel
-      make edits public button: Err akk tiẓrigin-iw s tizuyaz
+    go_public:
+      heading: Taẓrigt tazayezt
+      make_edits_public_button: Err akk tiẓrigin-iw s tizuyaz
     update:
       success: Talɣut n useqdac tettwasnifel akken iwata
   browse:
     created: Yettwarna
     closed: Yemdel
-    created_html: Yettwarna deg <abbr title='%{title}'>%{time}</abbr>
-    closed_html: Yettwamdek deg <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: Yettwarna deg <abbr title='%{title}'>%{time} </abbr> sɣur %{user}
-    deleted_by_html: Yettwakkes deg <abbr title='%{title}'>%{time}</abbr> sɣur %{user}
-    edited_by_html: Yettwabdel deg <abbr title='%{title}'>%{time}</abbr> sɣuṛ %{user}
-    closed_by_html: Yettwamdel deg <abbr title='%{title}'>%{time}</abbr> sɣur %{user}
     version: Lqem
     in_changeset: Agraw n usnifel
     anonymous: udrig
@@ -260,9 +253,6 @@ kab:
       relation: Assaɣen (%{count})
       relation_paginated: Assaɣen (%{x}-%{y} si %{count})
       comment: Iwenniten (%{count})
-      hidden_commented_by_html: Awennit yeffren n  %{user} <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      commented_by_html: Awennit n %{user} <abbr title='%{exact_time}'>%{when} aya</abbr>
       changesetxml: XML n ugraw n ibeddilen
       osmchangexml: XML osmChange
       feed:
@@ -335,28 +325,6 @@ kab:
       wikimedia_commons_link: Aferdis %{page} deg Wikimedia Commons
       telephone_link: Siwel ar %{phone_number}
       colour_preview: Taskant n yini %{colour_value}
-    note:
-      title: 'Tazmilt: %{id}'
-      new_note: Tazmilt tamaynut
-      description: Aglam
-      open_title: 'Tazmilt ur yefrin ara  #%{note_name}'
-      closed_title: 'Tazmilt ur yefrin ara #%{note_name}'
-      hidden_title: 'Tazmilt yeffren #%{note_name}'
-      opened_by_html: Yerna-t %{user} <abbr title='%{exact_time}'>%{when} aya</abbr>
-      opened_by_anonymous_html: Yernat useqdac udrig <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      commented_by_html: Awennit sɣur %{user} <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      commented_by_anonymous_html: Awennit n useqdac udrig <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      closed_by_html: Yefra-t %{user} <abbr title='%{exact_time}'>%{when} aya</abbr>
-      closed_by_anonymous_html: YEfra-t useqdac udrig <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      reopened_by_html: Irmed-it %{user} <abbr title='%{exact_time}'>%{when} aya</abbr>
-      reopened_by_anonymous_html: Irmed-it useqdac udrig <abbr title='%{exact_time}'>%{when}
-        aya</abbr>
-      hidden_by_html: Yeffer-it %{user} <abbr title='%{exact_time}'>%{when} aya</abbr>
-      report: Sillef tazmilt agi
     query:
       title: Tuttriwin ɣef tɣawsiwin
       introduction: Sit ɣef tkarḍa allen ad tafeḍ tiɣawsiwin iqeṛben.
@@ -502,16 +470,6 @@ kab:
       success: '%{name} yettwakkes seg yimdukkal.'
       not_a_friend: '%{name} ur yelli ara d amdakkel.'
   geocoder:
-    search:
-      title:
-        latlon_html: Igmaḍ  seg <a href="https://openstreetmap.org/">igensanen</a>
-        ca_postcode_html: Igmaḍ si <a href="https://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Igmaḍ si <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Igmaḍ si <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Igmaḍ si <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: Igmaḍ si <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -819,10 +777,8 @@ kab:
     home: Duu ar uxxam-ik
     logout: Ffeɣ
     log_in: Qqen
-    log_in_tooltip: Qqen s umiḍan yellan
     sign_up: Jerred
     start_mapping: Bdu asgertel
-    sign_up_tooltip: Rnu amiḍan n teẓrigt
     edit: Ẓreg
     history: Amazray
     export: Sifeḍ
@@ -852,8 +808,6 @@ kab:
     community: Tamezdagnut
     community_blogs: Iblugen n tmezdagnut
     community_blogs_title: Iblugen n iɛeggalen n tmezdagnut OpenStreetMap
-    foundation: Tasbeddit
-    foundation_title: Tasbeddit OpenStreetMap
     make_a_donation:
       title: Mudd afus i OpenStreetMap s tewsa n yidirem
       text: Mudd tawsa
@@ -880,8 +834,6 @@ kab:
       failed_to_import: 'ur d-yettwakter ara. Hatta tuccḍa:'
       subject: '[OpenStreetMap] Akter GPX ur yeddi ara'
     gpx_success:
-      loaded_successfully: yuli-d akken iwata s %{trace_points} n %{possible_points}
-        n tneqqiḍin izemren ad ilint.
       subject: '[OpenStreetMap] Akter GPX yedda'
     signup_confirm:
       subject: '[OpenStreetMap] Anṣuf ar OpenStreetMap'
@@ -962,8 +914,6 @@ kab:
       destroy_button: Kkes
     new:
       title: Azen izen
-      subject: Asentel
-      body: Tafekka
     create:
       message_sent: Izen yettwazen
     no_such_message:
@@ -977,14 +927,10 @@ kab:
       date: Azemz
     show:
       title: Ɣeṛ izen
-      from: Seg
-      subject: Asentel
-      date: Azemz
       reply_button: Err
       unread_button: Creḍ yettwaɣra
       destroy_button: Kkes
       back: Uɣal
-      to: I
     sent_message_summary:
       destroy_button: Kkes
     mark:
@@ -1026,7 +972,6 @@ kab:
       lost password link: Tweddreḍ awal-ik uffir?
       login_button: Qqen
       register now: Jerred tura
-      new to osm: D amaynut ar OpenStreetMap?
       no account: Ur tesɛiḍ ara amiḍan?
       openid_logo_alt: Qqen s OpenID
       auth_providers:
@@ -1061,7 +1006,6 @@ kab:
   site:
     about:
       next: Ar zdat
-      copyright_html: <span>&copy;</span>imttekkiyen<br /> n OpenStreetMap
       open_data_title: Isefka ilelliyen
       legal_title: Asaḍuf
       partners_title: Imendiden
@@ -1077,26 +1021,12 @@ kab:
         mapping_link: Bdu attekki
       legal_babble:
         title_html: Izerfan n umeskar d turagt
-        intro_1_html: |-
-          OpenStreetMap d tagrumma n <i>isefka yeldin</i>, yellan ddaw n turagt <a
-          href="http://opendatacommons.org/licenses/odbl/">Open Data Commons Open Database License</a> (ODbL).
         credit_title_html: Amek ara ternuḍ asmad i OpenStreetMap
         attribution_example:
           alt: Amedɣa ɣef wamek ara tettekkiḍ di OpenStreetMap s usebter web
           title: Amedya n uttekki
         more_title_html: Akken ad tafeḍ ugar n telɣut
         contributors_title_html: Iwiziwen-nneɣ
-        contributors_at_html: '<strong>Utric</strong> : tegber isefka ɣef <a href="http://data.wien.gv.at/">Tamdint
-          n Viyan</a> (ddaw n turagt <a href="http://creativecommons.org/licenses/by/3.0/at/deed.de">CC
-          BY</a>), <a href="http://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">tamnaḍt
-          n Vorarlberg</a> akked temnadt n Tyrol (ddaw n turagt <a href="http://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC
-          BY AT avec amendements</a>).'
-        contributors_ca_html: '<strong>Canada</strong> : yegber isefka n <em>GeoBase</em>®,
-          <em>GeoGratis</em> (© Agezdu n tiɣbula n ugama n Kanada), <em>CanVec</em>
-          (© Agezdu n tiqbula n ugama n Kanada) et <em>StatCan</em> (Agezdu n tirakalt,
-          Tidaddanin n Kanada).'
-        contributors_nl_html: '<strong>Huland</strong> : yegber isefka © <abbr title="Automotive
-          Navigation Data">AND</abbr>, 2007 (<a href="http://www.and.com">www.and.com</a>).'
     index:
       permalink: Aseɣwen yezgan
       shortlink: Aseɣwen awezlan
@@ -1112,8 +1042,6 @@ kab:
       map_image: Tugna n tkarḍa (ad tesken akalku n tegnut)
       embeddable_html: HTML yettwaslaɣen
       licence: Turagt
-      export_details_html: Isefka n OpenStreetMap ffɣen-d ddaw n <a href="http://opendatacommons.org/licenses/odbl/1.0/">Turaft
-        Open Data Commons Open Database</a> (ODbL).
       too_large:
         advice: 'Ma yella asifed ddaw-a yeɣli, seqdec ma ulac aɣilif tiɣbula yettwabedren
           ddaw-a:'
@@ -1130,9 +1058,6 @@ kab:
           title: Isidar Geofabrik
           description: Ad d-yessuffeɣ si sya ar da ileqman n imeẓawen, timura akked
             timdinin yettwafernen
-        metro:
-          title: Asuffeɣ n umiṭru
-          description: Asuffeɣ n temdinin tigejdanin n umadal akked lquṛub-nsent
         other:
           title: Iɣbula-nniḍen
           description: Ibula-nniḍen yettwabedren deug uwiki OpenStreetMap
@@ -1172,14 +1097,14 @@ kab:
         description: Steqsi neɣ nadi tiririyin deg usmel akked isteqsiyen n OSM.
       mailing_lists:
         title: Tabraṭṭ n tnezwit
-      forums:
-        title: Inmagaren
       irc:
         title: IRC
       switch2osm:
         title: switch2osm
       wiki:
         title: wiki.openstreetmap.org
+    any_questions:
+      title: Asteqsi?
     sidebar:
       search_results: Igmad n unadi
       close: Mdel
@@ -1205,11 +1130,6 @@ kab:
         title: Ayen yellan di tkarḍa
       rules:
         title: Ilugan!
-      questions:
-        title: Asteqsi?
-        paragraph_1_html: |-
-          OpenStreetMap tsumur ddeqs n tiɣbula ara t-issineḍ ad tesxedmeḍ deg usenfaṛ, akken ad testeqsiḍ neɣ ad t-muddeḍ tiririt, udiɣ ad tmeslayeḍ neɣ ad teɣreḍ tasemlit ɣef isental n tira n tkarḍiwin d iseqdacen nniḍen.
-          <a href='%{help_url}'>Wali afus dagi</a>.
   traces:
     new:
       help: Tallelt
@@ -1251,9 +1171,6 @@ kab:
       public_traces_from: Lǧerrat tizuyaz tizuyza n %{user}
       description: Snirem lǧ€rrat GPS tineggura i yilin
       tagged_with: yettwaṛekkez s %{tags}
-      empty_html: Ulac acu yella dagi. <a href='%{upload_link}'>Sali lǧeṛṛa tamaynut</a>
-        neɣ issin ugar ɣef lǧerra GPR, Wali <a href='http://wiki.openstreetmap.org/wiki/FR:Beginners_Guide_1.2'>asebter
-        awiki</a>.
       upload_trace: Azen lǧerra
     destroy:
       scheduled_for_deletion: Tafuɣalt yettwaheggan i tukksa
@@ -1331,8 +1248,6 @@ kab:
   users:
     new:
       title: Jerred
-      email address: 'Tansa imayl:'
-      confirm email address: 'Sentem tansa n e-mail:'
       continue: Jerred
     terms:
       title: Tiwtilin n iwiziw
@@ -1348,7 +1263,6 @@ kab:
       deleted: yettwakkes
     show:
       my diary: Aɣmis-iw
-      new diary entry: anekcam amaynut n uɣmis
       my edits: Tiẓrigin-iw
       my traces: Lǧerrat-iw
       my notes: Tizmilin-iw
@@ -1372,8 +1286,6 @@ kab:
       created from: 'Yettwarna seg:'
       status: 'Addad:'
       spam score: 'Amatar n uspam:'
-      description: Aglam
-      user location: Adig n useqdac
       role:
         administrator: Aseqdac-agi d anedbal
         grant:
@@ -1385,14 +1297,11 @@ kab:
       comments: Iwenniten
       create_block: Sewḥel aseqdac-agi
       activate_user: Rmed aseqdac-agi
-      deactivate_user: Sens aseqdacèagi
       confirm_user: Sentem aseqdac-agi
       hide_user: Ffer aseqdac-agi
       unhide_user: Sken aseqdac-agi
       delete_user: Kkes aseqdac-agi
       confirm: Sentem
-    set_home:
-      flash success: Adig n uxxam yettwasekles akken iwata
     index:
       title: Iseqdacen
       heading: Iseqdacen
@@ -1462,6 +1371,21 @@ kab:
       description: Aglam
       created_at: Yettwarna di
       last_changed: Asnifel aneggaru
+    show:
+      title: 'Tazmilt: %{id}'
+      description: Aglam
+      open_title: 'Tazmilt ur yefrin ara  #%{note_name}'
+      closed_title: 'Tazmilt ur yefrin ara #%{note_name}'
+      hidden_title: 'Tazmilt yeffren #%{note_name}'
+      report: Sillef tazmilt agi
+      hide: Ffer
+      resolve: Fru
+      reactivate: Rmed
+      comment_and_resolve: Rnu awennit & Fru
+      comment: Awennit
+    new:
+      title: Tazmilt tamaynut
+      add: Rnu tazmilt
   javascripts:
     close: Mdel
     share:
@@ -1481,8 +1405,6 @@ kab:
     map:
       locate:
         title: Sken adig-iw
-      copyright: © <a href='%{copyright_url}'>Iwiziwen n OpenStreetMap</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Mudd tawsa</a>
     site:
       edit_tooltip: Ẓreg takarḍa
       createnote_tooltip: Rnu tazmilt ar tkarḍa
@@ -1494,15 +1416,6 @@ kab:
         unsubscribe: Ffeɣ seg ujerred
         hide_comment: ffer
         unhide_comment: sken
-    notes:
-      new:
-        add: Rnu tazmilt
-      show:
-        hide: Ffer
-        resolve: Fru
-        reactivate: Rmed
-        comment_and_resolve: Rnu awennit & Fru
-        comment: Awennit
     directions:
       engines:
         fossgis_osrm_car: S tkeṛṛust (<i>OSRM</i>)

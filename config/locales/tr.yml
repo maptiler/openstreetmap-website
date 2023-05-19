@@ -61,7 +61,7 @@ tr:
       prompt: Dosya seç
     submit:
       diary_comment:
-        create: Kaydet
+        create: Yorum
       diary_entry:
         create: Yayımla
         update: Güncelle
@@ -72,7 +72,7 @@ tr:
       client_application:
         create: Kaydol
         update: Güncelle
-      doorkeeper_application:
+      oauth2_application:
         create: Kaydol
         update: Güncelle
       redaction:
@@ -102,7 +102,6 @@ tr:
       message: Mesaj
       node: Nokta
       node_tag: Düğüm Etiketi
-      notifier: Bildiren
       old_node: Eski Nokta
       old_node_tag: Eski Nokta Etiketi
       old_relation: Eski İlişki
@@ -143,9 +142,10 @@ tr:
       diary_entry:
         user: Kullanıcı
         title: Konu
+        body: Gövde
         latitude: Enlem
         longitude: Boylam
-        language: Dil
+        language_code: Dil
       doorkeeper/application:
         name: Ad
         redirect_uri: Yönlendirme URI'leri
@@ -207,49 +207,45 @@ tr:
         needs_view: Engel kaldırılmadan önce kullanıcının giriş yapması gerekiyor
           mu?
       user:
-        email_confirmation: Adresiniz herkese açık olarak gösterilmez, daha fazla
-          bilgi için <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy"
-          title="OSMF privacy policy including section on email addresses">gizlilik
-          politikamıza</a> bakınız.
         new_email: (hiçbir zaman görüntülenmez)
   datetime:
     distance_in_words_ago:
       about_x_hours:
-        one: yaklaşık 1 saat önce
+        one: yaklaşık %{count} saat önce
         other: yaklaşık %{count} saat önce
       about_x_months:
-        one: yaklaşık 1 ay önce
+        one: yaklaşık %{count} ay önce
         other: yaklaşık %{count} ay önce
       about_x_years:
-        one: yaklaşık 1 yıl önce
+        one: yaklaşık %{count} yıl önce
         other: yaklaşık %{count} yıl önce
       almost_x_years:
-        one: neredeyse 1 yıl önce
+        one: neredeyse %{count} yıl önce
         other: neredeyse %{count} yıl önce
       half_a_minute: yarım dakika önce
       less_than_x_seconds:
-        one: 1 saniyeden az önce
+        one: '%{count} saniyeden az önce'
         other: '%{count} saniyeden az önce'
       less_than_x_minutes:
-        one: bir dakikadan daha az bir süre önce
+        one: '%{count} dakikadan daha az bir süre önce'
         other: '%{count} dakikadan daha az bir süre önce'
       over_x_years:
-        one: 1 yıldan fazla
+        one: '%{count} yıldan fazla'
         other: '%{count} yıldan fazla'
       x_seconds:
-        one: 1 saniye önce
+        one: '%{count} saniye önce'
         other: '%{count} saniye önce'
       x_minutes:
-        one: 1 dakika önce
+        one: '%{count} dakika önce'
         other: '%{count} dakika önce'
       x_days:
-        one: 1 gün önce
+        one: '%{count} gün önce'
         other: '%{count} gün önce'
       x_months:
-        one: 1 ay önce
+        one: '%{count} ay önce'
         other: '%{count} ay önce'
       x_years:
-        one: 1 yıl önce
+        one: '%{count} yıl önce'
         other: '%{count} yıl önce'
   editor:
     default: Varsayılan (şu anda %{name})
@@ -332,16 +328,6 @@ tr:
         disabled: Devre dışı ve verileri düzenleyemez; önceki düzenlemeleri hepsi
           anonimdir.
         disabled link text: neden düzenleyemiyorum?
-      public editing note:
-        heading: Herkese açık düzenleme modu
-        html: Şu anda yaptığınız düzenlemeler anonimdir bundan ötürü kullanıcılar
-          size mesaj gönderemez veya konumunuzu göremez. Düzenlemelerinizi görünür
-          kılmak ve site üzerinden sizinle iletişime geçilmesine izin vermek için
-          aşağıdaki butona tıklayın. <b>0.6 API'a geçişten beri yalnızca herkese açık
-          kullanıcılar harita verilerini düzenleyebilmektedir</b>. (<a href="https://wiki.openstreetmap.org/wiki/Anonymous_edits">sebebini
-          öğren</a>). <ul><li>E-posta adresiniz herkese açık hale getirilmez.</li><li>Bu
-          işlem tersine çevrilemez ve tüm yeni kullanıcılar artık varsayılan olarak
-          herkese açık olarak gösterilmektedir.</li></ul>
       contributor terms:
         heading: Katılımcı Şartları
         agreed: Yeni katılımcı şartlarını kabul ettin.
@@ -349,10 +335,23 @@ tr:
         review link text: Yeni Katkıda Bulunma Şartlarını incelemek ve kabul etmek
           için lütfen bu bağlantıyı kolaylık sağlamak için izleyin.
         agreed_with_pd: Ayrıca düzenlediklerin Kamu Malı olsun diye kabul ettin.
+        link: https://wiki.osmfoundation.org/wiki/Licence/Contributor_Terms
         link text: bu nedir?
       save changes button: Değişiklikleri Kaydet
-      make edits public button: Bütün girdiklerim herkese açık olsun
       delete_account: Hesabı Sil...
+    go_public:
+      heading: Herkese açık düzenleme modu
+      currently_not_public: Şu anda düzenlemeleriniz anonimdir ve kullanıcılar size
+        mesaj gönderemez veya konumunuzu göremez. Neyi düzenlediğinizi göstermek ve
+        kullanıcıların web sitesi aracılığıyla sizinle iletişime geçmesine izin vermek
+        için aşağıdaki butona tıklayın.
+      only_public_can_edit: 0.6 API geçişinden bu yana yalnızca genel kullanıcılar
+        harita verilerini düzenleyebilir.
+      find_out_why: neden olduğunu bul
+      email_not_revealed: E-posta adresiniz herkese açık hale getirilerek gösterilmeyecektir.
+      not_reversible: Bu işlem geri alınamaz ve tüm yeni kullanıcılar artık varsayılan
+        olarak herkese açıktır.
+      make_edits_public_button: Bütün girdiklerim herkese açık olsun
     update:
       success_confirm_needed: Kullanıcı bilgisi başarıyla güncellendi. Yeni e-posta
         adresinizi onaylamak için e-mail'inizi lütfen kontrol ediniz.
@@ -362,22 +361,22 @@ tr:
   browse:
     created: Oluşturuldu
     closed: Kapandı
-    created_html: <abbr title='%{title}'>%{time}</abbr> oluşturuldu
-    closed_html: <abbr title='%{title}'>%{time}</abbr> kapandı
-    created_by_html: <abbr title='%{title}'>%{time}</abbr> %{user} tarafından oluşturuldu
-    deleted_by_html: <abbr title='%{title}'>%{time}</abbr> %{user} tarafından silindi
-    edited_by_html: <abbr title='%{title}'>%{time}</abbr> %{user} tarafından düzenlendi
-    closed_by_html: <abbr title='%{title}'>%{time}</abbr> %{user} tarafından kapandı
+    created_ago_html: '%{time_ago} oluşturuldu'
+    closed_ago_html: '%{time_ago} kapatıldı'
+    created_ago_by_html: '%{user} tarafından %{time_ago} oluşturuldu'
+    closed_ago_by_html: '%{user} tarafından %{time_ago} kapatıldı'
+    deleted_ago_by_html: '%{user} tarafından %{time_ago} silindi'
+    edited_ago_by_html: '%{user} tarafından %{time_ago} düzenlendi'
     version: Sürüm
     in_changeset: Değişiklik Kaydı
     anonymous: anonim
     no_comment: (yorum yok)
     part_of: 'Parçası:'
     part_of_relations:
-      one: 1 ilişki
+      one: '%{count} ilişki'
       other: '%{count} ilişki'
     part_of_ways:
-      one: 1 yol
+      one: '%{count} yol'
       other: '%{count} yol'
     download_xml: XML İndir
     view_history: Geçmişi Görüntüle
@@ -393,8 +392,8 @@ tr:
       relation: İlişkiler (%{count})
       relation_paginated: İlişkiler (%{x}-%{y} - toplam %{count})
       comment: Yorumlar (%{count})
-      hidden_commented_by_html: '%{user} tarafından gizli yorum <abbr title="%{exact_time}">%{when}</abbr>'
-      commented_by_html: '%{user} kullanıcıdan yorum <abbr title="%{exact_time}">%{when}</abbr>'
+      hidden_comment_by_html: '%{user} tarafından %{time_ago} yapılan gizli yorum'
+      comment_by_html: '%{user} tarafından %{time_ago} yapılan yorum'
       changesetxml: ' XML değişiklik kaydı'
       osmchangexml: osmChange XML
       feed:
@@ -421,7 +420,7 @@ tr:
       history_title_html: 'İlişki Geçmişi: %{name}'
       members: Üyeler
       members_count:
-        one: 1 üye
+        one: '%{count} üye'
         other: '%{count} üye'
     relation_member:
       entry_role_html: '%{type} %{name}, adı %{role}'
@@ -474,32 +473,7 @@ tr:
       wikimedia_commons_link: Wikimedia Commons'daki %{page} ögesi
       telephone_link: 'Ara: %{phone_number}'
       colour_preview: '%{colour_value} renginin önizlemesi'
-    note:
-      title: 'Not: %{id}'
-      new_note: Yeni Not
-      description: Açıklama
-      open_title: 'Çözümlenmemiş not: #%{note_name}'
-      closed_title: 'Çözümlenmiş not: #%{note_name}'
-      hidden_title: 'Gizli not #%{note_name}'
-      opened_by_html: '%{user} tarafından <abbr title=''%{exact_time}''>%{when}</abbr>
-        oluşturuldu'
-      opened_by_anonymous_html: Anonim olarak <abbr title='%{exact_time}'>%{when}</abbr>
-        oluşturuldu
-      commented_by_html: '%{user} kullanıcısının <abbr title=''%{exact_time}''>%{when}</abbr>
-        yorumu'
-      commented_by_anonymous_html: Anonim kullanıcının <abbr title='%{exact_time}'>%{when}</abbr>
-        yorumu
-      closed_by_html: '%{user} tarafından <abbr title=''%{exact_time}''>%{when}</abbr>
-        çözüldü'
-      closed_by_anonymous_html: Anonim kullanıcı tarafından <abbr title='%{exact_time}'>%{when}</abbr>
-        çözüldü
-      reopened_by_html: '%{user} tarafından <abbr title=''%{exact_time}''>%{when}</abbr>
-        yeniden etkin hâle getirildi.'
-      reopened_by_anonymous_html: Anonim kullanıcı tarafından <abbr title='%{exact_time}'>%{when}</abbr>
-        yeniden etkin hâle getirildi.
-      hidden_by_html: '%{user} tarafından <abbr title=''%{exact_time}''>%{when}</abbr>
-        gizlendi'
-      report: bu notu bildir
+      email_link: E-posta %{email}
     query:
       title: Sorgu Özellikleri
       introduction: Yakındaki özellikleri bulmak için haritaya tıklayın.
@@ -523,6 +497,7 @@ tr:
     index:
       title: Değişiklik Kayıtları
       title_user: '%{user} kullanıcısının değişiklik kayıtları'
+      title_user_link_html: '%{user_link} kullanıcısının değişiklik kayıtları'
       title_friend: Arkadaşlarımın değişiklik kayıtları
       title_nearby: Yakındaki kullanıcıların değişiklik kayıtları
       empty: Değişiklik kayıtları bulunamadı.
@@ -654,6 +629,25 @@ tr:
       applications:
         create:
           notice: Uygulama Kayıtlı.
+  errors:
+    contact:
+      contact_url_title: Çeşitli iletişim kanalları açıklandı
+      contact: iletişim
+      contact_the_community_html: Bozuk bir bağlantı/hata bulduysanız OpenStreetMap
+        topluluğuna %{contact_link} bağlantısıyla iletmekten çekinmeyin. İsteğinizin
+        tam URL'sini not edin.
+    forbidden:
+      title: Yasaklı
+      description: OpenStreetMap sunucusunda talep ettiğiniz işlem sadece yöneticiler
+        tarafından kullanılabilir (HTTP 403)
+    internal_server_error:
+      title: Uygulama hatası
+      description: OpenStreetMap sunucusu, isteği yerine getirmesini engelleyen beklenmeyen
+        bir durumla karşılaştı (HTTP 500)
+    not_found:
+      title: Dosya bulunamadı
+      description: OpenStreetMap sunucusunda (HTTP 404) bu ada sahip bir dosya/dizin/API
+        işlemi bulunamadı
   friendships:
     make_friend:
       heading: '%{user}, arkadaş olarak eklensin mi?'
@@ -671,14 +665,8 @@ tr:
   geocoder:
     search:
       title:
-        latlon_html: <a href="https://openstreetmap.org/">OSM</a> sonuçları
-        ca_postcode_html: <a href="https://geocoder.ca/">Geocoder.CA</a> sonuçları
-        osm_nominatim_html: <a href="https://nominatim.openstreetmap.org/">OSM Nominatim</a>
-          sonuçları
-        geonames_html: <a href="http://www.geonames.org/">GeoNames</a> sonuçları
-        osm_nominatim_reverse_html: <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a> sonuçları
-        geonames_reverse_html: <a href="http://www.geonames.org/">GeoNames</a> sonuçları
+        results_from_html: '%{results_link} sonuçları'
+        latlon: Dahili
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -872,7 +860,7 @@ tr:
           stable: Ahır
           static_caravan: Karavan
           temple: Tapınak Binası
-          terrace: Teras Binası
+          terrace: Sıra Ev
           train_station: Tren İstasyon Binası
           university: Üniversite Binası
           warehouse: Depo
@@ -959,7 +947,7 @@ tr:
           steps: Merdiven
           stop: Dur işareti
           street_lamp: Sokak Lambası
-          tertiary: Köy arası yolu
+          tertiary: Üçüncül Yol
           tertiary_link: Köy arası yolu
           track: Toprak yol
           traffic_mirror: Trafik Aynası
@@ -969,7 +957,7 @@ tr:
           trunk_link: Bölünmüş anayol bağlantısı
           turning_circle: Dönüş Dairesi
           turning_loop: Dönüş
-          unclassified: Sınıflandırılmamış yolu
+          unclassified: Sınıflandırılmamış Yol
           "yes": Yol
         historic:
           aircraft: Tarihi Uçak
@@ -1059,7 +1047,7 @@ tr:
           fitness_station: Spor Merkezi
           garden: Bahçe
           golf_course: Golf Sahası
-          horse_riding: At Binme
+          horse_riding: Binicilik Merkezi
           ice_rink: Buz pateni
           marina: Marina
           miniature_golf: Minyatür Golf
@@ -1471,21 +1459,16 @@ tr:
       status: Durum
       reports: Raporlar
       last_updated: Son Güncelleme
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: '%{user} tarafından <abbr title=''%{title}''>%{time}</abbr>'
+      last_updated_time_ago_user_html: '%{user} tarafından %{time_ago}'
       link_to_reports: Raporları Görüntüle
       reports_count:
-        one: 1 Rapor
+        one: '%{count} Rapor'
         other: '%{count} Rapor'
       reported_item: Bildirilen Öge
       states:
         ignored: Yoksayıldı
         open: Aç
         resolved: Çözüldü
-    update:
-      new_report: Raporunuz başarıyla kaydedildi
-      successful_update: Raporunuz başarıyla güncellendi
-      provide_details: Lütfen gerekli bilgileri sağlayın
     show:
       title: '%{status} Sorun #%{issue_id}'
       reports:
@@ -1566,10 +1549,8 @@ tr:
     home: Kendi Konumuna Git
     logout: Oturumu Kapat
     log_in: Oturum Aç
-    log_in_tooltip: Var olan bir hesapla giriş yapın
     sign_up: Kaydol
     start_mapping: Harita Çizmeye Başla
-    sign_up_tooltip: Düzenlemek için bir hesap oluşturun
     edit: Düzenle
     history: Geçmiş
     export: Dışa aktar
@@ -1601,11 +1582,10 @@ tr:
     help: Yardım
     about: Hakkında
     copyright: Telif Hakkı
+    communities: Topluluklar
     community: Topluluk
     community_blogs: Üye Blogları
     community_blogs_title: OpenStreetMap üyelerinin blogları
-    foundation: Vakıf
-    foundation_title: OpenStreetMap Vakfı
     make_a_donation:
       title: OpenStreetMap para bağışı ile destek verebilirsiniz
       text: Bağış Yapın
@@ -1655,9 +1635,6 @@ tr:
       subject: '[OpenStreetMap] GPX dosyası maalesef alınamadı'
     gpx_success:
       hi: Merhaba %{to_user},
-      loaded_successfully:
-        one: '%{trace_points} olası 1 puan üzerinden başarıyla yüklendi.'
-        other: '%{trace_points} olası %{possible_points} puanından başarıyla yüklendi.'
       subject: '[OpenStreetMap] GPX dosyası başarıyla alındı'
     signup_confirm:
       subject: '[OpenStreetMap]''e hoş geldin'
@@ -1762,8 +1739,8 @@ tr:
       success: Hesabınızı doğruladınız, kaydolduğunuz için teşekkürler!
       already active: Bu hesap zaten doğrulandı.
       unknown token: Onay kodu geçerliliğini yitirmiş veya mevcut değil.
-      reconfirm_html: Doğrulama e-postasının tekrar gönderimi için bize ihtiyacınız
-        varsa, <a href="%{reconfirm}">buraya tıklayın</a>.
+      resend_html: Onay e-postasını yeniden göndermemize gerekiyorsa %{reconfirm_link}.
+      click_here: buraya tıklayın
     confirm_resend:
       failure: '%{name} kullanıcısı bulunamadı.'
     confirm_email:
@@ -1806,8 +1783,6 @@ tr:
     new:
       title: Mesaj gönder
       send_message_to_html: '%{name} kullanıcısına yeni bir mesaj gönder'
-      subject: Konu
-      body: Mesaj
       back_to_inbox: Gelen kutusuna dön
     create:
       message_sent: Mesaj gönderildi
@@ -1836,14 +1811,10 @@ tr:
         giriş yapınız.'
     show:
       title: Mesaj oku
-      from: Gönderen
-      subject: Konu
-      date: Tarih
       reply_button: Yanıtla
       unread_button: Okunmadı olarak işaretle
       destroy_button: Sil
       back: Geri
-      to: Alıcı
       wrong_user: '`%{user}'' olarak oturum açtınız fakat okuman istenilen mesaj,
         o kullanıcı tarafından gönderilmedi. Lütfen okumak için doğru kullanıcı olarak
         giriş yapın.'
@@ -1919,21 +1890,9 @@ tr:
       lost password link: Parolanı mı unuttun?
       login_button: Oturum aç
       register now: Şimdi kaydol
-      with username: 'OpenStreetMap hesabınız var mı? Lütfen kullanıcı adı ve parolanızla
-        oturum açın:'
       with external: 'Alternatif olarak bir üçüncü parti uygulaması kullanarak oturum
         aç:'
-      new to osm: OpenStreetMap sitesinde yeni misiniz?
-      to make changes: OpenStreetMap verileri değiştirmek için bir hesabın olması
-        gerekir.
-      create account minute: Bir hesap oluştur. Bir dakika bile sürmez.
       no account: Hesabın yok mu?
-      account not active: Üzgünüz, hesabınız henüz aktif değil.<br />Lütfen aldığın
-        onaylama e-postasında ki bağlantı tıkla veya <a href="%{reconfirm}">yeni bir
-        onaylama e-posta</a> iste.
-      account is suspended: Üzgünüz, hesabınız şüpheli etkinlikler nedeniyle askıya
-        alındı.<br />Bu konuyu görüşmek isterseniz lütfen <a href="%{webmaster}">destek</a>
-        ile iletişime geçin.
       auth failure: Üzgünüz, bu giriş ile oturum açılamadı.
       openid_logo_alt: OpenID ile giriş
       auth_providers:
@@ -1965,10 +1924,14 @@ tr:
       title: Oturumu kapat
       heading: OpenStreetMap'den çıkış
       logout_button: Oturumu kapat
+    suspended_flash:
+      suspended: Üzgünüz, hesabınız şüpheli etkinlik nedeniyle askıya alındı.
+      contact_support_html: Bunu tartışmak istiyorsanız lütfen %{support_link} ile
+        iletişime geçin.
+      support: destek
   shared:
     markdown_help:
-      title_html: <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>
-        ile ayrıştırılmaktadır
+      heading_html: '%{kramdown_link} ile ayrıştırılmaktadır'
       headings: Başlıklar
       heading: Başlık
       subheading: Alt başlık
@@ -1987,7 +1950,7 @@ tr:
   site:
     about:
       next: İleri
-      copyright_html: <span>&copy;</span>OpenStreetMap<br>katkıda bulunanları
+      heading_html: '%{copyright}OpenStreetMap''e %{br} katkıda bulunanlar'
       used_by_html: '%{name}; binlerce web sitesi, mobil uygulama ve donanım cihazı
         için harita verisi sağlar.'
       lede_text: OpenStreetMap; tüm dünyada yollar, patikalar, kafeler, tren istasyonları
@@ -1998,32 +1961,24 @@ tr:
         OpenStreetMap, piyasa bilgisi üzerinde durmaktadır. Katkıda bulunanlar,
         OSM'nin doğru ve güncel olduğunu doğrulamak için havadan görüntüler, GPS cihazları ve düşük teknoloji alan haritaları kullanmaktadır.
       community_driven_title: Katılım Kaynaklı
-      community_driven_html: |-
-        OpenStreetMap'ın topluluğu çeşitli ve tutkuludur ayrıca her geçen gün büyümektedir.
-        Katkıda bulunanların arasında hevesli haritacılar, CBS uzmanları, OSM sunucularını çalıştıran mühendisler, felaketten etkilenen alanlar için haritalama yapan yardımsever kişiler
-        ve çok daha fazlası yer alıyor.
-        Çok daha fazlası için
-        <a href='https://blog.openstreetmap.org'>OpenStreetMap Blog</a>,
-        <a href='%{diary_path}'>kullanıcı günlükleri</a>,
-        <a href='https://blogs.openstreetmap.org/'>topluluk blogları</a>, ve
-        <a href='https://www.osmfoundation.org/'>OSM Foundation</a> websitesine bakınız.
+      community_driven_osm_blog: OpenStreetMap Blogu
+      community_driven_user_diaries: kullanıcı günlükleri
+      community_driven_community_blogs: topluluk blogları
+      community_driven_osm_foundation: OSM Vakfı
       open_data_title: Açık Veri
-      open_data_html: |-
-        OpenStreetMap, <i>açık veridir</i>: OpenStreetMap ve katkıda bulunan
-        kişilere referans verdiğiniz sürece OpenStreetMap herhangi bir amaç için kullanabilirsiniz.
-        Verileri belirli şekillerde değiştirir veya üzerine inşa ederseniz, sonucu yalnızca aynı lisansla dağıtabilirsiniz. Ayrıntılı bilgi için <a href='%{copyright_path}'>Telif hakkı ve
-        Lisans sayfasına</a> bakın.
+      open_data_open_data: açık veri
+      open_data_copyright_license: Telif Hakkı ve Lisans sayfası
       legal_title: Yasal
-      legal_1_html: |-
-        Bu site ve diğer birçok ilgili hizmet resmi olarak
-        <a href='https://osmfoundation.org/'>OpenStreetMap Vakfı</a> (OSMF)
-        topluluk adına. OSMF tarafından işletilen tüm hizmetlerin kullanımı <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">Kullanım Şartlarımıza</a> tabidir, <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">
-        Kabul Edilebilir Kullanım Politikaları</a> ve bizim <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">Gizlilik Politikamız</a>.
-      legal_2_html: |-
-        Lütfen <a href='https://osmfoundation.org/Contact'>OSMF ile iletişime geçin</a>
-        lisanslama, telif hakkı veya diğer yasal sorularınız varsa.
-        <br>
-        OpenStreetMap, büyüteç logosu ve Harita Durumu, <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">OSMF'nin tescilli ticari markalarıdır</a>.
+      legal_1_1_openstreetmap_foundation: OpenStreetMap Vakfı
+      legal_1_1_terms_of_use: Kullanım Şartları
+      legal_1_1_aup: Kabul Edilebilir Kullanım Politikaları
+      legal_1_1_privacy_policy: Gizlilik Politikası
+      legal_2_1_html: Lisanslama, telif hakkı veya diğer yasal sorularınız varsa lütfen
+        %{contact_the_osmf_link}
+      legal_2_1_contact_the_osmf: OSMF ile iletişime geçin
+      legal_2_2_html: OpenStreetMap, büyüteç logosu ve Harita Durumu %{registered_trademarks_link}
+        sayılmaktadır.
+      legal_2_2_registered_trademarks: OSMF'nin tescilli ticari markaları
       partners_title: Ortaklar
     copyright:
       foreign:
@@ -2041,108 +1996,63 @@ tr:
         mapping_link: harita çizmeye başla
       legal_babble:
         title_html: Telif Hakkı ve Lisans
-        intro_1_html: |-
-          OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup>,  <a
-          href="https://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF) tarafından oluşturulan <a
-          href="https://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database License</a> (ODbL) ile lisanslandırılmıştır.
-        intro_2_html: |-
-          OpenStreetMap'e ve katkıda bulunanlarına değindiğiniz
-          sürece verilerimizi kopyalamak, dağıtmak, iletmek
-          ve uyarlamakta serbestsiniz.
-          Verilerimizi değiştirir veya geliştirirseniz
-          sonucu sadece aynı lisans altında dağıtabilirsiniz.
-          Tüm <a href="https://opendatacommons.org/licenses/odbl/1.0/">yasal kod</a>, haklarınızı ve sorumluluklarınızı açıklamaktadır.
-        intro_3_1_html: |-
-          Belgelerimiz
-          <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.tr">Creative Commons Atıf-BenzerPaylaşım 2.0</a>
-          lisansı (CC BY-SA 2.0) ile lisanslanmıştır.
+        introduction_1_html: OpenStreetMap%{registered_trademark_link} %{odc_odbl_link}
+          (ODbL) altında %{osm_foundation_link} (OSMF) tarafından lisanslanan %{open_data}dir.
+        introduction_1_open_data: açık veri
+        introduction_1_odc_odbl: Open Data Commons Açık Veritabanı Lisansı
+        introduction_1_osm_foundation: OpenStreetMap Vakfı
+        introduction_2_html: OpenStreetMap'e ve katkıda bulunanlara atıfta bulunduğunuz
+          sürece verilerimizi kopyalamakta, dağıtmakta, yaymakta ve uyarlamakta özgürsünüz.
+          Verilerimizi değiştirir veya verilerimizi geliştirirseniz sonucu yalnızca
+          aynı lisans altında paylaşabilirsiniz. Tam %{legal_code_link}, haklarınızı
+          ve sorumluluklarınızı açıklar.
+        introduction_2_legal_code: hukuk kuralları
+        introduction_3_html: Belgelerimiz %{creative_commons_link} lisansı (CC BY-SA
+          2.0) altında lisanslanmıştır.
+        introduction_3_creative_commons: Creative Commons Attribution-ShareAlike 2.0
         credit_title_html: OpenStreetMap'e nasıl atıfta bulunulur
         credit_1_html: 'OpenStreetMap verilerini kullandığınız yerde aşağıdaki iki
           şeyi yapmanız gerekiyor:'
-        credit_2_1_html: |-
-          <ul>
-            <li>Telif hakkı bildirimimizi görüntüleyerek OpenStreetMap'e atıfta bulunun.</li>
-            <li>Verilerin Açık Veritabanı Lisansı kapsamında mevcut olduğunu açıkça belirtin.</li>
-          </ul>
-        credit_3_1_html: Telif hakkı bildirimi için, verilerimizi nasıl kullandığınıza
-          bağlı olarak, bunun nasıl görüntülenmesi gerektiğine dair farklı gereksinimlerimiz
-          var. Örneğin göz atılabilir bir harita, basılı bir harita veya statik bir
-          resim oluşturmuş olmanıza bağlı olarak telif hakkı bildiriminin nasıl gösterileceğine
-          ilişkin farklı kurallar geçerlidir. Gereksinimlerle ilgili tüm ayrıntılar
-          <a href="https://wiki.osmfoundation.org/wiki/Licence/Attribution_Guidelines">İlişkilendirme
-          Yönergeleri</a>'nde bulunabilir.
-        credit_4_html: Verilerin Açık Veritabanı Lisansı kapsamında mevcut olduğunu
-          açıkça belirtmek için <a href="https://www.openstreetmap.org/copyright">bu
-          telif hakkı sayfasına</a> bağlantı verebilirsiniz. Alternatif ve bir gereklilik
-          olarak, OSM'yi bir veri formunda dağıtıyorsanız lisansları adlandırabilir
-          ve doğrudan lisanslara bağlayabilirsiniz. Bağlantıların mümkün olmadığı
-          ortamlarda (örneğin basılı eserler), okuyucularınızı openstreetmap.org'a
-          (belki de 'OpenStreetMap'i bu tam adrese genişleterek) ve opendatacommons.org'a
-          yönlendirmenizi öneririz. Bu örnekte, atıf haritanın köşesinde görünür.
+        credit_2_2: Verilerin Açık Veritabanı Lisansı kapsamında mevcut olduğunu açıkça
+          belirtin.
+        credit_4_1_this_copyright_page: bu telif hakkı sayfası
         attribution_example:
           alt: Web sayfasıında OpenStreetMap atıf etmek için bir örnek
           title: Atıf örneği
         more_title_html: Daha fazlasını öğrenin
-        more_1_html: |-
-          Verilerimizi kullanma ve bizi nasıl referans verebileceğiniz hakkında daha fazla bilgi için <a
-          href="https://osmfoundation.org/Licence">OSMF Lisans sayfasına</a> bakınız.
-        more_2_html: |-
-          OpenStreetMap açık veri olsa da, üçüncü taraflar
-          için ücretsiz bir harita API'ı sağlayamıyoruz. <a href="https://operations.osmfoundation.org/policies/api/">API Kullanım Politikası</a>,
-          <a href="https://operations.osmfoundation.org/policies/tiles/">Karo Kullanım Politikası</a>
-          ve <a href="https://operations.osmfoundation.org/policies/nominatim/">Nominatim Kullanım Politikası</a> sayfalarımıza bakınız.
+        more_1_1_osmf_licence_page: OSMF Lisans sayfası
+        more_2_1_api_usage_policy: API Kullanım Politikası
         contributors_title_html: Katkıda Bulunanlar
         contributors_intro_html: |-
           Binlerce kişi projemize katkıda bulunmaktadır. Ulusal
           haritalama ajanslarından ve diğer kaynaklardan
           açık-lisanslı veriler de içeriyoruz:
-        contributors_at_html: |-
-          <strong>Avusturya</strong>: <a href="https://data.wien.gv.at/">Stadt Wien</a> (<a href="https://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a> lisansı altında),
-          <a href="https://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Land Vorarlberg</a> ve
-          Land Tirol'dan (<a href="https://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">değişiklikleriyle CC BY AT lisansı altında</a>) veriler içermektedir.
-        contributors_au_html: |-
-          <strong>Avustralya</strong>: İdari Sınırlar kullanılarak birleştirilir veya geliştirilir &copy;
-          <a href="https://geoscape.com.au/legal/data-copyright-and-disclaimer/">Geoscape Avustralya</a>,
-          Avustralya Topluluğu tarafından
-          <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Atıf 4.0 Uluslararası lisansı (CC BY 4.0)</a> ile lisanslanmıştır.
-        contributors_ca_html: "<strong>Kanada</strong>: GeoBase&reg;, GeoGratis \n(&copy;
-          Department of Natural\nResources Canada), CanVec (&copy; Department of Natural\nResources
-          Canada) ve StatCan'den (Geography Division,\nStatistics Canada) veriler
-          içermektedir."
-        contributors_fi_html: |-
-          <strong>Finlandiya</strong>: National Land
-          Survey of Finland's Topographic Database
-          ve diğer veri setlerinden, <a href="https://www.maanmittauslaitos.fi/en/NLS_open_data_licence_version1_20120501">NLSFI License</a> altında, veriler içermektedir..
-        contributors_fr_html: |-
-          <strong>Fransa</strong>: Direction Générale des Impôts'dan
-          veri içermektedir.
-        contributors_nl_html: |-
-          <strong>Hollanda</strong>: Contains &copy; AND veri, 2007
-          (<a href="https://www.and.com">www.and.com</a>)
-        contributors_nz_html: '<strong>Yeni Zelanda</strong>: <a href="https://data.linz.govt.nz/">LINZ
-          Data Service</a>''den alınan verileri içerir ve <a href="https://creativecommons.org/licenses/by/4.0/">CC
-          BY 4.0</a> altında kullanım için lisanslanmıştır.'
-        contributors_si_html: |-
-          <strong>Slovenya</strong>: <a href="http://www.gu.gov.si/en/">Surveying and Mapping Authority</a> ve
-          <a href="http://www.mkgp.gov.si/en/">Ministry of Agriculture, Forestry and Food</a>
-          (Slovenya'nın halka açık bilgileri) sayfalarından
-          edinilen verileri içermektedir.
-        contributors_es_html: |-
-          <strong>İspanya</strong>: İspanya Ulusal Coğrafya Enstitüsü (<a href="http://www.ign.es/">IGN</a>) ile
-          Ulusal Kartografik Sistem'den (<a href="http://www.scne.es/">SCNE</a>) elde edilen verileri içerir ve tekrar kullanım amacıyla <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> ile lisanslanmıştır.
-        contributors_za_html: |-
-          <strong>Güney Afrika</strong>: <a href="http://www.ngi.gov.za/">Chief Directorate:
-          National Geo-Spatial Information</a> kaynaklı verileri içermektedir, Devlet telif hakkı saklıdır.
-        contributors_gb_html: |-
-          <strong>Birleşik Krallık</strong>: Contains Ordnance
-          Anket verileri & kopya; Crown telif hakkı ve veritabanı hakkı
-          2010-19.
-        contributors_footer_1_html: |-
-          OpenStreetMap'in geliştirilmesine yardımcı olmak için
-          bu ve diğer kaynaklar hakkında daha ayrıntılı bilgi almak için,
-          OpenStreetMap Wiki üzerinden <a
-          href="https://wiki.openstreetmap.org/wiki/Contributors">Katkıda bulunan kullanıcılar sayfasına</a> lütfen bakınız.
+        contributors_at_austria: Avusturya
+        contributors_at_stadt_wien: Stadt Wien
+        contributors_at_cc_by: CC-BY
+        contributors_at_land_vorarlberg: |-
+          Land
+           Vorarlberg
+        contributors_au_australia: Avustralya
+        contributors_au_geoscape_australia: Geoscape Australia
+        contributors_au_cc_licence: Creative Commons Atıf 4.0 Uluslararası lisansı
+          (CC BY 4.0)
+        contributors_ca_canada: Kanada
+        contributors_fi_finland: Finlandiya
+        contributors_fi_nlsfi_license: NLSFI Lisansı
+        contributors_fr_france: Fransa
+        contributors_nl_netherlands: Hollanda
+        contributors_nz_new_zealand: Yeni Zelanda
+        contributors_nz_linz_data_service: LINZ Veri Hizmeti
+        contributors_nz_cc_by: CC BY 4.0
+        contributors_si_slovenia: Slovenya
+        contributors_si_mkgp: Tarım, Orman ve Gıda Bakanlığı
+        contributors_es_spain: İspanya
+        contributors_es_ign: IGN
+        contributors_es_cc_by: CC BY 4.0
+        contributors_za_south_africa: Güney Afrika
+        contributors_gb_united_kingdom: Birleşik Krallık
+        contributors_2_contributors_page: Katkıda bulunanlar sayfası
         contributors_footer_2_html: |-
           Verilerin OpenStreetMap'e dahil edilmesi, orijinal
           veri sağlayıcının OpenStreetMap'i onayladığını,
@@ -2154,16 +2064,8 @@ tr:
           açık izni olmadan telif hakkıyla korunan kaynaklardan
           (ör. Google Haritalar veya basılı haritalar) hiçbir zaman
           veri eklememeleri hatırlatılır.
-        infringement_2_html: |-
-          Telif hakkıyla korunan materyalin
-          OpenStreetMap veritabanına veya bu siteye
-          yanlışlıkla eklendiğine inanıyorsanız <a href="https://wiki.osmfoundation.org/wiki/Takedown_procedure">kaldırma prosedürü</a> sayfasına başvurun veya
-          doğrudan <a href="https://dmca.openstreetmap.org/">çevrimiçi dosyalama sayfamızda</a> kayda geçirin.
-        trademarks_title_html: <span id="trademarks"></span>Ticari Markalar
-        trademarks_1_html: OpenStreetMap, büyüteç logosu ve State of the Map; OpenStreetMap
-          Foundation'ın tescilli ticari markalarıdır. Markaların kullanımı ile ilgili
-          sorularınız varsa lütfen sorularınızı <a href="https://wiki.osmfoundation.org/wiki/Licensing_Working_Group">Lisans
-          Çalışma Grubu</a>'na gönderiniz
+        trademarks_title: Ticari markalar
+        trademarks_1_1_trademark_policy: Ticari Marka Politikası
     index:
       js_1: JavaScript desteklemeyen bir tarayıcı kullanıyorsunuz ya da JavaScript
         devre dışı bırakılmış.
@@ -2193,8 +2095,8 @@ tr:
       map_image: Harita (varsayılan katmanı gösterir)
       embeddable_html: Gömülebilir HTML
       licence: Lisans
-      export_details_html: OpenStreetMap verileri, <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open
-        Data Commons Open Database License</a>  (ODbL) altında lisanslanmıştır.
+      licence_details_html: OpenStreetMap verileri, %{odbl_link} (ODbL) altında lisanslanmıştır.
+      odbl: Open Data Commons Açık Veritabanı Lisansı
       too_large:
         advice: 'Yukarıdaki dışa aktarma işlemi başarısız olursa lütfen aşağıda listelenen
           kaynaklardan birini kullanmayı düşünün:'
@@ -2212,9 +2114,6 @@ tr:
           title: Geofabrik İndirmeleri
           description: Kıtalar, ülkeler ve seçilen şehirlerin düzenli olarak güncellenen
             özetleri
-        metro:
-          title: Büyükşehir Çıktıları
-          description: Büyükşehir ile banliyölerin çıktıkları
         other:
           title: Diğer Kaynaklar
           description: OpenStreetMap vikisinde listelenen ek kaynaklar
@@ -2239,16 +2138,10 @@ tr:
           explanation_html: |-
             Harita verilerinde bir sorun fark ettiyseniz, örneğin bir yol veya adresinizin eksik olması gibi,
             devam etmenin en iyi yolu OpenStreetMap topluluğuna katılmak ve verileri kendiniz eklemeniz veya düzeltmenizdir.
-        add_a_note:
-          instructions_html: |-
-            Sadece <a class='icon note'></a> ikonuna tıklayın veya harita görünümü üzerinde aynı ikona tıklayın.
-            Bu haritaya daha sonra sürükleyerek taşıyabileceğiniz bir işaretleyici ekleyecek. Mesajınızı ekleyin ve kaydedin, diğer haritacılar bunu araştıracaklar.
       other_concerns:
         title: Diğer sorunlar
-        explanation_html: Verilerimizin nasıl kullanıldığı veya içeriği hakkında endişeleriniz
-          varsa lütfen daha fazla yasal bilgi için <a href='/copyright'>telif hakkı
-          sayfamıza</a> başvurun veya ilgili <a href='https://wiki.osmfoundation.org/wiki/Working_Groups'>OSMF
-          çalışma grubuyla</a> iletişime geçin.
+        copyright: telif hakkı sayfası
+        working_group: OSMF çalışma grubu
     help:
       title: Yardım
       introduction: |-
@@ -2272,10 +2165,6 @@ tr:
         title: E-Posta Listeleri
         description: Oldukça geniş yerel veya bölgesel e-posta listelerinde soru sorabilir
           veya ilginç konuları tartışabilirsiniz.
-      forums:
-        title: Forumlar (Eski)
-        description: Duyuru panosu tarzındaki arayüzleri tercih edenler için sorular
-          ve tartışmalar.
       community:
         title: Topluluk forumu
         description: OpenStreetMap hakkında sohbet ortamı
@@ -2297,11 +2186,12 @@ tr:
       removed: Varsayılan OpenStreetMap düzenleyiciniz Potlatch olarak ayarlanmıştır.
         Adobe Flash Player geri çekildiğinden, Potlatch artık bir web tarayıcısında
         kullanılamaz.
-      desktop_html: Potlatch'ı <a href="https://www.systemed.net/potlatch/">Mac ve
-        Windows için masaüstü uygulamasını indirerek</a> kullanmaya devam edebilirsiniz.
-      id_html: Alternatif olarak, varsayılan düzenleyicinizi, daha önce Potlatch'ın
-        yaptığı gibi web tarayıcınızda çalışan kimliği ayarlayabilirsiniz. <a href="%{settings_url}">Tercihlerinizi
-        buradan değiştirin</a>.
+      desktop_application_html: Potlatch'ı %{download_link} ile kullanmaya devam edebilirsiniz.
+      download: Mac ve Windows için masaüstü uygulamasını indirme
+      change_preferences: Tercihlerinizi buradan değiştirin
+    any_questions:
+      title: Sorularınız var mı?
+      get_help_here: Buradan yardım alın
     sidebar:
       search_results: Arama Sonuçları
       close: Kapat
@@ -2388,57 +2278,66 @@ tr:
           toilets: Tuvaletler
     welcome:
       title: Hoş geldiniz!
-      introduction_html: Dünyanın düzenlenebilir ve ücretsiz haritası OpenStreetMap'e
-        hoş geldiniz. Şu an kaydoldunuz ve bütün haritalama işlemlerine başlamanız
-        için her şey hazır. İşte bilmeniz gereken en önemli şeylerin hızlı bir kılavuzu.
+      introduction: Dünyanın düzenlenebilir ve ücretsiz haritası OpenStreetMap'e hoş
+        geldiniz. Şu an kaydoldunuz ve bütün haritalama işlemlerine başlamanız için
+        her şey hazır. İşte bilmeniz gereken en önemli şeylerin hızlı bir kılavuzu.
       whats_on_the_map:
         title: Haritada ne bulunur
-        on_html: OpenStreetMap, <em>gerçek ve güncel</em> şeyleri haritalamak için
+        on_the_map_html: OpenStreetMap, %{real_and_current} şeyleri haritalamak için
           bir yerdir. Bu milyonlarca binaları, yolları ve yerler hakkında diğer ayrıntıları
-          içerir. İlgini çeken her türlü gerçek dünya özelliklerini haritalayabilirsin.
-        off_html: Neyi <em>içermez?</em> Önyargılı veriler gibi değerlendirmeler,
-          tarihî ya da farazi özellikler ve telif hakkı olan kaynaklardan gelen verileri
-          <em>içermez.</em> Özel izniniz yoksa, çevrimiçi ya da kâğıt haritaları kopyalamayın.
+          içerir. İlginizi çeken her türlü gerçek dünya özelliklerini haritalayabilirsiniz.
+        real_and_current: gerçek ve güncel
       basic_terms:
         title: Haritacılığın temel terimleri
-        paragraph_1_html: OpenStreetMap'in kendine ait bazı argoları vardır. İşte
-          kullanışlı gelecek birkaç anahtar kelime.
-        editor_html: <strong>Düzenleyici</strong> haritayı düzenlemek için kullanabileceğiniz
-          bir program ya da web sayfasıdır.
-        node_html: <strong>Düğüm</strong>, haritadaki bir noktadır. Bu bir restoran
-          ya da bir ağaç olabilir.
-        way_html: <strong>Yol</strong>, bir çizgi ya da alan, bir cadde, akarsu, göl
-          ya da bina olabilir.
-        tag_html: <strong>Etiket</strong>, bir noktanın ya da yolun veri parçasıdır.
-          Bu bir restoranın ismi ya da yolun hız sınırı olabilir.
+        paragraph_1: OpenStreetMap'in kendine ait bazı argoları vardır. İşte kullanışlı
+          gelecek birkaç anahtar kelime.
+        an_editor_html: '%{editor}, haritayı düzenlemek için kullanabileceğiniz bir
+          program veya web sitesidir.'
+        a_node_html: '%{node}, harita üzerinde tek bir restoran veya ağaç gibi bir
+          noktadır.'
+        a_way_html: '%{way}; yol, dere, göl veya bina gibi bir çizgi veya alandır.'
+        a_tag_html: '%{tag}, bir restoranın adı veya bir yolun hız sınırı gibi bir
+          düğüm veya yol hakkında bir miktar veridir.'
+        editor: editör
+        node: nokta
+        way: yol
+        tag: etiket
       rules:
         title: Kuralları!
-        paragraph_1_html: |-
-          OpenStreetMap'in resmi kuralları yoktur ancak tüm katılımcıların
-          toplulukla işbirliği yapmasını ve iletişim kurmasını bekleriz.
-          Elle düzenleme dışında herhangi bir faaliyet düşünüyorsanız,
-          lütfen yönergeleri okuyun ve uygulayın:
-          <a href='https://wiki.openstreetmap.org/wiki/Import/Guidelines'>İçe aktarma</a> ve
-          <a href='https://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>Otomatik Düzenlemeler</a>
-      questions:
-        title: Sorularınız var mı?
-        paragraph_1_html: OpenStreetMap, proje hakkında bilgiler içeren, soru sormak
-          ve soruları cevaplamak için ve işbirliği halinde tartışma yapılan ve haritalama
-          konularını belgelemek için çeşitli kaynaklara sahiptir. <a href='%{help_url}'>Buradan
-          yardım alın</a>. OpenStreetMap için plan yapan bir organizasyon var mı?
-          <a href='https://welcome.openstreetmap.org/'>Hoş geldin sayfasına bakınız</a>
+        imports: Aktarımlar
+        automated_edits: Otomatik Düzenlemeler
       start_mapping: Harita Çizmeye Başla
       add_a_note:
         title: Düzenlemek için vaktin yok mu? O zaman bir not ekle!
-        paragraph_1_html: |-
+        para_1: |-
           Küçük bir değişikliğin sabit kalmasını istiyor fakat üye olacak ve
           nasıl düzenleneceğini öğrenecek zamanınız yoksa
           not eklemeniz yeterlidir.
-        paragraph_2_html: |-
-          Sadece <a href='%{map_url}'>haritaya</a> gidin ve not simgesine tıklayın:
-          <span class='icon note'></span>. Bu, haritaya sürükleyerek taşıyabileceğiniz bir işaret imleci ekleyecektir.
-          Mesajınızı ekleyin, ardından kaydet'i tıklayın ve diğer
-          haritacılar yaptıklarınızı inceleyecektir.
+        the_map: harita
+    communities:
+      title: Topluluklar
+      lede_text: "Dünyanın her yerinden insanlar OpenStreetMap'e katkıda bulunur veya
+        OpenStreetMap'i kullanır. Birçoğu bireysel olarak katılırken bazıları topluluk
+        hâlinde katkıda bulunur.\nBu gruplar, çeşitli büyüklükte olup küçük kasabalardan
+        çok ülkeli büyük bölgelere kadar çeşitli coğrafyaları temsil eder. \nAyrıca
+        resmî veya gayri resmî olabilirler."
+      local_chapters:
+        title: Yerel Bölümler
+        about_text: |-
+          Yerel Bölümler, kâr amacı gütmeyen tüzel kişilikler
+          kurmak için resmî adımı atmış olan ülke düzeyinde veya bölge düzeyinde gruplardır. Yerel yönetim, iş dünyası ve medyayla
+          ilişki kurarken bölgenin haritasını ve haritacılarını temsil eder. Ayrıca, OpenStreetMap Foundation (OSMF) ile bir ortaklık
+          yaparak onlara yasal ve telif hakkı
+          yönetim organına bir bağlantı sağlar.
+        list_text: 'Aşağıdaki topluluklar resmî olarak Yerel Bölümler şeklinde kurulmuştur:'
+      other_groups:
+        title: Diğer Gruplar
+        other_groups_html: Yerel Bölümler kadar resmî olarak bir grup kurmaya gerek
+          yoktur. Gerçekten de birçok grup, gayri resmî bir insan topluluğu veya bir
+          topluluk grubu olarak çok başarılı bir şekilde var olur. Herkes bu grupları
+          oluşturabilir veya bunlara katılabilir. %{communities_wiki_link} kısmında
+          daha fazlasını okuyun.
+        communities_wiki: Topluluklar için viki sayfası
   traces:
     visibility:
       private: Kişiye özel (sadece anonim ve sıralanmamış noktalar olarak paylaşılır)
@@ -2520,9 +2419,11 @@ tr:
       public_traces_from: '%{user} tarafından gelen herkese açık GPS izleri'
       description: Son GPS izi güncellemelerine göz at
       tagged_with: ' %{tags} ile etiketlendi'
-      empty_html: Burada henüz bir şey yok. <a href='https://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>Wiki
-        sayfasında</a> <a href='%{upload_link}'>yeni bir iz yükle</a> veya GPS iz
-        hakkında daha fazla bilgi edinin
+      empty_title: Burada henüz bir şey yok
+      empty_upload_html: '%{upload_link} veya %{wiki_link} üzerinde GPS izleme hakkında
+        daha fazla bilgi edinin.'
+      upload_new: Yeni bir iz yükle
+      wiki_page: viki sayfası
       upload_trace: GPS izi gönder
       all_traces: Tüm İzler
       my_traces: GPS İzlerim
@@ -2696,16 +2597,16 @@ tr:
       title: Hesap Oluştur
       no_auto_account_create: Maalesef, şu anda sizin için otomatik olarak bir hesap
         oluşturamıyoruz.
-      contact_support_html: Oluşturulacak bir hesap ayarlamak için lütfen <a href="%{support}">destek</a>
+      please_contact_support_html: Oluşturulacak bir hesap ayarlamak için lütfen %{support_link}
         ile iletişime geçin - isteğinizi en kısa sürede çözmeye çalışacağız.
+      support: destek
       about:
         header: Ücretsiz ve düzenlenebilir
-        html: |-
-          <p>OpenStreetMap, diğer haritaların aksine tamamıyla sizin gibi kişiler tarafından oluşturulur ve düzenleme, güncelleme, indirme ve kullanma işlemleri herkes için ücretsizdir.</p>
-          <p>Katkıda bulunmaya başlamak için kaydolun. Hesabınızın onaylanması için size bir e-posta göndereceğiz.</p>
-      email address: 'E-posta Adresi:'
-      confirm email address: E-posta Adresini Onayla
-      display name: 'Görünen Ad:'
+        paragraph_1: Diğer haritaların aksine, OpenStreetMap tamamen sizin gibi kullanıcılar
+          tarafından oluşturulmuş ve herkesin düzeltmesi, güncellemesi, indirmesi
+          ve kullanması ücretsizdir.
+        paragraph_2: Katkıda bulunmaya başlamak için kaydolun. Hesabınızı onaylamak
+          için bir e-posta göndereceğiz.
       display name description: Herkes tarafından görünecek bir kullanıcı adı. Bu
         adı istediğin zaman 'tercihlerim' bölümünde değiştirebilirsin.
       external auth: 'Üçüncü Taraf Kimlik Doğrulaması:'
@@ -2715,6 +2616,7 @@ tr:
         ancak bazı ek araçlar veya sunucu için yine de bir parola gerekebilir.
       continue: Kaydol
       terms accepted: Yeni katılımcı şartları kabul ettiğin için teşekkür ederiz!
+      privacy_policy: gizlilik politikası
     terms:
       title: Koşullar
       heading: Koşullar
@@ -2732,9 +2634,10 @@ tr:
       consider_pd: Yukarıdakilere ek olarak katkılarınızın kamu malı olarak kabul
         edilmesini de seçebilirsiniz
       consider_pd_why: bu nedir?
-      guidance_html: 'Buradaki bilgileri anlamanıza yardımcı olabilecek bilgiler:  <a
-        href="%{summary}">okunabilir bir özet</a> ve ayrıca <a href="%{translations}">genel
-        çeviriler</a>'
+      guidance_info_html: 'Bu terimleri anlamanıza yardımcı olacak bilgiler: %{readable_summary_link}
+        ve bazı %{informal_translations_link}'
+      readable_summary: okunabilir özet
+      informal_translations: resmî olmayan çeviriler
       continue: Devam
       declined: https://wiki.openstreetmap.org/wiki/Tr:Contributor_Terms_Declined
       decline: Reddet
@@ -2758,7 +2661,6 @@ tr:
       deleted: silindi
     show:
       my diary: Günlüğüm
-      new diary entry: yeni kayıt
       my edits: Katkılarım
       my traces: GPS İzlerim
       my notes: Notlarım
@@ -2787,8 +2689,6 @@ tr:
       created from: 'Kullanıldı yazılım:'
       status: 'Durum:'
       spam score: 'Spam puanı:'
-      description: Açıklama
-      user location: Kullanıcının konumu
       role:
         administrator: Bu kullanıcı, bir yöneticidir.
         moderator: Bu kullanıcı, bir moderatördür.
@@ -2803,7 +2703,6 @@ tr:
       comments: Yorumlar
       create_block: Bu kullanıcıyı engelle
       activate_user: Bu Kullanıcıyı Etkinleştir
-      deactivate_user: Bu Kullanıcıyı Devre Dışı Bırak
       confirm_user: Bu Kullanıcıyı Onayla
       unconfirm_user: Bu Kullanıcıyı Onaylamayın
       unsuspend_user: Bu Kullanıcının Engelini Kaldır
@@ -2812,8 +2711,6 @@ tr:
       delete_user: Bu Kullanıcıyı Sil
       confirm: Onayla
       report: Bu kullanıcıyı rapor et
-    set_home:
-      flash success: Bulunduğunuz konum başarıyla kaydedildi
     go_public:
       flash success: Tüm düzenlemeleriniz şimdi herkese açık ve siz de düzenleme yetkisine
         sahipsiniz.
@@ -2832,10 +2729,10 @@ tr:
       title: Hesap Askıda
       heading: Hesap Askıda
       support: destek
-      body_html: "<p>\n  Maalesef, hesabınız şüpheli etkinlikler nedeniyle otomatik
-        olarak \n  askıya alındı.\n</p>\n<p>\n  Bu karar kısa bir süre içinde bir
-        yönetici tarafından \n  incelenecek veya\n  bu konuyu görüşmek isterseniz
-        %{webmaster} ile iletişime geçebilirsiniz.\n</p>"
+      automatically_suspended: Üzgünüz, şüpheli etkinlik nedeniyle hesabınız otomatik
+        olarak askıya alındı.
+      contact_support_html: Bu karar kısa süre içinde bir yönetici tarafından incelenecek
+        veya bu konuyu görüşmek isterseniz %{support_link} ile iletişime geçebilirsiniz.
     auth_failure:
       connection_failed: Kimlik doğrulama sağlayıcısına bağlantı başarısız oldu
       invalid_credentials: Geçersiz kimlik doğrulama bilgileri
@@ -2885,9 +2782,6 @@ tr:
       title: '%{name} adlı kullanıcıyı engelle'
       heading_html: '%{name} adlı kullanıcıyı engelle'
       period: Şu andan itibaren ne zamana kadar kullanıcıdan API engellenecek?
-      tried_contacting: Kullanıcıyla iletişime geçtim ve durmasını istedim.
-      tried_waiting: Kullanıcının bu iletişimlere cevap vermesi için makul bir süre
-        verdim.
       back: Tüm engellemeleri göster
     edit:
       title: '%{name} adlı kullanıcının engelini değiştir'
@@ -2899,10 +2793,6 @@ tr:
       block_expired: Engelin süresi dolmuş ve değiştirilemiyor.
       block_period: Engel süresi, açılır listeden seçilebilen değerlerden biri olmalıdır.
     create:
-      try_contacting: Lütfen kullanıcıyı engellemeden önce onunla iletişime geçmeyi
-        deneyin ve cevap verebilmesi için makul bir zaman verin.
-      try_waiting: Lütfen kullanıcıyı engellemeden önce, cevap verebilmesi için makul
-        bir süre veriniz.
       flash: '%{name} kullanıcısına engel oluşturuldu.'
     update:
       only_creator_can_edit: Yalnızca bu engeli oluşturan moderatör düzenleyebilir.
@@ -2989,6 +2879,35 @@ tr:
       description: Açıklama
       created_at: Oluşturulma tarihi
       last_changed: Son değişiklik
+    show:
+      title: 'Not: %{id}'
+      description: Açıklama
+      open_title: 'Çözümlenmemiş not: #%{note_name}'
+      closed_title: 'Çözümlenmiş not: #%{note_name}'
+      hidden_title: 'Gizli not #%{note_name}'
+      report: bu notu bildir
+      anonymous_warning: Bu not anonim kullanıcılardan yorumlar içerdiğinden bağımsız
+        olarak doğrulanması gerekir.
+      hide: Gizle
+      resolve: Çözümle
+      reactivate: Yeniden etkinleştir
+      comment_and_resolve: Yorum ve Çözüm
+      comment: Yorum
+      report_link_html: Bu not, kaldırılması gereken hassas bilgiler içeriyorsa %{link}
+        bağlantısına tıklayınız.
+      other_problems_resolve: Notla ilgili diğer tüm sorunlar için lütfen bir yorum
+        yaparak sorunu kendiniz çözün.
+      other_problems_resolved: Diğer tüm problemler için çözülmesi yeterlidir.
+      disappear_date_html: Bu çözümlenmiş not, %{disappear_in} içinde haritadan kaybolacak.
+    new:
+      title: Yeni Not
+      intro: Bir hata mı buldunuz ya da eksik bir şey mi var? Bu sorunun düzeltilebilmesi
+        için diğer haritacılara bildirin. İmleci doğru konuma taşıyın ve sorunu açıklayan
+        bir not yazın.
+      advice: Notunuz herkese açıktır ve haritayı güncellemek için kullanılabilir,
+        bu nedenle kişisel bilgilerinizi veya telif hakkıyla korunan haritalar veya
+        dizin listelerinden bilgi girmeyin.
+      add: Not Ekle
   javascripts:
     close: Kapat
     share:
@@ -3043,18 +2962,10 @@ tr:
         gps: Herkese Açık GPS İzleri
         overlays: Haritanın sorununu gidermek için katmanları etkinleştir
         title: Katmanlar
-      copyright: © <a href='%{copyright_url}'>OpenStreetMap katkıda bulunanları</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Bağış Yapın</a>
-      terms: <a href='%{terms_url}' target='_blank'>Web sitesi ve API şartları</a>
-      cyclosm: Kare stili sahibi <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
-        Fransa</a> tarafından barındırılan <a href='%{cyclosm_url}' target='_blank'>CyclOSM</a>
-      thunderforest: Fayans <a href='%{thunderforest_url} 'target='_blank'>Andy Allan</a>'ın
-        izniyle
-      opnvkarte: Fayanslar <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>'in
-        izniyle
-      hotosm: <a href='%{hotosm_url}' target='_blank'>İnsani OpenStreetMap Ekibi</a>
-        tarafından <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap Fransa</a>
-        tarafından sunulan karo tarzı
+      openstreetmap_contributors: OpenStreetMap'e katkıda bulunanlar
+      make_a_donation: Bağış Yapın
+      website_and_api_terms: Web sitesi ve API koşulları
+      osm_france: OpenStreetMap Fransa
     site:
       edit_tooltip: Haritayı düzenle
       edit_disabled_tooltip: Haritayı düzenlemek için yakınlaştırın
@@ -3071,26 +2982,6 @@ tr:
         unsubscribe: Abonelikten çık
         hide_comment: gizle
         unhide_comment: göster
-    notes:
-      new:
-        intro: Bir hata mı buldunuz ya da eksik bir şey mi var? Bu sorunun düzeltilebilmesi
-          için diğer haritacılara bildirin. İmleci doğru konuma taşıyın ve sorunu
-          açıklayan bir not yazın.
-        advice: Notunuz herkese açıktır ve haritayı güncellemek için kullanılabilir,
-          bu nedenle kişisel bilgilerinizi veya telif hakkıyla korunan haritalar veya
-          dizin listelerinden bilgi girmeyin.
-        add: Not Ekle
-      show:
-        anonymous_warning: Bu not anonim kullanıcılardan yorumlar içerdiğinden bağımsız
-          olarak doğrulanması gerekir.
-        hide: Gizle
-        resolve: Çözümle
-        reactivate: Yeniden etkinleştir
-        comment_and_resolve: Yorum ve Çözüm
-        comment: Yorum
-        report_link_html: Bu not, kaldırılması gereken hassas bilgiler içeriyorsa
-          %{link} bağlantısına tıklayınız. Notla ilgili diğer tüm sorunlar için lütfen
-          yorum yazarak çözmeye çalışınız.
     edit_help: Haritayı sürükleyip ve düzenleme yapmak istediğiniz konuma yakınlaştırdıktan
       sonra buraya tıklayın.
     directions:
@@ -3098,13 +2989,18 @@ tr:
       engines:
         fossgis_osrm_bike: Bisiklet (OSRM)
         fossgis_osrm_car: Araba (OSRM)
-        fossgis_osrm_foot: Ayak (OSRM)
+        fossgis_osrm_foot: Yürüyerek (OSRM)
         graphhopper_bicycle: Bisikletle (GraphHopper)
         graphhopper_car: Arabayla (GraphHopper)
         graphhopper_foot: Yürüyerek (GraphHopper)
+        fossgis_valhalla_bicycle: Bisiklet (Valhalla)
+        fossgis_valhalla_car: Araba (Valhalla)
+        fossgis_valhalla_foot: Yürüyerek (Valhalla)
       descend: İniş
       directions: İstikametler
       distance: Uzaklık
+      distance_m: '%{distance}m'
+      distance_km: '%{distance}km'
       errors:
         no_route: Bu iki yer arasında bir rota bulunamadı.
         no_place: Maalesef, '%{place}' adlı yeri bulamadık!

@@ -36,7 +36,6 @@ arz:
       message: الرسالة
       node: عقدة
       node_tag: سمه عقدة
-      notifier: المخطر
       old_node: عقده قديمة
       old_node_tag: سمه عقده قديمة
       old_relation: علاقه قديمة
@@ -69,7 +68,7 @@ arz:
         title: العنوان
         latitude: خط العرض
         longitude: خط الطول
-        language: اللغة
+        language_code: اللغة
       friend:
         user: المستخدم
         friend: صديق
@@ -116,16 +115,10 @@ arz:
         enabled link text: ما هذا؟
         disabled: مُعطل ولا يمكن تعديل البيانات، جميع التعديلات السابقه مجهوله الهويه.
         disabled link text: لماذا لا أستطيع التعديل؟
-      public editing note:
-        heading: 'تعديل عام:'
-        html: حاليًا تعديلاتك تظهر بشكل مجهول ولا يمكن للناس إرسال رسائل لك أو رؤيه
-          موقعك. لإظهار ما قمت بتعديله وللسماح للناس بالاتصال بك من خلال الموقع، انقر
-          على الزر أدناه. <b>منذ التغيير إلى الأى بى أى 0.6، فقط المستخدمين العلنيين
-          يمكنه تحرير بيانات الخريطة</b>. (<a href="http://wiki.openstreetmap.org/wiki/Anonymous_edits">لمعرفه
-          السبب</a>). <ul><li>عنوانك البريدى لن يكشف به علنّا.</li><li>هذا الإجراء
-          لا يمكن عكسه وجميع المستخدمين الجديد علنيين بشكل افتراضى.</li></ul>
       save changes button: حفظ التغييرات
-      make edits public button: اجعل جميع تعديلاتى عامة
+    go_public:
+      heading: 'تعديل عام:'
+      make_edits_public_button: اجعل جميع تعديلاتى عامة
     update:
       success_confirm_needed: تم تحديث معلومات المستخدم بنجاح. تحقق من بريدك الإلكترونى
         لمذكره تأكيد العنوان الإلكترونى الجديد.
@@ -256,13 +249,6 @@ arz:
       success: تم إزاله %{name} من قائمه أصدقائك.
       not_a_friend: '%{name} ليس من أحد أصدقائك.'
   geocoder:
-    search:
-      title:
-        latlon_html: نتائج <a href="http://openstreetmap.org/">داخليًا</a>
-        ca_postcode_html: نتائج من <a href="http://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: نتائج من <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: نتائج من <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         amenity:
@@ -603,9 +589,7 @@ arz:
     home: روح للصفحه الرئيسيه
     logout: خروج
     log_in: تسجيل الدخول
-    log_in_tooltip: سجّل الدخول مع حساب موجود
     sign_up: اعمل حساب
-    sign_up_tooltip: أنشئ حسابًا كى تستطيع المساهمة
     edit: عدّل هذه الخريطة
     history: تاريخ
     export: صدِّر
@@ -643,8 +627,6 @@ arz:
       failed_to_import: 'فشل الاستيراد. الخطأ هو:'
       subject: '[خريطه الشارع المفتوحة] فشل استيراد جى بى إكس'
     gpx_success:
-      loaded_successfully: تم تحميل بنجاح %{trace_points} نقطه من أصل %{possible_points}
-        نقطه ممكنه.
       subject: '[خريطه الشارع المفتوحة] نجاح استيراد جى بى إكس'
     signup_confirm:
       subject: '[خريطه الشارع المفتوحه] اهلا بيك فى اوبن ستريت ماب'
@@ -688,8 +670,6 @@ arz:
     new:
       title: أرسل رسالة
       send_message_to_html: أرسل رساله جديده إلى %{name}
-      subject: الموضوع
-      body: نص الرسالة
       back_to_inbox: العوده إلى صندوق الوارد
     create:
       message_sent: تم إرسال الرسالة
@@ -705,12 +685,8 @@ arz:
       people_mapping_nearby: مخططون فى جواري
     show:
       title: اقرأ الرسالة
-      from: من
-      subject: الموضوع
-      date: التاريخ
       reply_button: رد
       unread_button: علّم كغير مقروءة
-      to: إلى
     sent_message_summary:
       destroy_button: احذف
     mark:
@@ -748,8 +724,6 @@ arz:
       password: 'كلمه المرور:'
       lost password link: أنسيت كلمه المرور؟
       login_button: لُج
-      account not active: عذرًا، حسابك غير نشط بعد.<br />يرجى النقر على الرابط فى
-        تأكيد حساب البريد الإلكترونى لتنشيط حسابك.
       auth failure: آسف، لا يمكن الدخول بتلك التفاصيل.
   site:
     index:
@@ -770,8 +744,6 @@ arz:
       osm_xml_data: معطيات خريطه الطريق المفتوح بنسق إكس أم أل
       embeddable_html: HTML مضمن
       licence: الرخصة
-      export_details_html: بيانات خريطه الشارع المفتوحه مرخصه تحت <a href="http://creativecommons.org/licenses/by-sa/2.0/">رخصه
-        المشاع الإبداعى، النسبه، نسخه 2.0</a>.
       options: خيارات
       format: الهيئة
       scale: القياس
@@ -969,12 +941,6 @@ arz:
       title: اعمل حساب
       no_auto_account_create: للأسف نحن غير قادرين فى الوقت الحالى على إنشاء حساب
         لك تلقائيًا.
-      contact_support_html: يرجى الاتصال <a href="mailto:webmaster@openstreetmap.org">بمسؤول
-        الموقع</a> لترتيب الحساب المراد إنشاؤه - وسنحاول التعامل مع هذا الطلب بأسرع
-        وقت ممكن.
-      email address: 'عنوان البريد الإلكتروني:'
-      confirm email address: 'تأكيد عنوان البريد الإلكتروني:'
-      display name: 'اسم المستخدم:'
       display name description: اسم المستخدم الخاص بك الظاهر علنًا. يمكنك تغيير هذه
         التفضيلات فى وقت لاحق.
     no_such_user:
@@ -984,7 +950,6 @@ arz:
         الذى تم النقر عليه خاطئ.
     show:
       my diary: يوميتي
-      new diary entry: مدخله يوميه جديدة
       my edits: مساهمات
       my traces: آثاري
       my settings: إعداداتي
@@ -999,8 +964,6 @@ arz:
       mapper since: 'مُخطط منذ:'
       email address: 'عنوان البريد الإلكتروني:'
       created from: 'أُنشىء من:'
-      description: الوصف
-      user location: الموقع
       role:
         administrator: هذا المستخدم إداري
         moderator: هذا المستخدم وسيط
@@ -1014,13 +977,10 @@ arz:
       moderator_history: اعرض العرقلات المعطات
       create_block: منع هذا المستخدم
       activate_user: نشّط هذا المستخدم
-      deactivate_user: احذف هذا المستخدم
       hide_user: اخفِ هذا المستخدم
       unhide_user: أظهر هذا المستخدم
       delete_user: احذف هذا المستخدم
       confirm: أكّد
-    set_home:
-      flash success: موقع المنزل حُفظ بنجاح
     go_public:
       flash success: جميع تعديلاتك الآن عامه، ومسموح لك بالتعديل الآن.
   user_role:
@@ -1053,8 +1013,6 @@ arz:
       title: إنشاء عرقله على %{name}
       heading_html: إنشاء عرقله على %{name}
       period: ماهى المده بدءًا من الآن، سيتم عرقله المستخدم من الـ API.
-      tried_contacting: لقد اتصلت بالمستخدم وطلبت منه التوقف.
-      tried_waiting: لقد أعطيت المستخدم قدرًا معقولًا من الوقت للرد على تلك الاتصالات.
       back: اعرض كل العرقلات
     edit:
       title: تعديل العرقله على %{name}
@@ -1067,9 +1025,6 @@ arz:
       block_period: فتره العرقله يجب أن تكون واحده من القيم الاختياريه فى القائمه
         المنسدله.
     create:
-      try_contacting: رجاءًا حاول الاتصال بالمستخدم قبل عرقلته وأعطته فتره زمنيه معقوله
-        للرد.
-      try_waiting: رجاءًا حاول إعطاء المستخدم فتره زمنيه معقوله للرد قبل عرقلته.
       flash: أُنشىء عرقله على المستخدم %{name}.
     update:
       only_creator_can_edit: فقط الوسيط الذى قام بإنشاء هذه العرقله يمكنه تعديلها.

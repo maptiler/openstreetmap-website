@@ -5,12 +5,12 @@ class Ability
 
   def initialize(user)
     can [:relation, :relation_history, :way, :way_history, :node, :node_history,
-         :changeset, :note, :new_note, :query], :browse
+         :changeset, :query], :browse
+    can [:show, :new], Note
     can :search, :direction
-    can [:index, :permalink, :edit, :help, :fixthemap, :offline, :export, :about, :preview, :copyright, :key, :id], :site
+    can [:index, :permalink, :edit, :help, :fixthemap, :offline, :export, :about, :communities, :preview, :copyright, :key, :id], :site
     can [:finish, :embed], :export
-    can [:search, :search_latlon, :search_ca_postcode, :search_osm_nominatim,
-         :search_geonames, :search_osm_nominatim_reverse, :search_geonames_reverse], :geocoder
+    can [:search, :search_latlon, :search_osm_nominatim, :search_osm_nominatim_reverse], :geocoder
     can [:token, :request_token, :access_token, :test_request], :oauth
 
     if Settings.status != "database_offline"
@@ -33,7 +33,7 @@ class Ability
       can [:history, :version], OldRelation
     end
 
-    if user
+    if user&.active?
       can :welcome, :site
       can [:revoke, :authorize], :oauth
       can [:show], :deletion

@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: AmaryllisGardener
+# Author: C1614
 # Author: ChrisFleming
 # Author: John Reid
 # Author: MJL
@@ -11,9 +12,18 @@ sco:
     formats:
       friendly: '%e %B %Y at %H:%M'
   helpers:
+    file:
+      prompt: Wale file
     submit:
       diary_comment:
         create: Save
+      diary_entry:
+        create: Set furth
+        update: Update
+      issue_comment:
+        create: Eik Comment
+      message:
+        create: Send
   activerecord:
     models:
       acl: Access Control Leet
@@ -27,7 +37,6 @@ sco:
       message: Message
       node: Node
       node_tag: Node Tag
-      notifier: Nôtifier
       old_node: Auld Node
       old_node_tag: Auld Node Tag
       old_relation: Auld Relation
@@ -57,7 +66,7 @@ sco:
         title: Subject
         latitude: Latitude
         longitude: Longitude
-        language: Leid
+        language_code: Leid
       friend:
         user: Uiser
         friend: Friend
@@ -96,12 +105,6 @@ sco:
   browse:
     created: Creatit
     closed: Closed
-    created_html: Creatit <abbr title='%{title}'>%{time} ago</abbr>
-    closed_html: Closed <abbr title='%{title}'>%{time} ago</abbr>
-    created_by_html: Creatit <abbr title='%{title}'>%{time} ago</abbr> bi %{user}
-    deleted_by_html: Deletit <abbr title='%{title}'>%{time} ago</abbr> bi %{user}
-    edited_by_html: Eeditit <abbr title='%{title}'>%{time} ago</abbr> bi %{user}
-    closed_by_html: Closed <abbr title='%{title}'>%{time} ago</abbr> bi %{user}
     version: Version
     in_changeset: Chyngeset
     anonymous: anonymous
@@ -121,10 +124,6 @@ sco:
       relation: Relations (%{count})
       relation_paginated: Relations (%{x}-%{y} of %{count})
       comment: Comments (%{count})
-      hidden_commented_by_html: Hidden comment frae %{user} <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      commented_by_html: Comment frae %{user} <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
       changesetxml: Chyngeset XML
       osmchangexml: osmChange XML
       feed:
@@ -190,28 +189,6 @@ sco:
       wikidata_link: The %{page} item on Wikidata
       wikipedia_link: The %{page} airticle on Wikipaedia
       telephone_link: Caw %{phone_number}
-    note:
-      title: 'Note: %{id}'
-      new_note: New Note
-      description: Descreeption
-      open_title: 'Unresolved note #%{note_name}'
-      closed_title: 'Resolved note #%{note_name}'
-      hidden_title: 'Hidden note #%{note_name}'
-      opened_by_html: Creatit bi %{user} <abbr title='%{exact_time}'>%{when} ago</abbr>
-      opened_by_anonymous_html: Creatit bi anonymous <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      commented_by_html: Comment frae %{user} <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      commented_by_anonymous_html: Comment frae anonymous <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      closed_by_html: Resolved bi %{user} <abbr title='%{exact_time}'>%{when} ago</abbr>
-      closed_by_anonymous_html: Resolved bi anonymous <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      reopened_by_html: Reactivatit bi %{user} <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      reopened_by_anonymous_html: Reactivatit bi anonymous <abbr title='%{exact_time}'>%{when}
-        ago</abbr>
-      hidden_by_html: Hidden bi %{user} <abbr title='%{exact_time}'>%{when} ago</abbr>
   changesets:
     changeset_paging_nav:
       showing_page: Page %{page}
@@ -312,16 +289,6 @@ sco:
       newer_comments: Newer Comments
       older_comments: Aulder Comments
   geocoder:
-    search:
-      title:
-        latlon_html: Results frae <a href="http://openstreetmap.org/">Internal</a>
-        ca_postcode_html: Results frae <a href="http://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Results frae <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Results frae <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Results frae <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: Results frae <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -780,10 +747,8 @@ sco:
     home: Go tae Home Location
     logout: Log Oot
     log_in: Log In
-    log_in_tooltip: Log in wi an existin accoont
     sign_up: Sign Up
     start_mapping: Stairt Cairttin
-    sign_up_tooltip: Create an accoont for editin
     edit: Eedit
     history: History
     export: Export
@@ -813,8 +778,6 @@ sco:
     community: Commonty
     community_blogs: Commonty Blogs
     community_blogs_title: Blogs frae members o the OpenStreetMap commonty
-    foundation: Foondation
-    foundation_title: The OpenStreetMap Foundation
     make_a_donation:
       title: Support OpenStreetMap wi a monetary donation
       text: Make a Donation
@@ -880,86 +843,19 @@ sco:
         mapping_link: stairt cairttin
       legal_babble:
         title_html: Copyricht an License
-        intro_1_html: |-
-          OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> is <i>open data</i>, licensed unner the <a
-          href="http://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database License</a> (ODbL) bi the  <a
-          href="http://osmfoundation.org/">OpenStreetMap Foundation</a> (OSMF).
-        intro_2_html: |-
-          Ye are free tae copy, distribute, transmit an adapt oor data,
-          as lang as ye credit OpenStreetMap an its
-          contreibutors. If ye alter or big upon oor data, ye
-          mey distribute the result anly unner the same licence. The
-          full <a href="http://opendatacommons.org/licenses/odbl/1.0/">legal
-          code</a> explains yer richts an responsibilities.
-        intro_3_1_html: |-
-          The cairtografie in oor cairt tiles, an oor documentation, are
-          licensed unner the <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Attribution-ShareAlike 2.0</a> license (CC BY-SA).
         credit_title_html: Hou tae credit OpenStreetMap
         credit_1_html: |-
           We require that ye uise the credit &ldquo;&copy; OpenStreetMap
           contributors&rdquo;.
-        credit_2_1_html: |-
-          Ye must an aa mak it clear that the data is available unner the Open
-          Database License, an if uisin oor cairt tiles, that the cairtografie is
-          licensed as CC BY-SA. Ye mey dae this bi airtin tae
-          <a href="http://www.openstreetmap.org/copyright">this copyricht page</a>.
-          Alternatively, an as a requirement if ye are distributin OSM in a
-          data form, ye can name an link directly tae the license(s). In media
-          whaur airtins are nae possible (e.g. printed wirks), we suggest ye
-          direct yer readers tae openstreetmap.org (perhaps bi expandin
-          'OpenStreetMap' tae this full address), tae opendatacommons.org, an
-          if relevant, to creativecommons.org.
-        credit_4_html: |-
-          For a brousable electronic cairt, the credit should appear in the corner o the cairt.
-          For example:
         attribution_example:
           alt: Example o hou tae attribute OpenStreetMap on a wabpage
           title: Attreibution example
         more_title_html: Findin oot mair
-        more_1_html: |-
-          Read mair aboot uisin oor data, an hou tae credit us, at the <a
-          href="http://osmfoundation.org/Licence">OSMF Licence page</a> an the commonty <a
-          href="http://wiki.openstreetmap.org/wiki/Legal_FAQ">Legal
-          FAQ</a>.
-        more_2_html: |-
-          Altho OpenStreetMap is open data, we cannae provide a
-          free-o-charge cairt API for third-party developers.
-          See oor <a href="http://wiki.openstreetmap.org/wiki/API_usage_policy">API Uisage Policy</a>,
-          <a href="http://wiki.openstreetmap.org/wiki/Tile_usage_policy">Tile Uisage Policy</a>
-          and <a href="http://wiki.openstreetmap.org/wiki/Nominatim#Usage_Policy">Nominatim Uisage Policy</a>.
         contributors_title_html: Oor contreibutors
         contributors_intro_html: |-
           Oor contreibutors are thoosands o individuals. We an aa include
           openly-licensed data frae naitional mappin agencies
           an ither soorces, amang them:
-        contributors_at_html: |-
-          <strong>Austrick</strong>: Contains data frae
-          <a href="http://data.wien.gv.at/">Stadt Wien</a> (unner
-          <a href="http://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a>),
-          <a href="http://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Land Vorarlberg</a> an
-          Land Tirol (unner <a href="http://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC BY AT wi amendments</a>).
-        contributors_ca_html: |-
-          <strong>Canadae</strong>: Contains data frae
-          GeoBase&reg;, GeoGratis (&copy; Department o Naitural
-          Resoorces Canadae), CanVec (&copy; Department o Naitural
-          Resoorces Canadae), an StatCan (Geografie Diveesion,
-          Stateestics Canadae).
-        contributors_fi_html: |-
-          <strong>Finland</strong>: Contains data frae the
-          Naitional Laund Survey o Finland's Topographic Database
-          an ither datasets, unner the
-          <a href="http://www.maanmittauslaitos.fi/en/NLS_open_data_licence_version1_20120501">NLSFI License</a>.
-        contributors_fr_html: |-
-          <strong>Fraunce</strong>: Contains data soorced frae
-          Direction Générale des Impôts.
-        contributors_nl_html: |-
-          <strong>Netherlands</strong>: Contains &copy; AND data, 2007
-          (<a href="http://www.and.com">www.and.com</a>)
-        contributors_nz_html: |-
-          <strong>New Zealand</strong>: Contains data soorced frae
-          Land Information New Zealand. Crown Copyricht reserved.
         infringement_title_html: Copyricht infringement
     export:
       title: Export
@@ -970,8 +866,6 @@ sco:
       map_image: Cairt Image (shaws staundart layer)
       embeddable_html: Embeddable HTML
       licence: Licence
-      export_details_html: OpenStreetMap data is licensed unner the <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open
-        Data Commons Open Database License</a> (ODbL).
       too_large:
         advice: 'If the abuin export fails, please consider uisin ane o the soorces
           leetit ablo:'
@@ -989,9 +883,6 @@ sco:
           title: Geofabrik Dounloads
           description: Regularly-updatit extracts o continents, kintras, an selectit
             ceeties
-        metro:
-          title: Metro Extracts
-          description: Extracts for major warld ceeties an thair surroondin auries
         other:
           title: Ither Soorces
           description: Addeetional soorces leetit on the OpenStreetMap wiki
@@ -1013,11 +904,6 @@ sco:
           explanation_html: |-
             Gif ye'v seen ae proablem wi oor map data, fer example ae road is missin or yer address, the best waa tae
             proceed is tae jyn the OpenStreetMap communitie n eik or repair the data yersel.
-      other_concerns:
-        explanation_html: "Gif ye hae concerns aneat hou oor data is bein uised or
-          aneat the contents please see oor\n<a href='/copyright'>copiericht page</a>
-          fer mair legal information, or contact the appropriate \n<a href='http://wiki.osmfoundation.org/wiki/Working_Groups'>OSMF
-          wairkin groop</a>."
     sidebar:
       search_results: Sairch Results
     search:
@@ -1046,20 +932,12 @@ sco:
           building: Signeeficant biggin
     welcome:
       title: Walcome!
-      introduction_html: |-
+      introduction: |-
         Walcome tae OpenStreetMap, the free an eeditable cairt o the warld. Nou that ye're signed
         up, ye're aw set tae get stairtit cairttin. Here's a quick guide wi the maist important
         things ye need tae ken.
       whats_on_the_map:
         title: Whit's on the Cairt
-        on_html: |-
-          OpenStreetMap is a place for cairttin things that are baith <em>real an current</em> -
-          it includes millions o biggins, roads, an ither details aboot places. Ye can cairt
-          whitever real-warld featurs are interestin tae ye.
-        off_html: |-
-          Whit it <em>disna</em> include is opinionatit data lik ratins, historical or
-          hypothetical featurs, an data frae copyrichtit soorces. Unless ye hae special
-          permission, dinna copy frae online or paper cairts.
   traces:
     create:
       upload_trace: Uplaid GPS Trace
@@ -1067,13 +945,19 @@ sco:
     show:
       edits: Eedits
       created from: 'Creautit frae:'
-      user location: Uiser location
+  notes:
+    show:
+      title: 'Note: %{id}'
+      description: Descreeption
+      open_title: 'Unresolved note #%{note_name}'
+      closed_title: 'Resolved note #%{note_name}'
+      hidden_title: 'Hidden note #%{note_name}'
+    new:
+      title: New Note
+      intro: Spotted ae mistake or sommit missin? Lat ither mappers ken sae that we
+        can fix it. Muiv the maurker til the richt poseetion n type ae few wairds
+        tae explain the proablem. (Please dinna enter personal information here.)
   javascripts:
-    notes:
-      new:
-        intro: Spotted ae mistake or sommit missin? Lat ither mappers ken sae that
-          we can fix it. Muiv the maurker til the richt poseetion n type ae few wairds
-          tae explain the proablem. (Please dinna enter personal information here.)
     directions:
       errors:
         no_place: Sairy - couldna find that place.

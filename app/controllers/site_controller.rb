@@ -107,6 +107,10 @@ class SiteController < ApplicationController
     @locale = params[:about_locale] || I18n.locale
   end
 
+  def communities
+    @local_chapters = Community.where(:type => "osm-lc").where.not(:id => "OSMF")
+  end
+
   def export; end
 
   def offline; end
@@ -136,7 +140,7 @@ class SiteController < ApplicationController
     elsif params[:relation]
       redirect_to relation_path(params[:relation])
     elsif params[:note]
-      redirect_to browse_note_path(params[:note])
+      redirect_to note_path(params[:note])
     elsif params[:query]
       redirect_to search_path(:query => params[:query])
     end

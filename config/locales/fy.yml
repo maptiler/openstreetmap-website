@@ -25,7 +25,7 @@ fy:
       client_application:
         create: Registrearje
         update: Bywurkje
-      doorkeeper_application:
+      oauth2_application:
         create: Registrearje
         update: Bywurkje
       redaction:
@@ -55,7 +55,6 @@ fy:
       message: Berjocht
       node: Punt
       node_tag: Puntlebel
-      notifier: Melder
       old_node: Ald punt
       old_node_tag: Ald puntlebel
       old_relation: Alde relaasje
@@ -98,7 +97,7 @@ fy:
         title: Underwerp
         latitude: Breedtegraad
         longitude: Lingtegraad
-        language: Taal
+        language_code: Taal
       doorkeeper/application:
         name: Namme
         redirect_uri: Trochferwiis-URI's
@@ -160,9 +159,6 @@ fy:
           te brûken.
         needs_view: Moat de meidogger oanmelde foar't dizze útsluting ferfalt?
       user:
-        email_confirmation: Jo adres wurdt net publikelik toand; sjoch ús <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy"
-          title="Privacybelied fan OSMF mei in stik oer e-mailadressen">Privacybelied</a>
-          foar mear ynformaasje.
         new_email: (nea publikelik toand)
   datetime:
     distance_in_words_ago:
@@ -285,16 +281,6 @@ fy:
         disabled: Utskeakele en kin gjin data bewurkje, alle eardere bewurkings binne
           anonym.
         disabled link text: wêrom kin ik net bewurkje?
-      public editing note:
-        heading: Iepenbier bewurkjen
-        html: Op it stuit binne jo bewurkings anonym, en kinne minsken jo gjin berjochten
-          stjoere of jo lokaasje sjen. Klik de knop hjirûnder om sjen te litten wat
-          jo bewurke hawwe, en om minsken ta te stean op it webstee kontakt mei jo
-          op te nimmen. <b>Sûnt de oergong nei API 0.6, kinne inkeld iepenbiere meidoggers
-          kaartdata bewurkje</b>. (<a href="https://wiki.openstreetmap.org/wiki/Anonymous_edits">fyn
-          út wêrom</a>).<ul><li>Jo e-mailadres wurdt net bekend makke by it iepenbier
-          wurden.</li><li>Dizze hanneling kin net weromdraaid wurde, en alle nije
-          meidoggers binne no standert iepenbier.</li></ul>
       contributor terms:
         heading: Bydragersbetingsten
         agreed: Jo binne akkoart gien mei de nije Bydragersbetingsten.
@@ -305,8 +291,10 @@ fy:
           Domein beskôgje.
         link text: wat is dat?
       save changes button: Feroarings bewarje
-      make edits public button: Al myn bewurkings iepenbier meitsje
       delete_account: Akkount wiskje ...
+    go_public:
+      heading: Iepenbier bewurkjen
+      make_edits_public_button: Al myn bewurkings iepenbier meitsje
     update:
       success_confirm_needed: Meidoggergegevens bywurkjen slagge. Besjoch jo e-mail
         foar in berjocht om jo nije e-mailadres te befêstigjen.
@@ -316,12 +304,6 @@ fy:
   browse:
     created: Makke
     closed: Ofdien
-    created_html: Makke <abbr title='%{title}'>%{time}</abbr>
-    closed_html: Ofdien <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: Makke <abbr title='%{title}'>%{time}</abbr> troch %{user}
-    deleted_by_html: Wiske <abbr title='%{title}'>%{time}</abbr> troch %{user}
-    edited_by_html: Bewurke <abbr title='%{title}'>%{time}</abbr> troch %{user}
-    closed_by_html: Ofdien <abbr title='%{title}'>%{time}</abbr> troch %{user}
     version: Ferzje
     in_changeset: Wizigingsset
     anonymous: anonym
@@ -347,8 +329,6 @@ fy:
       relation: Relaasjes (%{count})
       relation_paginated: Relaasjes (%{x}-%{y} fan %{count})
       comment: Reäksjes (%{count})
-      hidden_commented_by_html: Ferburgen reäksje fan %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: Reäksje fan %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Wizigingsset-XML
       osmchangexml: osmWizigings-XML
       feed:
@@ -428,23 +408,6 @@ fy:
       wikimedia_commons_link: It bestân %{page} op Wikimedia Commons
       telephone_link: '%{phone_number} skilje'
       colour_preview: Proefbyld kleur %{colour_value}
-    note:
-      title: 'Notysje: %{id}'
-      new_note: Nije notysje
-      description: Beskriuwing
-      open_title: 'Unoploste notysje #%{note_name}'
-      closed_title: 'Oploste notysje #%{note_name}'
-      hidden_title: 'Ferburgen notysje #%{note_name}'
-      opened_by_html: Makke troch %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous_html: Makke troch anonym <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: Reäksje fan %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous_html: Reäksje fan anonym <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_html: Oplost troch %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous_html: Oplost troch anonym <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_html: Weraktivearre troch %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous_html: Weraktivearre troch anonym <abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by_html: Ferburgen troch %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      report: dizze notysje melde
     query:
       title: Skaaimerken opfreegje
       introduction: Klik op 'e kaart foar skaaimerken fuortby.
@@ -609,16 +572,6 @@ fy:
       success: '%{name} is ôffierd fan jo freonen.'
       not_a_friend: '%{name} is net ien fan jo freonen.'
   geocoder:
-    search:
-      title:
-        latlon_html: Treffers <a href="https://openstreetmap.org/">yntern</a>
-        ca_postcode_html: Treffers fan <a href="https://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Treffers fan <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Treffers fan <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Treffers fan <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: Treffers fan <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -1411,8 +1364,6 @@ fy:
       status: Status
       reports: Meldings
       last_updated: Lêst bywurke
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: <abbr title='%{title}'>%{time}</abbr> troch %{user}
       link_to_reports: Meldings besjen
       reports_count:
         one: 1 melding
@@ -1422,10 +1373,6 @@ fy:
         ignored: Negearre
         open: Iepen
         resolved: Oplost
-    update:
-      new_report: It fêstlizzen fan jo melding is slagge
-      successful_update: It bywurkjen fan jo melding is slagge
-      provide_details: Graach de ferplichte details oanjaan
     show:
       title: '%{status} probleem #%{issue_id}'
       reports:
@@ -1506,10 +1453,8 @@ fy:
     home: Nei jo fêste lokaasje
     logout: Ofmelde
     log_in: Oanmelde
-    log_in_tooltip: Oanmelde mei in besteand akkount
     sign_up: Ynskriuwe
     start_mapping: Set útein
-    sign_up_tooltip: In akkount foar bewurkjen oanmeitsje
     edit: Bewurkje
     history: Skiednis
     export: Eksportearje
@@ -1544,8 +1489,6 @@ fy:
     community: Mienskip
     community_blogs: Mienskipsblochs
     community_blogs_title: Blochs fan leden út 'e OpenStreetMap-mienskip
-    foundation: Stifting
-    foundation_title: De OpenStreetMap-stifting
     make_a_donation:
       title: Stypje OpenStreetMap mei in jilddonaasje
       text: Donaasje jaan
@@ -1595,9 +1538,6 @@ fy:
       subject: '[OpenStreetMap] GPX ymportearjen mislearre'
     gpx_success:
       hi: Goeie %{to_user},
-      loaded_successfully:
-        one: goed opladen is mei %{trace_points} punt fan maksimaal 1.
-        other: goed opladen is mei %{trace_points} punten fan maksimaal %{possible_points}.
       subject: '[OpenStreetMap] GPX ymportearjen slagge'
     signup_confirm:
       subject: '[OpenStreetMap] Wolkom by OpenStreetMap'
@@ -1698,8 +1638,6 @@ fy:
       success: Jo akkount is befêstige, tankjewol foar it ynskriuwen!
       already active: Dat akkount is al befêstige.
       unknown token: Dy befêstigingskoade is ferrûn of bestiet net.
-      reconfirm_html: At jo wolle dat wy de befêstigingsmail op 'e nij tastjoere,
-        <a href="%{reconfirm}">klik dan hjir</a>.
     confirm_resend:
       failure: Meidogger %{name} net fûn.
     confirm_email:
@@ -1742,8 +1680,6 @@ fy:
     new:
       title: Berjocht stjoere
       send_message_to_html: In nij berjocht stjoere oan %{name}
-      subject: Underwerp
-      body: Ynhâld
       back_to_inbox: Werom nei it ynfek
     create:
       message_sent: Berjocht ferstjoerd
@@ -1772,14 +1708,10 @@ fy:
         om beäntwurdzje te kinnen.
     show:
       title: Berjocht lêze
-      from: Fan
-      subject: Underwerp
-      date: Datum
       reply_button: Beäntwurdzje
       unread_button: As net-lêzen oanmerke
       destroy_button: Wiskje
       back: Werom
-      to: Oan
       wrong_user: Jo binne oanmeld as '%{user}', mar it berjocht dat jo lêze wolle
         is net troch/nei dy meidogger stjoerd. Meld jo oan as de krekte meidogger
         om it lêze te kinnen.
@@ -1830,7 +1762,6 @@ fy:
       image: Ofbylding
       gravatar:
         gravatar: Gravatar brûke
-        link: https://wiki.openstreetmap.org/wiki/Gravatar
         what_is_gravatar: Wat is Gravatar?
         disabled: Gravatar is útskeakele.
         enabled: Werjefte fan jo Gravatar is ynskeakele.
@@ -1856,19 +1787,8 @@ fy:
       lost password link: Jo wachtwurd kwyt?
       login_button: Oanmelde
       register now: No ynskriuwe
-      with username: 'Hawwe jo al in OpenStreetMap-akkount? Meld jo oan mei jo meidochnamme
-        en wachtwurd:'
       with external: 'Brûk oars in treddepartij om jo oan te melden:'
-      new to osm: Nij op OpenStreetMap?
-      to make changes: Jo moatte in akkount hawwe om OpenStreetMap-data feroarje te
-        kinnen.
-      create account minute: Meitsje in akkount. It duorret mar in minútsje.
       no account: Hawwe jo gjin akkount?
-      account not active: Spitich, jo akkount is noch net aktyf.<br />Brûk de keppeling
-        yn 'e akkountbefêstigingsmail om jo akkount te aktivearjen, of <a href="%{reconfirm}">freegje
-        in nije befêstigingsmail</a>.
-      account is suspended: Spitich, jo akkount is skoattele fanwegen fertochte aktiviteiten.<br
-        />Nim kontakt op mei <a href="%{webmaster}">Stipe</a> at jo dat beprate wolle.
       auth failure: Spitich, koe jo net oanmelde mei dy gegevens.
       openid_logo_alt: Meld jo oan mei in openID
       auth_providers:
@@ -1902,7 +1822,6 @@ fy:
       logout_button: Ofmelde
   shared:
     markdown_help:
-      title_html: Ferwurke mei <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>
       headings: Koppen
       heading: Kop
       subheading: Subkop
@@ -1921,7 +1840,6 @@ fy:
   site:
     about:
       next: Folgjende
-      copyright_html: <span>&copy;</span>OpenStreetMap-<br>bydragers
       used_by_html: '%{name} leveret kaartdata foar tûzenen websteeën, mobile apps
         en kompjûterapparaten'
       lede_text: OpenStreetMap wurdt makke troch in mienskip fan kaartmakkers, dy't
@@ -1932,34 +1850,8 @@ fy:
         OpenStreetMap leit de klam op lokale kennis. De bydragers brûke
         loftbylden, GPS-apparaten en leech-technyske fjildkaarten, om te bewissigjen dat OSM akkuraat en by de tiid is.
       community_driven_title: Dreaun troch de mienskip
-      community_driven_html: |-
-        De OpenStreetMap-mienskip is alsidich, pasjonearre, en groeit mei de dei.
-        Under ús bydragers sitte entûsjaste kaartmakkers, GIS-fakminsken, technisy
-        dy't de OSM-tsjinners beheare, helpferlieners dy't rampgebieten yn kaart bringe,
-        en in soad oaren.
-        Om mear te witten oer de mienskip, besjoch dan it
-        <a href='https://blog.openstreetmap.org'>OpenStreetMap-bloch</a>,
-        <a href='%{diary_path}'>deiboeken fan meidoggers</a>,
-        <a href='https://blogs.openstreetmap.org/'>mienskipsblochs</a>, en
-        it webstee fan 'e <a href='https://www.osmfoundation.org/'>OSM-stifting</a>.
       open_data_title: Iepen data
-      open_data_html: |-
-        OpenStreetMap is <i>iepen data</i>: it stiet jo frij en brûk it foar elts doel,
-        salang't jo OpenStreetMap en syn bydragers mar neame. At jo de data
-        op in beskate manier feroarje of ferwurkje, meie jo it resultaat inkeld
-        ûnder deselde lisinsje ferspriede. Sjoch de <a href='%{copyright_path}'>Auteursrjochte- en
-        lisinsjeside</a> foar ynformaasje.
       legal_title: Juridysk
-      legal_1_html: |-
-        Dit webstee en in protte oare besibbe tsjinsten, wurde formeel beheard troch de
-        <a href='https://osmfoundation.org/'>OpenStreetMap-stifting</a> (OSMF)
-        út namme fan 'e mienskip. It gebrûk fan alle OSMF-behearde tsjinsten falt ûnder
-        ús <a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">Gebrûksbetingsten</a>, <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">Belied foar Akseptabel Gebrûk</a> en ús <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">Privacybelied</a>.
-      legal_2_html: |-
-        Nim graach <a href='https://osmfoundation.org/Contact'>kontakt op mei de OSMF</a>
-        at jo lisinsje-, auteursrjochte- as oare juridyske fragen hawwe.
-        <br>
-        OpenStreetMap, it fergrutglês-logo en 'State of the Map' binne <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">registrearre hannelsmerken fan 'e OSMF</a>.
       partners_title: Partners
     copyright:
       foreign:
@@ -1976,121 +1868,18 @@ fy:
         mapping_link: mei kaartmeitsjen úteinsette
       legal_babble:
         title_html: Auteursrjochten en lisinsje
-        intro_1_html: |-
-          OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> is <i>iepen data</i>, en troch de  <a
-          href="https://osmfoundation.org/">OpenStreetMap-stifting</a> (OSMF) beskikber steld ûnder de <a
-          href="https://opendatacommons.org/licenses/odbl/">Iepen
-          Databank-lisinsje</a> (ODbL) fan Open Data Commons.
-        intro_2_html: |-
-          It stiet jo frij ús data te kopiearjen, te fersprieden, út te stjoeren en oan te passen,
-          salang't jo OpenStreetMap en syn
-          bydragers mar neame. At jo ús data feroarje of ferwurkje, meie jo
-          it resultaat inkeld ûnder deselde lisinsje ferspriede. De
-          folsleine <a href="https://opendatacommons.org/licenses/odbl/1.0/">juridyske
-          tekst</a> jout in útlis oer jo rjochten en plichten.
-        intro_3_1_html: |-
-          Us dokumintaasje is beskikber ûnder de lisinsje
-          <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Nammefermelding-Lyk diele 2.0</a> (CC BY-SA 2.0).
         credit_title_html: Hoe moat OpenStreetMap neamd wurde
         credit_1_html: 'Dêr wêr''t jo OpenStreetMap-data brûke, binne jo ferplichte
           en doch de neikommende twa dingen:'
-        credit_2_1_html: |-
-          <ul>
-            <li>Jou in taskriuwing oan OpenStreetMap troch ús auteursrjochtefernijing sjen te litten.</li>
-            <li>Meitsje dúdlik dat de data beskikber is ûnder de Iepen Databank-lisinsje.</li>
-          </ul>
-        credit_3_1_html: "Oan 'e auteursrjochtefernijing stelle wy oare easken hoe't
-          dy werjûn wurde \nmoat, ôfhinklik fan hoe't jo ús data brûke. Der jilde
-          bygelyks oare \nregels foar it sjen litten fan 'e auteursrjochtefernijing,
-          ôfhinklik fan oft jo \nin trochklikbere digitale kaart, in printe kaart
-          of in statysk ôfbyld makke hawwe. Alle bysûnderheden oer de \neasken fine
-          jo yn 'e \n<a href=\"https://wiki.osmfoundation.org/wiki/Licence/Attribution_Guidelines\">Rjochtlinen
-          foar \nNammefernijing</a>."
-        credit_4_html: |-
-          Om dúdlik te meitsjen dat de data beskikber is ûnder de Iepen
-          Databank-lisinsje, kinne jo nei
-          <a href="https://www.openstreetmap.org/copyright">dizze auteursrjochteside</a> ferwize.
-          As alternatyf, en as eask at jo OSM yn
-          datafoarm ferspriede, kinne jo de lisinsje(s) streekrjocht neame en keppelje. Yn media
-          dêr't keppelings net mooglik binne (bgl. printwurk) is ús suggestje dat jo
-          jo lêzers trochferwize nei openstreetmap.org (faaks troch
-          'OpenStreetMap' út te skriuwen as dat adres) en nei opendatacommons.org.
-          Yn dit foarbyld stiet de nammefernijing yn 'e hoeke fan 'e kaart.
         attribution_example:
           alt: Foarbyld fan hoe't OpenStreetMap op in webside neamd wurdt
           title: Foarbyld nammefermelding
         more_title_html: Mear te witten komme
-        more_1_html: |-
-          Lês mear oer it brûken fan ús data, en hoe't wy fermeld wurde moatte, op 'e <a
-          href="https://osmfoundation.org/Licence">Lisinsjeside fan 'e OSMF</a>.
-        more_2_html: |-
-          Hoewol't OpenStreetMap iepen data is, kinne wy net
-          fergees in kaart-API foar tredden leverje.
-          Sjoch ús <a href="https://operations.osmfoundation.org/policies/api/">API-gebrûksbelied</a>,
-          <a href="https://operations.osmfoundation.org/policies/tiles/">Gebrûksbelied foar Kaartstikken</a>
-          en <a href="https://operations.osmfoundation.org/policies/nominatim/">Gebrûksbelied fan Nominatim</a>.
         contributors_title_html: Us bydragers
         contributors_intro_html: |-
           Us bydragers binne tûzenen yndividuën. Wy nimme ek
           data mei iepen lisinsjes op fan nasjonale kaartagintskippen
           en oare boarnen, dêrûnder:
-        contributors_at_html: |-
-          <strong>Eastenryk</strong>: Befettet data fan
-          <a href="https://data.wien.gv.at/">Stadt Wien</a> (ûnder
-          <a href="https://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a>),
-          <a href="https://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Land Vorarlberg</a> en
-          Land Tirol (ûnder <a href="https://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC BY AT mei amendeminten</a>).
-        contributors_au_html: |-
-          <strong>Austraalje</strong>: Omfettet of ûntwikkele mei Administrative Boundaries &copy;
-          <a href="https://geoscape.com.au/legal/data-copyright-and-disclaimer/">Geoscape Austraalje</a>
-          troch it Mienebêst fan Austraalje beskikber steld ûnder de lisinsje
-          <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Nammefermelding 4.0 Ynternasjonaal (CC BY 4.0)</a>.
-        contributors_ca_html: |-
-          <strong>Kanada</strong>: Befettet data fan
-          GeoBase&reg;, GeoGratis (&copy; Departemint fan Natuerlike
-          Helpboarnen Kanada), CanVec (&copy; Departemint fan Natuerlike
-          Helpboarnen Kanada), en StatCan (Geografy-difyzje,
-          Statistiken Kanada).
-        contributors_fi_html: |-
-          <strong>Finlân</strong>: Befettet data út 'e
-          Topografyske Databank en oare datasets fan 'e
-          Nasjonale Lânmjitting fan Finlân, ûnder de
-          <a href="https://www.maanmittauslaitos.fi/en/opendata-licence-version1">NLSFI-lisinsje</a>.
-        contributors_fr_html: |-
-          <strong>Frankryk</strong>: Befettet data mei as boarne
-          Direction Générale des Impôts.
-        contributors_nl_html: |-
-          <strong>Nederlân</strong>: Befettet &copy; AND data, 2007
-          (<a href="https://www.and.com">www.and.com</a>)
-        contributors_nz_html: |-
-          <strong>Nij-Seelân</strong>: Befettet data mei as boarne de
-          <a href="https://data.linz.govt.nz/">LINZ Data Service</a> en
-          werbrûkber ûnder de lisinsje
-          <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-        contributors_si_html: |-
-          <strong>Sloveenje</strong>: Befettet data fan 'e
-          <a href="http://www.gu.gov.si/en/">Lânmjittings- en Kartearringsautoriteit</a> en it
-          <a href="http://www.mkgp.gov.si/en/">Ministearje fan Lânbou, Boskbou en Fiedsel</a>
-          (iepenbiere ynformaasje fan Sloveenje).
-        contributors_es_html: |-
-          <strong>Spanje</strong>: Befettet data mei as boarne it
-          Spaansk Nasjonaal Geografysk Ynstitút (<a href="http://www.ign.es/">IGN</a>) en it
-          Nasjonaal Kartografysk Systeem (<a href="http://www.scne.es/">SCNE</a>)
-          werbrûkber ûnder de lisinsje <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-        contributors_za_html: |-
-          <strong>Súd-Afrika</strong>: Befettet data mei as boarne
-          <a href="http://www.ngi.gov.za/">Chief Directorate:
-          National Geo-Spatial Information</a>, Steatsauteursrjochten foarbeholden.
-        contributors_gb_html: |-
-          <strong>Feriene Keninkryk</strong>: Befettet data fan Ordnance
-          Survey &copy; Auteurs- en databankrjochten fan 'e Kroan
-          2010-19.
-        contributors_footer_1_html: |-
-          Besjoch de <a
-          href="https://wiki.openstreetmap.org/wiki/Contributors">Bydragers-side</a>
-          op 'e OpenStreetMap-wiki foar fierdere ynformaasje oer dizze, en oare boarnen dy't brûkt binne
-          om OpenStreetMap foarút te helpen.
         contributors_footer_2_html: |-
           It opnimmen fan data yn OpenStreetMap betsjut net dat de oanbieder fan 'e oarspronklike
           data efter OpenStreetMap stiet, ien of oare garânsje jout, of
@@ -2100,16 +1889,6 @@ fy:
           OSM-bydragers wurde derop wiisd nea data ta te heakjen fan
           boarnen mei auteursrjochten (bgl. Google Maps as printe kaarten) sûnder
           de útdruklike tastimming fan 'e auteursrjochthawwers.
-        infringement_2_html: |-
-          At jo miene dat der materiaal mei auteursrjochten ûnrjochtlik
-          oan 'e OpenStreetMap-databank of dit webstee taheakke is, rieplachtsje dêrfoar
-          ús <a href="https://wiki.osmfoundation.org/wiki/Takedown_procedure">wiskproseduere</a>,
-          of tsjinje it drekst yn op ús
-          <a href="https://dmca.openstreetmap.org/">side mei in webformulier</a>.
-        trademarks_title_html: <span id="trademarks"></span>Hannelsmerken
-        trademarks_1_html: OpenStreetMap, it fergrutglês-logo en 'State of the Map'
-          binne registrearre hannelsmerken fan 'e OpenStreetMap-stifting. At jo fragen
-          hawwe oer jo gebrûk fan 'e merken, besjoch dan ús <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">Hannelsmerkebelied</a>.
     index:
       js_1: Jo brûke ôf in webblêder dy't gjin JavaScript stipet, ôf jo hawwe JavaScript
         útskeakele.
@@ -2139,8 +1918,6 @@ fy:
       map_image: Kaartôfbylding (toant standertlaach)
       embeddable_html: Ynbou-HTML
       licence: Lisinsje
-      export_details_html: OpenStreetMap-data is beskikber ûnder de <a href="https://opendatacommons.org/licenses/odbl/1.0/">Iepen
-        Databank-lisinsje</a> (ODbL) fan Open Data Commons.
       too_large:
         advice: |-
           At it eksportearjen boppe net slagget, besykje
@@ -2158,9 +1935,6 @@ fy:
           title: Geofabrik Downloads
           description: Geregeldwei bywurke parten mei kontininten, lannen en selektearre
             stêden
-        metro:
-          title: Metro Extracts
-          description: Parten mei grutte wrâldstêden en harren omkriten
         other:
           title: Oare boarnen
           description: Fierders noch boarnen dy't op 'e OpenStreetMap-wiki steane
@@ -2185,17 +1959,8 @@ fy:
           explanation_html: At jo in probleem yn ús kaartdata opmerke, bygelyks in
             strjitte mist of jo adres, dan kinne jo jo it bêst oanslute by de OpenStreetMap-mienskip,
             en de data sels tafoegje of reparearje.
-        add_a_note:
-          instructions_html: |-
-            Klik gewoan op <a class='icon note'></a> of itselde ikoan yn 'e kaartwerjefte.
-            Der komt in markearder op 'e kaart dy't jo
-            ferslepe kinne. Heakje jo berjocht ta, klik bewarje, en oare kaartmakkers sille it dan besjen.
       other_concerns:
         title: Oare betinkings
-        explanation_html: |-
-          At jo noed hawwe oer hoe't ús data brûkt wurdt of oer de ynhâld, rieplachtsje dan ús
-          <a href='/copyright'>auteursrjochteside</a> foar mear juridyske ynformaasje, of nim kontakt op mei de krekte
-          <a href='https://wiki.osmfoundation.org/wiki/Working_Groups'>OSMF-wurkgroep</a>.
     help:
       title: Help krije
       introduction: |-
@@ -2215,10 +1980,6 @@ fy:
         title: Mailinglisten
         description: Stel in fraach of bepraat nijsgjirrige saken op útienrinnende
           tematyske as regionale mailinglisten.
-      forums:
-        title: Foarums (âld)
-        description: Fragen en oerlis foar dejingen dy't leaver yn pripboerd-styl
-          wurkje.
       community:
         title: Mienskipsfoarum
         description: In mienskiplik plak foar petear oer OpenStreetMap.
@@ -2240,11 +2001,8 @@ fy:
       removed: Jo standertbewurker foar OpenStreetMap is ynsteld op Potlatch. Om't
         Adobe Flash Player weifallen is, is Potlatch net mear beskikber foar gebrûk
         yn in webblêder.
-      desktop_html: Jo kinne Potlatch nog brûke troch <a href="https://www.systemed.net/potlatch/">it
-        kompjûterprogramma foar Mac as Windows yn te laden</a>.
-      id_html: As alternatyf kinne jo jo standertbewurker ynstelle op iD, dat yn jo
-        webblêder draait krekt as Potlatch foarhinne. <a href="%{settings_url}">Feroarje
-        hjir jo foarkarren</a>.
+    any_questions:
+      title: Noch fragen?
     sidebar:
       search_results: Sykresultaten
       close: Slute
@@ -2331,56 +2089,24 @@ fy:
           toilets: Húskes
     welcome:
       title: Wolkom!
-      introduction_html: |-
+      introduction: |-
         Wolkom by OpenStreetMap, de frije en bewurkbere wrâldkaart. No't jo ynskreaun binne,
         binne jo hielendal klear foar jo earste bewurking. Hjir is in koarte útlis mei de wichtichste
         dingen dy't jo witte moatte.
       whats_on_the_map:
         title: Wat stiet der op 'e kaart
-        on_html: |-
-          OpenStreetMap is in plak foar it ynkaartsjen fan dingen dy't <em>konkreet én aktueel</em> binne -
-          it befettet miljoenen gebouwen, diken en oare bysûnderheden oer plakken. Jo kinne
-          alle besteande skaaimerken dy't jo nijsgjirrich talykje op 'e kaart sette.
-        off_html: |-
-          Wat it <em>net</em> befettet is subjektive data lykas beoardielings, histoaryske as
-          ûnderstelde skaaimerken, en data út boarnen mei auteursrjocht.
-          Kopiearje net fan digitale as papieren kaarten sûnder spesjale tastimming dêrta.
       basic_terms:
         title: Basisbegripen foar it kaartmeitsjen
-        paragraph_1_html: OpenStreetMap hat in eigen taaltsje. Hjir binne in pear
-          kaaiwurden dy't fan pas komme sille.
-        editor_html: In <strong>bewurker</strong> is in programma of webstee dat jo
-          brûke kinne om 'e kaart te bewurkjen.
-        node_html: In <strong>punt</strong> is in plak op 'e kaart, lykas in inkel
-          restaurant of in beam.
-        way_html: In <strong>line</strong> is in belining of flak, lykas in strjitte,
-          rivier, mar of gebou.
-        tag_html: In <strong>lebel</strong> is in stikje data oer in punt of line,
-          lykas in restaurantnamme of de maksimum faasje fan in strjitte.
+        paragraph_1: OpenStreetMap hat in eigen taaltsje. Hjir binne in pear kaaiwurden
+          dy't fan pas komme sille.
       rules:
         title: Regels!
-        paragraph_1_html: |-
-          OpenStreetMap hat net folle formele regels, mar wy ferwachtsje fan alle dielnimmers dat hja gearwurkje
-          en kommunisearje mei de mienskip. At jo faaks
-          wat oars dwaan wolle as mei de hân bewurkjen, lês en folgje dan de rjochtlinen foar
-          <a href='https://wiki.openstreetmap.org/wiki/Import/Guidelines'>Ymports</a> en
-          <a href='https://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>Automatisearre bewurkings</a>.
-      questions:
-        title: Noch fragen?
-        paragraph_1_html: |-
-          OpenStreetMap hat ferskate middels om oer it projekt te learen, foar it stellen en beäntwurdzjen
-          fan fragen, en yn gearwurking bepraten en fêstlizzen fan kartearringssaken.
-          <a href='%{help_url}'>Krij hjir help</a>. Mei in organisaasje plannen meitsje foar OpenStreetMap? <a href='https://welcome.openstreetmap.org/'>Besjoch de Wolkom-matte</a>.
       start_mapping: Set útein mei kaartmeitsjen
       add_a_note:
         title: Gjin tiid te bewurkjen? Meitsje in notysje!
-        paragraph_1_html: |-
+        para_1: |-
           At jo allinnich wat lyts oanpasse wolle, en gjin tiid hawwe yn te skriuwen en bewurkjen te learen, is
           in notysje taheakjen noflik.
-        paragraph_2_html: |-
-          Gean gewoan nei <a href='%{map_url}'>de kaart</a>, en klik op it notysje-ikoan:
-          <span class='icon note'></span>. Der komt in markearder op 'e kaart dy't jo
-          ferslepe kinne. Heakje jo berjocht ta, klik bewarje, en oare kaartmakkers sille it dan besjen.
   traces:
     visibility:
       private: Privee (inkeld dield as anonime, net-oardere punten)
@@ -2462,8 +2188,6 @@ fy:
       public_traces_from: Iepenbiere GPS-trajekten fan %{user}
       description: Koartlyn opladen GPS-trajekten trochsjen
       tagged_with: ' lebele mei %{tags}'
-      empty_html: Noch neat hjirre. <a href='%{upload_link}'>Laad in nij trajekt op</a>
-        of lear alles oer GPS-trasearring op 'e <a href='https://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>wikiside</a>.
       upload_trace: Trajekt oplade
       all_traces: Alle trajekten
       my_traces: Myn trajekten
@@ -2638,18 +2362,8 @@ fy:
       title: Ynskriuwe
       no_auto_account_create: Spitigernôch kinne wy op dit stuit net automatysk in
         akkount foar jo oanmeitsje.
-      contact_support_html: Nim graach kontakt op mei <a href="%{support}">Stipe</a>
-        om in akkount oanmeitsje te litten - wy dogge ús bêst en hannelje it fersyk
-        sa gau mooglik ôf.
       about:
         header: Frij en bewurkber
-        html: |-
-          <p>Yn tsjinstelling ta oare kaarten, wurdt hiel OpenStreetMap makke troch minsken krekt as jo,
-          en elkenien mei it frij ferbetterje, bywurkje, ynlade en brûke.</p>
-          <p>Skriuw jo yn en set útein mei bydragen. Wy stjoere in e-mail foar it befêstigjen fan jo akkount.</p>
-      email address: 'E-mailadres:'
-      confirm email address: 'E-mailadres befêstigje:'
-      display name: 'Werjûne namme:'
       display name description: Jo meidochnamme dy't elkenien sjen kin. Jo kinne dy
         letter yn 'e foarkarren feroarje.
       external auth: 'Tredde-autentifikaasje:'
@@ -2675,8 +2389,6 @@ fy:
       consider_pd: Njonken it boppesteande, beskôgje ik myn bydragen as part fan it
         Publyk Domein
       consider_pd_why: wat is dat?
-      guidance_html: 'Ynformaasje om dy betingsten better te begripen: in <a href="%{summary}">lêsbere
-        gearfetting</a> en in pear <a href="%{translations}">ynformele oersettings</a>'
       continue: Fierder
       decline: Ofwize
       you need to accept or decline: Lês de nije Bydragersbetingsten; jo kinne fierder
@@ -2698,7 +2410,6 @@ fy:
       deleted: wiske
     show:
       my diary: Myn deiboek
-      new diary entry: nij deiboekstik
       my edits: Myn bewurkings
       my traces: Myn trajekten
       my notes: Myn notysjes
@@ -2727,8 +2438,6 @@ fy:
       created from: 'Oanmakke fan:'
       status: 'Status:'
       spam score: 'Spamskoare:'
-      description: Beskriuwing
-      user location: Lokaasje meidogger
       role:
         administrator: Dizze meidogger is behearder
         moderator: Dizze meidogger is tafersjochhâlder
@@ -2743,7 +2452,6 @@ fy:
       comments: Reäksjes
       create_block: Dizze meidogger útslute
       activate_user: Dizze meidogger aktivearje
-      deactivate_user: Dizze meidogger deäktivearje
       confirm_user: Dizze meidogger befêstigje
       unconfirm_user: Dizze meidogger ûnbefêstigje
       unsuspend_user: Dizze meidogger ûntskoattelje
@@ -2752,8 +2460,6 @@ fy:
       delete_user: Dizze meidogger wiskje
       confirm: Befêstigje
       report: Dizze meidogger melde
-    set_home:
-      flash success: Fêste lokaasje bewarjen slagge
     go_public:
       flash success: Al jo bewurkings binne no iepenbier, en jo meie fan no ôf bewurkje.
     index:
@@ -2771,15 +2477,6 @@ fy:
       title: Akkount skoattele
       heading: Akkount skoattele
       support: Stipe
-      body_html: |-
-        <p>
-          Spitich, jo akkount is automatysk skoattele fanwegen
-          fertochte aktiviteiten.
-        </p>
-        <p>
-          Dat beslút wurdt mei gauwens troch in behearder besjoen, of
-          jo kinne kontakt opnimme mei %{webmaster} at jo it beprate wolle.
-        </p>
     auth_failure:
       connection_failed: Ferbining mei de autentifikaasje-oanbieder mislearre
       invalid_credentials: Unjildige autentifikaasjegegevens
@@ -2831,8 +2528,6 @@ fy:
       title: Utsluting foar %{name} oanmeitsje
       heading_html: Utsluting foar %{name} oanmeitsje
       period: Foar hoe lang, fan no ôf, de meidogger útsletten wurdt fan 'e API.
-      tried_contacting: Ik haw kontakt mei de meidogger opnommen en frege op te hâlden.
-      tried_waiting: Ik haw de meidogger in ridlike tiid jûn op dat boadskip te reägearjen.
       back: Alle útslutings besjen
     edit:
       title: Utsluting foar %{name} bewurkje
@@ -2845,10 +2540,6 @@ fy:
       block_period: De útslutingsdoer moat ien fan 'e wearden yn 'e útklapbere karlist
         wêze.
     create:
-      try_contacting: Besykje fóár it útsluten kontakt mei de meidogger op te nimmen,
-        en in ridlike tiid te jaan om te reägearjen.
-      try_waiting: Besykje fóár it útsluten de meidogger in ridlike tiid te jaan om
-        te reägearjen.
       flash: Utsluting oanmakke foar meidogger %{name}.
     update:
       only_creator_can_edit: Inkeld de tafersjochhâlder dy't dizze útsluting oanmakke
@@ -2934,6 +2625,31 @@ fy:
       description: Beskriuwing
       created_at: Makke op
       last_changed: Lêst wizige
+    show:
+      title: 'Notysje: %{id}'
+      description: Beskriuwing
+      open_title: 'Unoploste notysje #%{note_name}'
+      closed_title: 'Oploste notysje #%{note_name}'
+      hidden_title: 'Ferburgen notysje #%{note_name}'
+      report: dizze notysje melde
+      anonymous_warning: Dizze notysje befettet reäksjes fan anonime meidoggers dy't
+        apart neigien wurde moatte.
+      hide: Ferbergje
+      resolve: Oplosse
+      reactivate: Weraktivearje
+      comment_and_resolve: Reägearje & oplosse
+      comment: Reägearje
+      report_link_html: At dizze notysje gefoelige ynformaasje befettet dy't fuorthelle
+        wurde moat, dan kinne jo %{link}. Los alle oare problemen mei de notysje graach
+        sels op fia in reäksje.
+    new:
+      title: Nije notysje
+      intro: Flater sjoen of mist der wat? Lit it de oare kaartmakkers witte, dan
+        meitsje wy it yn oarder. Sko de markearder op it krekte plak, en typ in notysje
+        oer it probleem.
+      advice: Jo notysje is iepenbier en kin brûkt wurde ta ferbettering fan 'e kaart;
+        dat fier neat persoanliks yn, gjin ynfo fan kaarten of yndeksen mei auteursrjocht.
+      add: Notysje taheakje
   javascripts:
     close: Slute
     share:
@@ -2988,17 +2704,6 @@ fy:
         gps: Iepenbiere GPS-trajekten
         overlays: Boppelagen ynskeakelje ta oplossing fan kaartproblemen
         title: Lagen
-      copyright: © <a href='%{copyright_url}'>OpenStreetMap-bydragers</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Donaasje jaan</a>
-      terms: <a href='%{terms_url}' target='_blank'>Webstee- en API-betingsten</a>
-      cyclosm: Kaartstyl troch <a href='%{cyclosm_url}' target='_blank'>CyclOSM</a>
-        ûnderdak by <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap Frankryk</a>
-      thunderforest: Kaartstikken mei tank oan <a href='%{thunderforest_url}' target='_blank'>Andy
-        Allan</a>
-      opnvkarte: Kaartstikken mei tank oan <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>
-      hotosm: Kaartstyl troch <a href='%{hotosm_url}' target='_blank'>Humanitarian
-        OpenStreetMap Team</a> ûnderdak by <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
-        Frankryk</a>
     site:
       edit_tooltip: De kaart bewurkje
       edit_disabled_tooltip: Sûm yn om 'e kaart bewurkje te kinnen
@@ -3015,26 +2720,6 @@ fy:
         unsubscribe: Net folgje
         hide_comment: ferbergje
         unhide_comment: werompleatse
-    notes:
-      new:
-        intro: Flater sjoen of mist der wat? Lit it de oare kaartmakkers witte, dan
-          meitsje wy it yn oarder. Sko de markearder op it krekte plak, en typ in
-          notysje oer it probleem.
-        advice: Jo notysje is iepenbier en kin brûkt wurde ta ferbettering fan 'e
-          kaart; dat fier neat persoanliks yn, gjin ynfo fan kaarten of yndeksen mei
-          auteursrjocht.
-        add: Notysje taheakje
-      show:
-        anonymous_warning: Dizze notysje befettet reäksjes fan anonime meidoggers
-          dy't apart neigien wurde moatte.
-        hide: Ferbergje
-        resolve: Oplosse
-        reactivate: Weraktivearje
-        comment_and_resolve: Reägearje & oplosse
-        comment: Reägearje
-        report_link_html: At dizze notysje gefoelige ynformaasje befettet dy't fuorthelle
-          wurde moat, dan kinne jo %{link}. Los alle oare problemen mei de notysje
-          graach sels op fia in reäksje.
     edit_help: Sko de kaart en sûm yn op 'e lokaasje dy't jo bewurkje wolle, klik
       dan hjir.
     directions:

@@ -1,6 +1,6 @@
 # Installation
 
-These instructions are designed for setting up The Rails Port for development and testing.
+These instructions are designed for setting up `openstreetmap-website` for development and testing.
 If you want to deploy the software for your own project, then see the notes at the end.
 
 You can install the software directly on your machine, which is the traditional and probably best-supported approach. However, there
@@ -9,7 +9,7 @@ are two alternatives which make it easier to get a consistent development enviro
 * **Vagrant** This installs the software into a virtual machine. For Vagrant instructions see [VAGRANT.md](VAGRANT.md).
 * **Docker** This installs the software using containerization. For Docker instructions see [DOCKER.md](DOCKER.md).
 
-These instructions are based on Ubuntu 20.04 LTS, which is the platform used by the OSMF servers.
+These instructions are based on Ubuntu 22.04 LTS, which is the platform used by the OSMF servers.
 The instructions also work, with only minor amendments, for all other current Ubuntu releases, Fedora and MacOSX
 
 We don't recommend attempting to develop or deploy this software on Windows. Some Ruby gems may not be supported. If you need to use Windows the easiest solutions in order are [Docker](DOCKER.md), [Vagrant](VAGRANT.md), and Ubuntu in a virtual machine.
@@ -22,21 +22,21 @@ of packages required before you can get the various gems installed.
 
 ## Minimum requirements
 
-* Ruby 2.7+
+* Ruby 3.0+
 * PostgreSQL 9.1+
 * Bundler (see note below about [developer Ruby setup](#rbenv))
 * Javascript Runtime
 
-These can be installed on Ubuntu 20.04 or later with:
+These can be installed on Ubuntu 22.04 or later with:
 
 ```
 sudo apt-get update
-sudo apt-get install ruby2.7 libruby2.7 ruby2.7-dev \
+sudo apt-get install ruby3.0 libruby3.0 ruby3.0-dev \
                      libvips-dev libxml2-dev libxslt1-dev nodejs \
-                     apache2 apache2-dev build-essential git-core firefox-geckodriver \
+                     build-essential git-core firefox-geckodriver \
                      postgresql postgresql-contrib libpq-dev libsasl2-dev \
                      libffi-dev libgd-dev libarchive-dev libbz2-dev yarnpkg
-sudo gem2.7 install bundler
+sudo gem3.0 install bundler
 ```
 
 ### Alternative platforms
@@ -137,7 +137,7 @@ bundle install
 We use [Yarn](https://yarnpkg.com/) to manage the Node.js modules required for the project.
 
 ```
-bundle exec rake yarn:install
+bundle exec bin/yarn install
 ```
 
 ## Prepare local settings file
@@ -150,7 +150,7 @@ touch config/settings.local.yml
 
 ## Storage setup
 
-The Rails port needs to be configured with an object storage facility - for
+`openstreetmap-website` needs to be configured with an object storage facility - for
 development and testing purposes you can use the example configuration:
 
 ```
@@ -159,7 +159,7 @@ cp config/example.storage.yml config/storage.yml
 
 ## Database setup
 
-The Rails Port uses three databases -  one for development, one for testing, and one for production. The database-specific configuration
+`openstreetmap-website` uses three databases -  one for development, one for testing, and one for production. The database-specific configuration
 options are stored in `config/database.yml`, which we need to create from the example template.
 
 ```
@@ -185,23 +185,7 @@ exit
 To create the three databases - for development, testing and production - run:
 
 ```
-bundle exec rake db:create
-```
-
-### PostgreSQL Btree-gist Extension
-
-We need to load the `btree-gist` extension, which is needed for showing changesets on the history tab.
-
-```
-psql -d openstreetmap -c "CREATE EXTENSION btree_gist"
-```
-
-### PostgreSQL Functions
-
-We need to install some special functions into the PostgreSQL database:
-
-```
-psql -d openstreetmap -f db/functions/functions.sql
+bundle exec rails db:create
 ```
 
 ### Database structure
@@ -209,7 +193,7 @@ psql -d openstreetmap -f db/functions/functions.sql
 To create all the tables, indexes and constraints, run:
 
 ```
-bundle exec rake db:migrate
+bundle exec rails db:migrate
 ```
 
 ## Running the tests
@@ -240,51 +224,13 @@ Note that the OSM map tiles you see aren't created from your local database - th
 
 After installing this software, you may need to carry out some [configuration steps](CONFIGURE.md), depending on your tasks.
 
-# Installing compiled shared library database functions (optional)
-
-There are special database functions required by a (little-used) API call, the migrations and diff replication. The former two are provided as *either* pure SQL functions or a compiled shared library. The SQL versions are installed as part of the recommended install procedure above and the shared library versions are recommended only if you are running a production server and need the diff replication functionality.
-
-If you aren't sure which you need, stick with the SQL versions.
-
-Before installing the functions, it's necessary to install the PostgreSQL server development packages. On Ubuntu this means:
-
-```
-sudo apt-get install postgresql-server-dev-all
-```
-
-On Fedora:
-
-```
-sudo dnf install postgresql-devel
-```
-
-The library then needs compiling.
-
-```
-cd db/functions
-make libpgosm.so
-cd ../..
-```
-
-If you previously installed the SQL versions of these functions, we'll need to delete those before adding the new ones:
-
-```
-psql -d openstreetmap -c "DROP FUNCTION IF EXISTS tile_for_point"
-```
-
-Then we create the functions within each database. We're using `pwd` to substitute in the current working directory, since PostgreSQL needs the full path.
-
-```
-psql -d openstreetmap -c "CREATE FUNCTION tile_for_point(int4, int4) RETURNS int8 AS '`pwd`/db/functions/libpgosm', 'tile_for_point' LANGUAGE C STRICT"
-```
-
 # Ruby development install and versions<a name="rbenv"></a> (optional)
 
 For simplicity, this document explains how to install all the website dependencies as "system" dependencies. While this is simpler, and usually faster, you might want more control over the process or the ability to install multiple different versions of software alongside eachother. For many developers, [`rbenv`](https://github.com/rbenv/rbenv) is the easiest way to manage multiple different Ruby versions on the same computer - with the added advantage that the installs are all in your home directory, so you don't need administrator permissions.
 
 If you choose to install Ruby and Bundler via `rbenv`, then you do not need to install the system libraries for Ruby:
 
-* For Ubuntu, you do not need to install the following packages: `ruby2.7 libruby2.7 ruby2.7-dev bundler`,
+* For Ubuntu, you do not need to install the following packages: `ruby3.0 libruby3.0 ruby3.0-dev bundler`,
 * For Fedora, you do not need to install the following packages: `ruby ruby-devel rubygem-rdoc rubygem-bundler rubygems`
 * For MacOSX, you do not need to `brew install ruby` - but make sure you've installed a version of Ruby using `rbenv` before running `gem install bundler`!
 

@@ -1,4 +1,4 @@
-# Messages for Guadeloupean Creole French (Guadeloupean Creole French)
+# Messages for kréyòl Gwadloup (kréyòl Gwadloup)
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Léon973
@@ -20,10 +20,10 @@ gcf:
         enabled link text: Ka sa yé?
         disabled: Inaktif y pé pa édité doné ; tout édision pasé anonim.
         disabled link text: Poukwa an pé pa édité?
-      public editing note:
-        heading: 'Édision piblik:'
       save changes button: Enrèjisré tout chanjman
-      make edits public button: Mèt tou sa an fè piblik
+    go_public:
+      heading: 'Édision piblik:'
+      make_edits_public_button: Mèt tou sa an fè piblik
     update:
       success_confirm_needed: Enfowmasion asi itilisatè la bien anrèjistré. Gadé bwet
         imél aw pou konfirmé adres nouvo imél aw
@@ -36,7 +36,7 @@ gcf:
       entry_html: Rèlasion %{relation_name}
       entry_role_html: Rèlasion %{relation_name} (adan wol %{relation_role})
     not_found:
-      sorry: 'Désolé, %{type} #%{id} n’a pas pu être trouvé.'
+      sorry: Désolé, l’objet %{type} nº %{id} n’a pas pu être trouvé.
     start_rjs:
       load_data: Chajé sé doné la
       loading: Y ka chajé...
@@ -147,17 +147,11 @@ gcf:
   users:
     new:
       no_auto_account_create: Malérezman, alè kilé, nou pé pa ouvè kont automatikman.
-      contact_support_html: Kontakté <a href="%{support}">mèt web la</a> pou y ouvè
-        an kont baw - nou ké éséyé travay pli vit posib.
-      email address: 'Adres imél :'
-      confirm email address: 'konfimé adres imél :'
-      display name: 'Non aw afiché :'
     no_such_user:
       body: Malérezman, pa ti ni pon itilisatè èvè non la sa %{user}. Kontrolé lòtograf
         la ouben lien la ou kliké asiy la pa bon.
     show:
       my diary: Jounal an mwen
-      new diary entry: On dot nouvel an jounal la
       my edits: Édision an mwen
       my traces: Chimen an mwen
       my settings: Opsion an mwen
@@ -168,10 +162,6 @@ gcf:
       remove as friend: Woté on zanmi
       add as friend: Ajouté on zanmi
       mapper since: 'Arpantè dèpi:'
-      description: Deskription
-      user location: Ola itilizatè yé
-    set_home:
-      flash success: La ou ka rété la bien anrèjistré
     go_public:
       flash success: Tou sa ou fè jis alè ki lé piblik ou pa otorizé édité.
 ...

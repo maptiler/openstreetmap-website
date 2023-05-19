@@ -28,7 +28,7 @@ hsb:
       client_application:
         create: Registrować
         update: Aktualizować
-      doorkeeper_application:
+      oauth2_application:
         create: Registrować
         update: Aktualizować
       redaction:
@@ -58,7 +58,6 @@ hsb:
       message: Powěsć
       node: Suk
       node_tag: Sukowy atribut
-      notifier: Zdźělenje
       old_node: Stary suk
       old_node_tag: Atribut stareho suka
       old_relation: Stara relacija
@@ -101,7 +100,7 @@ hsb:
         title: Tema
         latitude: Šěrokostnik
         longitude: Dołhostnik
-        language: Rěč
+        language_code: Rěč
       doorkeeper/application:
         name: Mjeno
         redirect_uri: Dalesposrědkowanske URI
@@ -250,15 +249,6 @@ hsb:
         disabled: Znjemóžnjeny a daty njehodźa so wobdźěłać, wšě prjedawše změny su
           anonymne.
         disabled link text: čehodla njemóžu wobdźěłać?
-      public editing note:
-        heading: Zjawne wobdźěłowanje
-        html: Tuchwilu twoje změny su anonymne a ludźo njemóžeja ći powěsće pósłać
-          abo twoje stejnišćo widźeć. Zo by pokazał, štož sy wobdźěłał a ludźom dowolił,
-          so z tobu přez websydło do zwiska stajić, klikń deleka na tłóčatko. <b>Wot
-          přeńdźenja do API 0.6, jenož zjawni wužiwarjo móžeja kartowe daty wobdźěłać</b>.
-          (<a href="http://wiki.openstreetmap.org/wiki/Anonymous_edits">hlej přičiny</a>).<ul><li>Twoja
-          e-mejlowa adresa njebudźe so zjawnej pokazać.</li><li>Tuta akcija njeda
-          so wobroćić a wšitcy nowi wužiwarjo su nětko po standardźe zjawni.</li></ul>
       contributor terms:
         heading: Wuměnjenja za sobuskutkowarjow
         agreed: Sy do nowych wuměnjenjow za sobuskutkowarjow zwolił.
@@ -268,7 +258,9 @@ hsb:
         agreed_with_pd: Sy tež deklarował, zo twoje změny su zjawne.
         link text: što to je?
       save changes button: Změny składować
-      make edits public button: Wšě moje změny zjawne činić
+    go_public:
+      heading: Zjawne wobdźěłowanje
+      make_edits_public_button: Wšě moje změny zjawne činić
     update:
       success_confirm_needed: Wužiwarske informacije wuspěšnje zaktualizowane. Dóstanješ
         e-mejl z namołwu, swoju nowu e-mejlowu adresu wobkrućić.
@@ -276,12 +268,6 @@ hsb:
   browse:
     created: Wutworjeny
     closed: 'Začinjeny:'
-    created_html: Wutworjeny <abbr title='%{title}'>%{time}</abbr>
-    closed_html: Začinjeny <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: Wutworjeny <abbr title='%{title}'>%{time}</abbr> wot %{user}
-    deleted_by_html: Wotstronjeny <abbr title='%{title}'>%{time}</abbr> wot %{user}
-    edited_by_html: Wobdźěłany <abbr title='%{title}'>%{time}</abbr> wot %{user}
-    closed_by_html: Začinjeny <abbr title='%{title}'>%{time}</abbr> wot %{user}
     version: Wersija
     in_changeset: Sadźba změnow
     anonymous: anonymny
@@ -311,8 +297,6 @@ hsb:
       relation: Relacije (%{count})
       relation_paginated: Relacije (%{x}-%{y} z %{count})
       comment: Komentary (%{count})
-      hidden_commented_by_html: Schowany komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: Komentar wužiwarja %{user} <abbr title='%{exact_time}'>%{when}</abbr>
       changesetxml: Sadźba změnow XML
       osmchangexml: osmChange XML
       feed:
@@ -398,26 +382,6 @@ hsb:
       wikimedia_commons_link: Element %{page} na Wikimedija Commons
       telephone_link: '%{phone_number} zawołać'
       colour_preview: Přehlad barba %{colour_value}
-    note:
-      title: 'Suk: %{id}'
-      new_note: Nowa pokazka
-      description: Wopisanje
-      open_title: 'Njesčinjena pokazka #%{note_name}'
-      closed_title: 'Sčinjena pokazka #%{note_name}'
-      hidden_title: 'Schowana pokazka #%{note_name}'
-      opened_by_html: Wutworjeny wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
-      opened_by_anonymous_html: Wutworjeny wot anonymneho <abbr title='%{exact_time}'>před
-        %{when}</abbr>
-      commented_by_html: Komentar wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous_html: Komentar wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_html: Rozrisany wot %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous_html: Rozrisany wot anonymneho <abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_html: Reaktiwizowany wot %{user} <abbr title='%{exact_time}'>před
-        %{when}</abbr>
-      reopened_by_anonymous_html: Reaktiwizowany wot anonymneho <abbr title='%{exact_time}'>před
-        %{when}</abbr>
-      hidden_by_html: Schowany wot %{user} <abbr title='%{exact_time}'>před %{when}</abbr>
-      report: Tutón pokiw zdźělić
     query:
       title: Funkcije naprašować
       introduction: Klikń na kartu, zo by susodne objekty namakał(a).
@@ -580,16 +544,6 @@ hsb:
       success: '%{name} je so jako přećel wotstronił.'
       not_a_friend: '%{name} twój přećel njeje.'
   geocoder:
-    search:
-      title:
-        latlon_html: Wuslědki wot <a href="http://openstreetmap.org/">Internal</a>
-        ca_postcode_html: Wuslědki wot <a href="http://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: Wuslědki z <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: Wuslědki wot <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: Wuslědki z <a href="http://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: Wuslědki wot <a href="http://www.geonames.org/">GeoNames</a>
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -1353,8 +1307,6 @@ hsb:
       status: Status
       reports: Rozprawy
       last_updated: Poslednja aktualizacija
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: <abbr title='%{title}'>%{time}</abbr> wot %{user}
       link_to_reports: Rozprawy sej wobhladać
       reports_count:
         one: Jedna rozprawa
@@ -1364,10 +1316,6 @@ hsb:
         ignored: Ignorowany
         open: Wočinjeny
         resolved: Rozrisany
-    update:
-      new_report: Twoja rozprawa je so wuspěšnje registrowała
-      successful_update: Twoja rozprawa je so wuspěšnje aktualizowała
-      provide_details: Prošu zapodaj trěbne podrobnosće
     show:
       title: '%{status} Problem čo. %{issue_id}'
       reports:
@@ -1446,10 +1394,8 @@ hsb:
     home: K domjacemu stejnišću
     logout: Wotzjewić
     log_in: Přizjewić
-    log_in_tooltip: Z wobstejacym kontom so přizjewić
     sign_up: Registrować
     start_mapping: Kartěrowanje započeć
-    sign_up_tooltip: Konto za wobdźěłowanje załožić
     edit: Wobdźěłać
     history: Historija
     export: Eksport
@@ -1483,8 +1429,6 @@ hsb:
     community: Zhromadźenstwo
     community_blogs: Dźeniki zhromadźenstwa
     community_blogs_title: Dźeniki čłonow zhromadźenstwa OpenStreetMap
-    foundation: Załožba
-    foundation_title: Załožba OpenStreetMap
     make_a_donation:
       title: OpenStreetMap z pjenježnym darom podpěrać
       text: Darić
@@ -1530,8 +1474,6 @@ hsb:
       subject: '[OpenStreetMap] Zmylk při imporće GPX'
     gpx_success:
       hi: Witaj %{to_user},
-      loaded_successfully: '%{trace_points} z %{possible_points} móžnych dypkow bu
-        wuspěšnje importowane.'
       subject: '[OpenStreetMap] GPX-import wuspěšny'
     signup_confirm:
       subject: '[OpenStreetMap] Witaj k OpenStreetMap'
@@ -1633,8 +1575,6 @@ hsb:
       success: Twoje konto bu wobkrućene, dźakujemy so za registrowanje!
       already active: Tute konto bu hižo wobkrućene.
       unknown token: Wobkrućenski kod je spadnjeny abo njeeksistuje.
-      reconfirm_html: Jeli dyrbiš nam wobkrućensku e-mejlku znowa pósłać, <a href="%{reconfirm}">klikń
-        tu</a>.
     confirm_resend:
       failure: Wužiwar %{name} njenamakany.
     confirm_email:
@@ -1681,8 +1621,6 @@ hsb:
     new:
       title: Powěsć pósłać
       send_message_to_html: Wužiwarjej %{name} nowu powěsć pósłać
-      subject: Tema
-      body: Tekst
       back_to_inbox: Wróćo k póštowemu kašćikej
     create:
       message_sent: Powěsć wotpósłana
@@ -1712,14 +1650,10 @@ hsb:
         bu na druheho wužiwarja pósłana. Prošu přizjew so z prawym kontom, zo by wotmołwił(a).
     show:
       title: Powěsć čitać
-      from: Wot
-      subject: Tema
-      date: Datum
       reply_button: Wotmołwić
       unread_button: Jako njepřečitanu markěrować
       destroy_button: Wotstronić
       back: Wróćo
-      to: Komu
       wrong_user: Sy jako `%{user}' přizjewjeny, ale powěsć, kotruž chceš čitać, bu
         na druheho wužiwarja pósłana. Prošu přizjew so z prawym kontom, zo by ju čitał(a).
     sent_message_summary:
@@ -1768,7 +1702,6 @@ hsb:
       image: Wobraz
       gravatar:
         gravatar: Gravatar wužiwać
-        link: https://wiki.openstreetmap.org/wiki/Gravatar
         what_is_gravatar: Što Grawatar je?
         disabled: Grawatar je so znjemóžnił.
         enabled: Zwobraznjenje wašeho grawatara je so zmóžniło.
@@ -1795,19 +1728,8 @@ hsb:
       lost password link: Swoje hesło zabył?
       login_button: Přizjewjenje
       register now: Nětko registrować
-      with username: 'Maš hižo konto pola OpenStreetMap? Prošu přizjew so z wužiwarskim
-        mjenom a hesłom:'
       with external: 'Wužiwaj jako alternatiwu třećeho za přizjewjenje:'
-      new to osm: Nowy w OpenStreetMap?
-      to make changes: Zo by daty OpenStreetMap změnił, dyrbiš konto měć.
-      create account minute: Załož konto. Traje jenož chwilku.
       no account: Nimaš žane konto?
-      account not active: Bohužel je twoje konto hišće aktiwne njeje.<br />Prošu klikń
-        na wotkaz w e-mejlu kontoweho wubkrućenja, zo by swoje konto aktiwizował,
-        abo <a href="%{reconfirm}">proš wo nowu wobkrućensku e-mejl</a>.
-      account is suspended: Twoje konto bu bohužel podhladneje aktiwity dla wupowědźene.<br
-        />Stajće so prošu z <a href="%{webmaster}">teamom pomocy</a> do zwiska, jeli
-        chceš wo tym diskutować.
       auth failure: Bohužel přizjewjenje z tutymi podaćemi móžno njeje.
       openid_logo_alt: Z OpenID přizjewić
       auth_providers:
@@ -1841,7 +1763,6 @@ hsb:
       logout_button: Wotzjewić
   shared:
     markdown_help:
-      title_html: Parsowany z <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>
       headings: Nadpisy
       heading: Nadpis
       subheading: Podnapis
@@ -1860,7 +1781,6 @@ hsb:
   site:
     about:
       next: Dale
-      copyright_html: <span>&copy; </span>sobuskutkowacy<br>OpenStreetMap
       used_by_html: '%{name} staja kartowe daty za tysacy webstronow, aplikacijow
         a nastroje k dispoziciji'
       lede_text: OpenStreetMap twori so wot zhromadźenstwa kartěrowarjow, kiž přinošuja
@@ -1871,16 +1791,7 @@ hsb:
         wužiwaja powětrowe wobrazy, GPS-nastroje a pólne karty za přepruwowanje, zo
         by OSM dokładny a aktualny był.
       community_driven_title: Wot zhromadźenstwa wutworjene
-      community_driven_html: |-
-        Zhromadźenstwo OpenStreetMap je wšelakore, rozpalite a rosće kóždy dźeń.
-        Naši sobuskutkowacy su zahorići kartěrowarjo, GIS-profijo, inženjerojo, kotřiž OSM-serwery ćěrja a wjele wjace.
-        Zo by wjace wo zhromadźenstwje zhonił(a), hlej <a href='%{diary_path}'>wužiwarske dźeniki</a>, <a href='http://blogs.openstreetmap.org/'>blogi zhromadźenstwa</a> a webstronu załožby <a href='http://www.osmfoundation.org/'>OSM Foundation</a>
       open_data_title: Zjawne daty
-      open_data_html: 'OpenStreetMap wobsahuje <i>zjawne daty</i>: Móžeš je za kóždy
-        zaměr wužiwać, dołhož OpenStreetMap a jeho sobuskutkowacych naspomnješ. Jeli
-        daty na wěste wašnje změniš abo wutworiš, móžeš wuslědk jenož pod samsnej
-        licencu rozdźělić. Hlej <a href=''%{copyright_path}''>stronu wo awtorskim
-        prawje a licency</a> za podrobnosće.'
       legal_title: Prawniske pokiwy
       partners_title: Partnerojo
     copyright:
@@ -1898,81 +1809,16 @@ hsb:
         mapping_link: z kartěrowanjom započeć
       legal_babble:
         title_html: Awtorske prawo a licenca
-        intro_1_html: |-
-          OpenStreetMap su <i>zjawne daty</i>, licencowane pod licencu <a
-          href="http://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database</a> (ODbL) wot <a
-          href="http://osmfoundation.org/">załožby OpenStreetMap</a> (OSMF).
-        intro_2_html: Směš naše daty kopěrować, rozdźělić, přenjesć a přiměrić, dołhož
-          OpenStreetMap a jeho sobuskutkowacych naspominaš. Jeli změniš naše daty
-          abo zepěraš so na nje, móžeš wuslědk jenož pod samsnej licencu rozdźělić.
-          Dospołny <a href="http://opendatacommons.org/licenses/odbl/1.0/">tekst licency</a>
-          wujasnja twoje prawa a winowatosće.
-        intro_3_1_html: Naša dokumentacija je pod licencu <a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative
-          Commons Attribution-ShareAlike 2.0</a> (CC BY-SA 2.0) licencowana.
         credit_title_html: Kak ma so na awtorstwo OpenStreetMap pokazać
         credit_1_html: Žadamy sej wužiwanje pokazki „&copy; sobuskutkowacy OpenStreetMap“.
-        credit_2_1_html: Dyrbiš tež wujasnić, zo steja daty pod licencu Open Database,
-          a, jelizo wužiwaš naše kartowe kachlički, zo je kartografija pod CC-BY-SA
-          licencowana. Móžeš to činić wotkazujo na stronu <a href="http://www.openstreetmap.org/copyright">www.openstreetmap.org/copyright</a>.
-          Alternatiwnje, a winowatostnje, jeli OSM w formje datow dale dawaš, móžeš
-          direktnje na licency wotkazać a je mjenować. W medijach, hdźež wotkazy móžne
-          njejsu (na př. ćišćane dźěła), doporučimy tebi, twojich čitarjow na openstreetmap.org
-          (snadź rozšěrjejo 'OpenStreetMap' k połnej adresy), na opendatacommons.org
-          a, jeli přitrjechi, na creativecommons.org skedźbnić.
-        credit_4_html: 'Za přepytujomnu elektronisku kartu měła so pokazka w róžku
-          karty jewić. Na přikład:'
         attribution_example:
           alt: Přikład, kak so na webstronje na OpenStreetMap pokazuje
           title: Přikład za mjenowanje na webstronje z elektroniskej kartu
         more_title_html: Dalše informacije
-        more_1_html: |-
-          Wjace informacijow wo wužiwanju našich datow a kak hodźi so na nas pokazować namakaš na <a
-          href="http://osmfoundation.org/Licence">stronje OSMF wo licencach</a>.
-        more_2_html: "Byrnjež wobstejał OpenStreetMap ze zjawnych datow, njemóžemy
-          darmotnu kartowu API za třećich poskićić. \nHlej naše <a href=\"http://wiki.openstreetmap.org/wiki/API_usage_policy\">prawidła
-          za wužiwanje API</a>, <a href=\"http://wiki.openstreetmap.org/wiki/Tile_usage_policy\">prawidła
-          za wužiwanje kachličkow</a> a <a href=\"http://wiki.openstreetmap.org/wiki/Nominatim#Usage_Policy\">prawidła
-          za wužiwanje Nominatim</a>."
         contributors_title_html: Naši sobuskutkowacy
         contributors_intro_html: 'Naši sobuskutkowacy su tysacy jednotliwcow. Zapřijamy
           tež wotewrjenje licencowane daty narodnych kartowych agenturow a z druhich
           žórłow, mjez nimi:'
-        contributors_at_html: '<strong>Awstriska</strong>: Wobsahuje daty z <a href="http://data.wien.gv.at/">Stadt
-          Wien</a> (pod <a href="http://creativecommons.org/licenses/by/3.0/at/deed.de">CC
-          BY</a>), <a href="http://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">Land
-          Vorarlberg</a> a Land Tirol (pod <a href="http://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC-BY
-          AT ze změnami</a>).'
-        contributors_au_html: '<strong>Awstralska</strong>: Wobsahuje předměšćanske
-          daty na zakładźe datow Awstralskeho  zarjada za statistiku (Australian Bureau
-          of Statistics).'
-        contributors_ca_html: '<strong>Kanada</strong>: Wobsahuje daty z GeoBase&reg;,
-          GeoGratis (&copy; Department of Natural Resources Canada), CanVec (&copy;
-          Department of Natural Resources Canada), a StatCan (Geography Division,
-          Statistics Canada).'
-        contributors_fi_html: '<strong>Finska</strong>: Wobsahuje daty z topografiskeje
-          datoweje banki National Land Survey of Finland a druhich datowych sadźbow,
-          pod <a href="http://www.maanmittauslaitos.fi/en/NLS_open_data_licence_version1_20120501">NLSFI-licencu</'
-        contributors_fr_html: '<strong>Francoska</strong>: Wobsahuje daty z Direction
-          Générale des Impôts.'
-        contributors_nl_html: '<strong>Nižozemska</strong>: Wobsahuje daty &copy;
-          AND data, 2007   (<a href="http://www.and.com">www.and.com</a>)'
-        contributors_nz_html: "<strong>Nowoseelandska</strong>: Wobsahuje daty ze
-          słužby \n<a href=\"https://data.linz.govt.nz/\">Land Information New Zealand</a>
-          a \nje za zasowužiwanje pod \n<a href=\"https://creativecommons.org/licenses/by/4.0/\">CC
-          BY 4.0</a> licencowane."
-        contributors_si_html: '<strong>Słowjenska</strong>: Wobsahuje daty ze <a href="http://www.gu.gov.si/en/">zarjada
-          za krajměrjenje a kartěrowanje</a> kaž tež z <a href="http://www.mkgp.gov.si/en/">ministerstwa
-          za ratarstwo, lěsnistwo a zežiwjenje</a> (zjawne informacije Słowjenskeje).'
-        contributors_za_html: '<strong>Južna Afrika</strong>: Wobsahuje daty z <a
-          href="http://www.ngi.gov.za/">Chief Directorate:   National Geo-Spatial
-          Information</a>, Statne awtorske prawo wuměnjene.'
-        contributors_gb_html: '<strong>Zjednoćene kralestwo</strong>: Wobsahuje daty
-          z Ordnance Survey (Zarjadniske krajměrjenstwo) &copy; Awtorske prawo a prawo
-          za datowe banki 2010-2019.'
-        contributors_footer_1_html: Za dalše podrobnosće za to a druhe žórła, kotrež
-          su so wužili, zo bychu OpenStreetMap polěpšili, hlej prošu <a href="http://wiki.openstreetmap.org/wiki/Contributors">stronu
-          sobuskutkowarjow</a> na wikiju OpenStreetMap.
         contributors_footer_2_html: Zapřijimanje datow do OpenStreetMap njerěka, zo
           poskićowar originalnych datow OpenStreetMap připóznawa, někajku garantiju
           dodawa abo rukowanje přewozmje.
@@ -1980,16 +1826,6 @@ hsb:
         infringement_1_html: Sobuskutkowacych OSM namołwjamy, zo ženje daty ze žórłow,
           kotrež su přez awtorske prawo škitane (na př. z Google Maps abo z wućišćanych
           kartow) bjez wurazneje dowolnosće awtorow  njepřidawaja.
-        infringement_2_html: Jeli měniš, zo awtorskoprawnisce škitany material je
-          so datowej bance OpenStreetMap abo tutomu sydłu bjez dowolnosće přidał,
-          poćahuj so prošu na naše <a href="http://www.osmfoundation.org/wiki/License/Takedown_procedure">postupowanje
-          za wotstronjenje wobsaha</a>abo zdźěl to direktnje na našej <a href="https://dmca.openstreetmap.org/">formularnej
-          stronje</a>.
-        trademarks_title_html: <span id="trademarks"></span>markowe znamjo
-        trademarks_1_html: OpenStreetMap, logo z lupu a staw karty su registrowane
-          znamjenja załožby OpenStreetMap. Maš-li prašenja wo wužiwanju znamjo, pósćel
-          je prošu <a href="http://wiki.osmfoundation.org/wiki/Licensing_Working_Group">dźěłowej
-          skupinje "licency"</a>.
     index:
       js_1: Pak wužiwaš wobhladowak, kotryž JavaScript njepodpěruje, pak sy JavaScript
         znjemóžnił.
@@ -2019,8 +1855,6 @@ hsb:
       map_image: Kartowy wobraz (pokazuje standardnu runinu)
       embeddable_html: Zasadźujomny HTML
       licence: Licenca
-      export_details_html: Daty OpenStreetMap su pod licencu <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open
-        Data Commons Open Database</a> (ODbL).
       too_large:
         advice: 'Jeli horni eksport so njeradźi, prošu wuwaž, hač wužiwaš jednu ze
           slědowacych lisćinow:'
@@ -2039,9 +1873,6 @@ hsb:
           title: Geofabrik Downloads
           description: Prawidłownje zaktualizowane wućahi kontinentow, krajow a wubranych
             městow
-        metro:
-          title: Metro Extracts
-          description: Wućahi za najwjetše swětowe města a jich wokoliny
         other:
           title: Druhe žórła
           description: Přidatne žórła nalistowane na wikiju OpenStreetMap
@@ -2066,17 +1897,8 @@ hsb:
           explanation_html: Jeli sy problem z našimi kartowymi datami pytnył, na přikład
             dróha abo twoja adresa faluje, je najlěpše wašnje, z tym pokročować, so
             zhromadźenstwu OpenStreetMap přiidružić a sam daty přidać abo korigować.
-        add_a_note:
-          instructions_html: |-
-            Klikń prosće na <a class='icon note'></a> abo na samsny symbol w zwobraznjenju karty.
-            To přida karće marku, kotruž móžeš přez ćehnjenje přesunyć.
-            Přidaj swoju powěsć, klikń potom na Składować a druzy kartěrowarjo to přeslědźa.
       other_concerns:
         title: Druhe naležnosće
-        explanation_html: Jeli maš wobmyslenja wo tym, kak so naše daty wužiwaja abo
-          nastupajo wobsah, wopytaj našu <a href='/copyright'>stronu awtorstwa</a>
-          za dalše zakonjowe informacije abo staj so z wotpowědnej <a href='http://wiki.osmfoundation.org/wiki/Working_Groups'>dźěłowej
-          skupinu</a> do zwiska.
     help:
       title: Wo pomoc prosyć
       introduction: OpenStreetMap ma wšelake resursy za zeznaće projekta, prašenja
@@ -2099,9 +1921,6 @@ hsb:
         title: Rozesyłanske lisćiny
         description: Staj prašenje abo diskutuj zajimawe wěcy w šěrokim wobłuku temow
           abo regionalnych rozesyłanskich lisćinow.
-      forums:
-        title: Forum
-        description: Prašenja a diskusije za tych, kotřiž powjerch čorneje deski preferuja.
       irc:
         title: IRC
         description: Interaktiwny chat we wšelakich rěčach a wo wjele temach.
@@ -2114,6 +1933,8 @@ hsb:
       wiki:
         title: Wiki OpenStreetMap
         description: Přepytaj wiki za nadrobnej dokumentaciju OpenStreetMap
+    any_questions:
+      title: Maš hišće prašenja?
     sidebar:
       search_results: Pytanske wuslědki
       close: Začinić
@@ -2199,50 +2020,22 @@ hsb:
           toilets: Nuzniki
     welcome:
       title: Witaj!
-      introduction_html: Witaj k OpenstreetMap, swobodnej a wobdźěłujomnej karće swěta.
+      introduction: Witaj k OpenstreetMap, swobodnej a wobdźěłujomnej karće swěta.
         Nětko, po tym zo sy so zregistrował, móžeš so do kartěrowanja dać. Tu je krótki
         nawod z najwažnišimi informacijemi, kotrež dyrbiš wědźeć.
       whats_on_the_map:
         title: Štož na kartu słuša
-        on_html: OpenStreetMap je městno za kartěrowanje wěcow, kotrež su <em>realne
-          a aktualne</em> - wobsahuje miliony twarjenjow, pućow a druhe podrobnosće
-          wo městnach. Móžeš kartěrować, štožkuli će we woprawdźitym swěće zajimuje.
-        off_html: Štož <em>nje</em>ma wobsahować, su subjektiwne daty kaž pohódnoćenja,
-          historiske abo hypotetiske funkcije a daty z přez awtorske prawo škitanych
-          žórłow. Njekopěruju z online- abo papjernych kartow, chibazo maš wosebitu
-          dowolnosć.
       basic_terms:
         title: Zakładne zapřijeća za kartěrowanje
-        paragraph_1_html: OpenStreetMap někotre wosebite zapřijeća wužiwa. Tu su někotre
+        paragraph_1: OpenStreetMap někotre wosebite zapřijeća wužiwa. Tu su někotre
           z nich, kotrež móhli ći wužitne być.
-        editor_html: <strong>Editor</strong> je program abo websydło, kotrež móžeš
-          wužiwać, zo by kartu wobdźěłał.
-        node_html: <strong>Suk</strong> je dypk na karće, na př. hosćenc abo štom.
-        way_html: <strong>Puć</strong> je linija abo płonina, na př. dróha, rěka,
-          jězor abo twarjenje.
-        tag_html: <strong>Atribut</strong> je datowa kajkosć wo suku abo puću, na
-          přikład mjeno hosćenca abo najwyša spěšnosć na hasy.
       rules:
         title: Prawidła!
-        paragraph_1_html: "OpenStreetMap ma jenož mało formelnych prawidłow, ale wočakujemy
-          wot wšěch wobdźělnikow, zo bychu ze zhromadźenstwom hromadźe dźěłali a komunikowali.
-          Planuješ-li druhe činitosće hač wobdźěłanje z ruku, prošu přečitaj prawidła
-          wo <a href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'>importowanju</a>
-          a \n<a href='http://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>automatiskim
-          wobdźěłanju</a> a měj so po nim."
-      questions:
-        title: Maš hišće prašenja?
-        paragraph_1_html: |-
-          OpenStreetMap ma wšelake resursy za zeznaće projekta, prašenja a wotmołwy wo něčim a zhromadnu diskusiju a dokumentowanje kartěrowanske temy.
-          <a href='%{help_url}'>Pomoc</a>. Maš plany z organizaciju za OpenStreetMap? <a href='https://welcome.openstreetmap.org/'>Wopytajće našu witansku stronu</a>.
       start_mapping: Kartěrowanje započeć
       add_a_note:
         title: Nimaš chwile za wobdźěłowanje? Přidaj pokazku!
-        paragraph_1_html: Jeli chceš jenož drobnosć korigować a nimaš chwile, zo by
-          so zregistrował a wuknył, kak so wobdźěłuje, móžeš prosće pokazku přidać.
-        paragraph_2_html: |-
-          Dźi prosće na <a href='%{map_url}'>kartu</a> a klikń na symbol pokazki:
-          <span class='icon note'></span>. Tón přida karće marku, kotruž móžeš přesunyć. Přidaj swoju zdźělenku, klikń potom na Składować a druzy kartěrowarjo budu so wěcy wěnować.
+        para_1: Jeli chceš jenož drobnosć korigować a nimaš chwile, zo by so zregistrował
+          a wuknył, kak so wobdźěłuje, móžeš prosće pokazku přidać.
   traces:
     visibility:
       private: Priwatna (jenož jako anonymna, njezrjadowane dypki )
@@ -2326,9 +2119,6 @@ hsb:
       public_traces_from: Zjawne GPS-ćěrje wot %{user}
       description: Najnowše nahraća GPS-čarow přepytać
       tagged_with: Markěrowane přez %{tags}
-      empty_html: Ničo tu njeje. <a href='%{upload_link}'>Nahraj nowu ćěr</a> abo
-        wukń wjace wo GPS-slědowanju na <a href='http://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>wikijowej
-        stronje</a>.
       upload_trace: Ćěr nahrać
       all_traces: Wšě ćěrje
       my_traces: Moje ćěrje
@@ -2491,17 +2281,8 @@ hsb:
       title: Registrować
       no_auto_account_create: Bohužel njemóžemy tuchwilu žane konto za tebje awtomatisce
         załožić.
-      contact_support_html: Prošu staj so z <a href="%{support}">teamom pomocy</a>
-        do zwiska, zo by so konto załožiło - budźemy pospytać naprašowanje tak spěšnje
-        kaž móžno wobdźěłać.
       about:
         header: Swobodny a wobdźěłujomny
-        html: |-
-          <p>Na rozdźěl wot druhich kartow, so OpenStreetMap dospołnje wot ludźi kaž ty twori, a kóždy móže ju korigować, aktualizować, sćahnyć a wužiwać.</p>
-          <p>Zregistruj so a skutkuj sobu. Budźemy ći e-mejlku słać, zo bychmy twoje konto wobkrućili.</p>
-      email address: 'E-mejlowa adresa:'
-      confirm email address: 'E-mejlowu adresu wobkrućić:'
-      display name: 'Wužiwarske mjeno:'
       display name description: Sy wužiwarske mjeno zjawnje pokazał. Móžeš to pozdźišo
         w nastajenjach změnić.
       external auth: Awtentifikacija přez třeću stronu
@@ -2519,8 +2300,6 @@ hsb:
         za powšitkownosći wužitne.
       consider_pd_why: Što to je?
       consider_pd_why_url: https://www.osmfoundation.org/wiki/License/Why_would_I_want_my_contributions_to_be_public_domain
-      guidance_html: 'Informacije, kotrež pomhaja tute wuměnjenja rozumić: <a href="%{summary}">zrozumliwe
-        zjeće</a> a někotre <a href="%{translations}">njeoficielne přełožki</a>'
       continue: Dale
       declined: https://wiki.openstreetmap.org/wiki/DE:Contributor_Terms_Declined
       decline: Wotpokazać
@@ -2544,7 +2323,6 @@ hsb:
       deleted: zhašany
     show:
       my diary: Mój dźenik
-      new diary entry: nowy dźenikowy zapisk
       my edits: Moje změny
       my traces: Moje ćěrje
       my notes: Moje pokazki
@@ -2572,8 +2350,6 @@ hsb:
       created from: 'Wutworjeny z:'
       status: 'Status:'
       spam score: 'Spamowe hódnoćenje:'
-      description: Wopisanje
-      user location: Wužiwarske stejnišćo
       role:
         administrator: Tutón wužiwar je administrator
         moderator: Tutón wužiwar je moderator.
@@ -2588,15 +2364,12 @@ hsb:
       comments: Komentary
       create_block: Tutoho wužiwarja blokować
       activate_user: Tutoho wužiwarja aktiwizować
-      deactivate_user: Tutoho wužiwarja znjemóžnić
       confirm_user: Tutoho wužiwarja wobkrućić
       hide_user: Tutoho wužiwarja schować
       unhide_user: Tutoho wužiwarja pokazaś
       delete_user: Tutoho wužiwarja zhašeć
       confirm: Wobkrućić
       report: Tutoho wužiwarja zdźělić
-    set_home:
-      flash success: Domjace stejnišćo bu wuspěšnje składowany
     go_public:
       flash success: Wšě twoje změny su nětko zjawne, a směš nětko wobdźěłać.
     index:
@@ -2614,13 +2387,6 @@ hsb:
       title: Konto wupowědźene
       heading: Konto wupowědźene
       support: pomoc
-      body_html: |-
-        <p>
-        Twoje konto bu bohužel podhladneje aktiwity dla wupowědźene.
-        </p>
-        <p>
-        Tutón rozsud budźe so bórze wot administratora přepruwować, abo móžeš so z %{webmaster} do zwiska stajić, jeli chceš wo tym diskutować.
-        </p>
     auth_failure:
       connection_failed: Zwisk z awtentifikaciskim poskićowarjom je so nimokulił
       invalid_credentials: Njepłaćiwe awtentifikaciske informacije
@@ -2666,8 +2432,6 @@ hsb:
       title: Wudźěla so blokowanje přećiwo %{name}
       heading_html: Wudźěla so blokowanje přećiwo %{name}
       period: Kak dołho, wot nětka, wužiwar budźe za API zablokowany.
-      tried_contacting: Sym so z wužiwarjom do zwiska stajił a jeho prosył zastajić.
-      tried_waiting: Sym wužiwarjej přiměrjeny čas dał na tute zdźělenki wotmołwić.
       back: Wšě blokowanja pokazać
     edit:
       title: Wobdźěłuje so blokowanje přećiwo %{name}
@@ -2680,10 +2444,6 @@ hsb:
       block_period: Doba blokowanja dyrbi jedna z hódnotow być, kotrež hodźa so z
         padaceho menija wubrać.
     create:
-      try_contacting: Prošu staj so z wužiwarjom do zwiska, prjedy hač jeho zablokuješ
-        a daj jemu přiměrjeny čas wotmołwić.
-      try_waiting: Prošu daj wužiwarjej přiměrjeny čas wotmołwić, prjedy hač jeho
-        zablokuješ.
       flash: Blokowanje přećiwo wužiwarjej %{name} je so wudźěliło.
     update:
       only_creator_can_edit: Jenož moderator, kiž je tute blokowanje wudźělił, móže
@@ -2780,6 +2540,26 @@ hsb:
       description: Wopisanje
       created_at: 'Wutworjeny:'
       last_changed: Posledni raz změnjeny
+    show:
+      title: 'Suk: %{id}'
+      description: Wopisanje
+      open_title: 'Njesčinjena pokazka #%{note_name}'
+      closed_title: 'Sčinjena pokazka #%{note_name}'
+      hidden_title: 'Schowana pokazka #%{note_name}'
+      report: Tutón pokiw zdźělić
+      anonymous_warning: Tuta pokazka wobsahuje komentary wot anonymnych wužiwarjow,
+        kotrež měli so njewotwisnje přepruwować.
+      hide: Schować
+      resolve: Sčinjeny
+      reactivate: Znowa aktiwizować
+      comment_and_resolve: Komentować a sčinić
+      comment: Komentar
+    new:
+      title: Nowa pokazka
+      intro: Sy zmylk widźał abo zo něšto faluje? Informuj druhich kartografow, zo
+        móhli to porjedźić. Přesuń marku ke korektnej poziciji a zapisaj pokazku,
+        zo by problem wujasnił.
+      add: Pokazku přidać
   javascripts:
     close: Začinić
     share:
@@ -2838,9 +2618,6 @@ hsb:
         gps: Zjawne GPS-ćěrje
         overlays: Woršty za pytanje za zmylkami na karće zmóžnić
         title: Runiny
-      copyright: © <a href='%{copyright_url}'>Sobuskutkowarjo OpenStreetMap</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>Darić</a>
-      terms: <a href='%{terms_url}' target='_blank'>Wuměnjenja websydła a API</a>
     site:
       edit_tooltip: Kartu wobdźěłać
       edit_disabled_tooltip: Za wobdźěłanje karty powjetšić
@@ -2857,20 +2634,6 @@ hsb:
         unsubscribe: Wotskazać
         hide_comment: schować
         unhide_comment: pokazać
-    notes:
-      new:
-        intro: Sy zmylk widźał abo zo něšto faluje? Informuj druhich kartografow,
-          zo móhli to porjedźić. Přesuń marku ke korektnej poziciji a zapisaj pokazku,
-          zo by problem wujasnił.
-        add: Pokazku přidać
-      show:
-        anonymous_warning: Tuta pokazka wobsahuje komentary wot anonymnych wužiwarjow,
-          kotrež měli so njewotwisnje přepruwować.
-        hide: Schować
-        resolve: Sčinjeny
-        reactivate: Znowa aktiwizować
-        comment_and_resolve: Komentować a sčinić
-        comment: Komentar
     edit_help: Přesuń kartu do městna, kotrež chceš wobdźěłać, powjetš tam a klikń
       potom tu.
     directions:

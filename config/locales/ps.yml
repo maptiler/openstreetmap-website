@@ -1,6 +1,7 @@
 # Messages for Pashto (پښتو)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Af420
 # Author: Ahmed-Najib-Biabani-Ibrahimkhel
 # Author: Ajeje Brazorf
 # Author: Amjad Khan
@@ -9,14 +10,24 @@ ps:
   html:
     dir: rtl
   helpers:
+    file:
+      prompt: فایل غوره کړئ
     submit:
       diary_comment:
-        create: خوندي کول
+        create: تبصره
+      diary_entry:
+        create: خپرول
+        update: تازه کول
+      issue_comment:
+        create: تبصره ورگډول
       message:
         create: لېږل
       client_application:
         create: ثبتول
-        update: سمول
+        update: تازه کول
+      oauth2_application:
+        create: ثبتول
+        update: تازه کول
       trace:
         create: پورته کول
         update: بدلونونه خوندي کول
@@ -37,7 +48,7 @@ ps:
         title: سکالو
         latitude: لوړوالی
         longitude: اوږدوالی
-        language: ژبه
+        language_code: ژبه
       friend:
         user: کارن
         friend: ملگری
@@ -281,7 +292,6 @@ ps:
     edit: سمول
     history: پېښليک
     help: لارښود
-    foundation: بنسټ
     make_a_donation:
       text: بسپنه ورکول
     learn_more: نور مالومات
@@ -307,12 +317,10 @@ ps:
       destroy_button: ړنگول
     new:
       title: پيغام لېږل
-      body: جوسه
     outbox:
       date: نېټه
     show:
       title: پيغام لوستل
-      date: نېټه
       reply_button: ځواب
     sent_message_summary:
       destroy_button: ړنگول
@@ -338,8 +346,6 @@ ps:
       title: وتل
       logout_button: وتل
   site:
-    about:
-      copyright_html: <span>&copy;</span>د اوفن سټریټ ميپ<br>مرسته کوونکی
     copyright:
       foreign:
         title: د دې ژباړې په اړه
@@ -354,9 +360,6 @@ ps:
       licence: منښتليک
       options: خوښنې
       format: بڼه
-    help:
-      forums:
-        title: فورمونه
     sidebar:
       search_results: د پلټنې پايلې
       close: تړل
@@ -403,8 +406,6 @@ ps:
   users:
     new:
       title: نومليکنه
-      email address: 'برېښليک پته:'
-      display name: 'د ښکارېدلو نوم:'
     terms:
       decline: ردول
       legale_names:
@@ -423,7 +424,6 @@ ps:
       comments: تبصرې
       create_block: په دې کارن بنديز لگول
       activate_user: دا کارن فعالول
-      deactivate_user: دا کارن نافعالول
       confirm_user: همدا کارن تاييدول
       hide_user: دا کارن پټول
       unhide_user: دا کارن ښکاره کول
@@ -449,13 +449,11 @@ ps:
     blocks:
       creator_name: جوړونکی
       status: دريځ
+  notes:
+    show:
+      hide: پټول
+      comment: تبصره
   javascripts:
-    map:
-      copyright: © <a href='%{copyright_url}'>د اوفن سټریټ ميپ مرسته کوونکی</a>
-    notes:
-      show:
-        hide: پټول
-        comment: تبصره
     directions:
       distance: واټن
       instructions:

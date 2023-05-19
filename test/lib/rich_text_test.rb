@@ -18,6 +18,13 @@ class RichTextTest < ActiveSupport::TestCase
       assert_select "a[rel='nofollow noopener noreferrer']", 1
     end
 
+    r = RichText.new("html", "foo <a rel='junk me trash' href='http://example.com/'>bar</a> baz")
+    assert_html r do
+      assert_select "a", 1
+      assert_select "a[href='http://example.com/']", 1
+      assert_select "a[rel='me nofollow noopener noreferrer']", 1
+    end
+
     r = RichText.new("html", "foo example@example.com bar")
     assert_html r do
       assert_select "a", 0
@@ -89,6 +96,13 @@ class RichTextTest < ActiveSupport::TestCase
       assert_select "a", 1
       assert_select "a[href='http://example.com/']", 1
       assert_select "a[rel='nofollow noopener noreferrer']", 1
+    end
+
+    r = RichText.new("markdown", "foo <a rel='junk me trash' href='http://example.com/'>bar</a>) baz")
+    assert_html r do
+      assert_select "a", 1
+      assert_select "a[href='http://example.com/']", 1
+      assert_select "a[rel='me nofollow noopener noreferrer']", 1
     end
 
     r = RichText.new("markdown", "foo example@example.com bar")
@@ -178,6 +192,22 @@ class RichTextTest < ActiveSupport::TestCase
     assert_html r do
       assert_select "p[style='color:red']", false
       assert_select "p", /^Danger$/
+    end
+  end
+
+  def test_markdown_table_alignment
+    # Ensure that kramdown table alignment styles are converted to bootstrap classes
+    markdown_table = <<~MARKDOWN
+      | foo  | bar |
+      |:----:|----:|
+      |center|right|
+    MARKDOWN
+    r = RichText.new("markdown", markdown_table)
+    assert_html r do
+      assert_select "td[style='text-align:center']", false
+      assert_select "td[class='text-center']", true
+      assert_select "td[style='text-align:right']", false
+      assert_select "td[class='text-end']", true
     end
   end
 

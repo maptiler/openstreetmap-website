@@ -26,6 +26,7 @@
 # Author: Orsa
 # Author: Ruila
 # Author: Steeve815
+# Author: Xnet1234
 # Author: Yali23
 # Author: YaronSh
 # Author: Yona b
@@ -35,6 +36,7 @@
 # Author: ישראל קלר
 # Author: מקף
 # Author: נדב ס
+# Author: ערן
 # Author: תומר ט
 ---
 he:
@@ -49,7 +51,7 @@ he:
       prompt: בחירת קובץ
     submit:
       diary_comment:
-        create: שמירה
+        create: הערה
       diary_entry:
         create: פרסום
         update: עדכון
@@ -60,7 +62,7 @@ he:
       client_application:
         create: רישום
         update: עדכון
-      doorkeeper_application:
+      oauth2_application:
         create: הרשמה
         update: עדכון
       redaction:
@@ -90,7 +92,6 @@ he:
       message: הודעה
       node: נקודה
       node_tag: תג צומת
-      notifier: מתריע
       old_node: צומת ישן
       old_node_tag: תג צומת ישן
       old_relation: יחס ישן
@@ -131,9 +132,10 @@ he:
       diary_entry:
         user: משתמש
         title: נושא
+        body: גוף
         latitude: קו רוחב
         longitude: קו אורך
-        language: שפה
+        language_code: שפה
       doorkeeper/application:
         name: שם
         redirect_uri: כתובת URL של הפניה
@@ -186,23 +188,21 @@ he:
           ניידים ילידיים ויישומי דף אחד אינם סודיים)
         redirect_uri: להשתמש בשורה אחת לכתובת URI
       trace:
-        tagstring: מופרד בפסיקים
+        tagstring: מופרדים בפסיקים
       user_block:
         reason: הסיבה שבגינה המשתמש נחסם. נא לכתוב משהו הגיוני ורגוע ולתת כמה שיותר
           פרטים על המצב. נא לזכור שלא כל המשתמשים מבינים את העגה המקצועית של הקהילה
           ולהשתדל להשתמש במילים ברורות לכול.
         needs_view: האם המשתמש צריך להיכנס לפני שהחסימה הזאת תנוקה?
       user:
-        email_confirmation: הכתובת שלך לא מופיעה בפומבי, נא לעיין ב<a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy"
-          title="מדיניות הפרטיות של OSMF לרבות סעיף על כתובות דוא״ל">מדיניות הפרטיות</a>
         new_email: (לעולם לא מוצגת בפומבי)
   datetime:
     distance_in_words_ago:
       about_x_hours:
-        one: לפני שעה בערך
-        two: לפני שעתיים בערך
-        many: לפני %{count} שעות בערך
-        other: לפני %{count} שעות בערך
+        one: לפני השעה
+        two: לפני השעתיים
+        many: לפני כ־%{count} שעות
+        other: לפני כ־%{count} שעות
       about_x_months:
         one: לפני חודש בערך
         two: לפני חודשיים בערך
@@ -335,15 +335,6 @@ he:
         enabled link text: מה זה?
         disabled: לא מופעלת, אין אפשרות לערוך נתונים וכל העריכות הקודמות אלמוניות.
         disabled link text: מדוע איני יכול לערוך?
-      public editing note:
-        heading: עריכה ציבורית
-        html: כעת העריכות שלך אלמוניות ואנשים לא יכולים לשלוח לך הודעות או לראות את
-          המיקום שלך. כדי להציג מה ערכת ולאפשר לאנשים ליצור אתך קשר דרך האתר, יש ללחוץ
-          על הכפתור למטה. <b>מאז השינוי ב־API בגרסה 0.6, רק משתמשים ציבוריים יכולים
-          לערוך נתוני מפה</b>. (<a href="https://wiki.openstreetmap.org/wiki/Anonymous_edits">הסבר
-          למה זה ככה</a>).<ul><li>כתובת הדוא"ל שלך לא תיחשף כתוצאה מזה שתהיה משתמש
-          ציבורי.</li><li>לא ניתן להפוך את הפעולה הזאת וכל המשתמשים החדשים יהיו מעתה
-          ציבוריים לפי ברירת המחדל.</li></ul>
       contributor terms:
         heading: תנאי תרומה
         agreed: הסכמת לתנאי התרומה החדשים.
@@ -353,8 +344,19 @@ he:
         agreed_with_pd: הצהרת גם שמבחינתך העריכות שלך יהיו בנחלת הכלל.
         link text: מה זה?
       save changes button: שמירת השינויים
-      make edits public button: להפוך את כל עריכותיי לציבוריות
       delete_account: למחוק חשבון…
+    go_public:
+      heading: עריכה ציבורית
+      currently_not_public: כעת, העריכות שלך אלמוניות ואנשים לא יכולים לשלוח לך הודעות
+        או לראות את המיקום שלך. כדי להראות מה ערכת ולאפשר לאנשים ליצור איתך קשר דרך
+        האתר, יש ללחוץ על הכפתור למטה.
+      only_public_can_edit: מאז המעבר ל־API 0.6, רק משתמשים ציבוריים יכולים לערוך
+        נתוני מפה.
+      find_out_why: לברר למה
+      email_not_revealed: כתובת הדוא"ל שלך לא תיחשף על־ידי הפיכתה לציבור.
+      not_reversible: לא ניתן להפוך את הפעולה הזאת, וכל המשתמשים החדשים כעת ציבוריים
+        כברירת מחדל.
+      make_edits_public_button: להפוך את כל עריכותיי לציבוריות
     update:
       success_confirm_needed: מידע על המשתמש עודכן בהצלחה. נא לבדוק את תיבת הדוא"ל
         כדי לאמת את הדוא"ל החדש.
@@ -364,12 +366,12 @@ he:
   browse:
     created: נוצרה
     closed: נסגרה
-    created_html: נוצרה <abbr title='%{title}'>%{time}</abbr>
-    closed_html: נסגרה <abbr title='%{title}'>%{time}</abbr>
-    created_by_html: נוצרה <abbr title='%{title}'>%{time}</abbr> על־ידי %{user}
-    deleted_by_html: נמחקה <abbr title='%{title}'>%{time}</abbr> על־ידי %{user}
-    edited_by_html: נערכה <abbr title='%{title}'>%{time}</abbr> על־ידי %{user}
-    closed_by_html: נסגרה <abbr title='%{title}'>%{time}</abbr> על־ידי %{user}
+    created_ago_html: נוצרה %{time_ago}
+    closed_ago_html: נסגרה %{time_ago}
+    created_ago_by_html: נוצרה %{time_ago} על־ידי %{user}
+    closed_ago_by_html: נסגרה %{time_ago} על־ידי %{user}
+    deleted_ago_by_html: נחמקה %{time_ago} על־ידי %{user}
+    edited_ago_by_html: נערכה %{time_ago} על־ידי %{user}
     version: גרסה
     in_changeset: ערכת שינויים
     anonymous: אלמוני
@@ -399,8 +401,8 @@ he:
       relation: יחסים (%{count})
       relation_paginated: יחסים (%{x}–%{y} מתוך %{count})
       comment: הערות (%{count})
-      hidden_commented_by_html: הערה מוסתרת ממשתמש %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: הערה ממשתמש %{user} <abbr title='%{exact_time}'>%{when}</abbr>
+      hidden_comment_by_html: הערה מוסתרת מאת %{user} %{time_ago}
+      comment_by_html: הערה מאת %{user} %{time_ago}
       changesetxml: XML של ערכת השינויים
       osmchangexml: osmChange XML
       feed:
@@ -485,26 +487,10 @@ he:
       wikimedia_commons_link: הפריט %{page} בוויקישיתוף
       telephone_link: להתקשר למספר %{phone_number}
       colour_preview: תצוגה מקדימה של הצבע %{colour_value}
-    note:
-      title: 'הערה: %{id}'
-      new_note: הערה חדשה
-      description: תיאור
-      open_title: הערה שלא נפתרה מס׳ %{note_name}
-      closed_title: הערה פתורה מס׳ %{note_name}
-      hidden_title: הערה מוסתרת מס׳ %{note_name}
-      opened_by_html: נוצרה על־ידי %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      opened_by_anonymous_html: נוצרה על־ידי אלמוני <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_html: הערה על ידי %{user} <abbr title='%{exact_time}'>%{when}</abbr>
-      commented_by_anonymous_html: הערה על ידי אלמוני <abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_html: נפתר על־ידי %{user} ב־<abbr title='%{exact_time}'>%{when}</abbr>
-      closed_by_anonymous_html: נפתר על־ידי אלמוני ב־<abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_html: הופעל מחדש על־ידי %{user} ב־<abbr title='%{exact_time}'>%{when}</abbr>
-      reopened_by_anonymous_html: הופעל מחדש על־ידי אלמוני ב־<abbr title='%{exact_time}'>%{when}</abbr>
-      hidden_by_html: הוסתר על־ידי %{user} ב־<abbr title='%{exact_time}'>%{when}</abbr>
-      report: לדווח על ההערה הזאת
+      email_link: דוא״ל %{email}
     query:
       title: שאילתת ישויות
-      introduction: יש ללחוץ עלהמפה כדי למצוא ישויות בסביבה.
+      introduction: יש ללחוץ על המפה כדי למצוא ישויות בסביבה.
       nearby: ישויות בסביבה
       enclosing: ישויות מכילות
   changesets:
@@ -525,6 +511,7 @@ he:
     index:
       title: ערכות שינויים
       title_user: ערכות שינויים מאת %{user}
+      title_user_link_html: ערכות שינויים מאת %{user_link}
       title_friend: ערכות שינויים של החברים שלי
       title_nearby: ערכות שינויים של משתמשים בסביבה
       empty: לא נמצאה אף ערכת שינויים.
@@ -637,9 +624,9 @@ he:
         title: רשומות ביומן של OpenStreetMap
         description: רשומות יומן אחרונות ממשתמשי OpenStreetMap
     comments:
-      title: הערות יומן שנוספו על ידי %{user}
+      title: הערות יומן שנוספו על־ידי %{user}
       heading: הערות ביומן של %{user}
-      subheading_html: הערות יומן שנוספו על ידי %{user}
+      subheading_html: הערות יומן שנוספו על־ידי %{user}
       no_comments: אין הערות יומן
       post: רשומה
       when: מתי
@@ -651,6 +638,24 @@ he:
       applications:
         create:
           notice: היישום נרשם.
+  errors:
+    contact:
+      contact_url_title: הסבר על מגוון ערוצי התקשורת
+      contact: ליצור קשר
+      contact_the_community_html: אפשר %{contact_link} עם קהילת OpenStreetMap אם מצאת
+        קישור פגום / תקלה. יש לתעד את הכתובת המדויקת של הבקשה שלך.
+    forbidden:
+      title: אסור
+      description: הפעולה שביקשת לבצע מול שרת OpenStreetMap זמינה למנהלים בלבד (HTTP
+        403)
+    internal_server_error:
+      title: שגיאת יישום
+      description: השרת של OpenStreetMap נתקל בתנאי בלתי־צפוי שמנע ממנו למלא את הבקשה
+        (HTTP 500)
+    not_found:
+      title: הקובץ לא נמצא
+      description: איתור קובץ/תיקייה/פעולת API בשם הזה בשרת של OpenStreetMap לא הצליחה
+        (HTTP 404)
   friendships:
     make_friend:
       heading: להוסיף את %{user} בתור חבר?
@@ -668,14 +673,10 @@ he:
   geocoder:
     search:
       title:
-        latlon_html: תוצאות <a href="https://openstreetmap.org/">מתוך האתר הזה</a>
-        ca_postcode_html: תוצאות מאתר <a href="https://geocoder.ca/">Geocoder.CA</a>
-        osm_nominatim_html: תוצאות מאתר <a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_html: תוצאות מאתר <a href="http://www.geonames.org/">GeoNames</a>
-        osm_nominatim_reverse_html: תוצאות מ־<a href="https://nominatim.openstreetmap.org/">OpenStreetMap
-          Nominatim</a>
-        geonames_reverse_html: תוצאות מ־<a href="http://www.geonames.org/">GeoNames</a>
+        results_from_html: תוצאות מתוך %{results_link}
+        latlon: מקורות פנימיים
+        osm_nominatim: נומינטים של OpenStreetMap
+        osm_nominatim_reverse: נומינטים של OpenStreetMap
     search_osm_nominatim:
       prefix:
         aerialway:
@@ -1056,7 +1057,7 @@ he:
           fitness_station: תחנת כושר
           garden: גן
           golf_course: מגרש גולף
-          horse_riding: רכיבה על סוסים
+          horse_riding: מרכז רכיבה על סוסים
           ice_rink: החלקה על הקרח
           marina: מרינה
           miniature_golf: מיני־גולף
@@ -1186,7 +1187,7 @@ he:
           water: מים
           wetland: ביצה
           wood: יער
-          "yes": אלמנט טבעי
+          "yes": ישות טבעית
         office:
           accountant: רואה חשבון
           administrative: מִנְהָל
@@ -1468,21 +1469,18 @@ he:
       status: מצב
       reports: דיווחים
       last_updated: עדכון אחרון
-      last_updated_time_html: <abbr title='%{title}'>%{time}</abbr>
-      last_updated_time_user_html: ב־<abbr title='%{title}'>%{time}</abbr> מאת %{user}
+      last_updated_time_ago_user_html: '%{time_ago} מאת %{user}'
       link_to_reports: הצגת דיווחים
       reports_count:
         one: דיווח אחד
+        two: '%{count} דיווחים'
+        many: '%{count} דיווחים'
         other: '%{count} דיווחים'
       reported_item: פריט שדווח
       states:
         ignored: התעלמות
         open: פתוחה
         resolved: נפתרה
-    update:
-      new_report: הדוח שלך נרשם בהצלחה
-      successful_update: הדיווח שלך עודכן בהצלחה
-      provide_details: נא לספק את הפרטים הנדרשים
     show:
       title: '%{status} סוגיה #%{issue_id}'
       reports:
@@ -1491,7 +1489,7 @@ he:
         other: '%{count} דיווחים'
       report_created_at: דיווח ראשון ב־%{datetime}
       last_resolved_at: נפתר לאחרונה ב־%{datetime}
-      last_updated_at: עדכון אחרון ב־%{datetime} על ידי %{displayname}
+      last_updated_at: עדכון אחרון ב־%{datetime} על־ידי %{displayname}
       resolve: לפתור
       ignore: התעלמות
       reopen: פתיחה מחדש
@@ -1511,7 +1509,7 @@ he:
       comment_from_html: תגובה מאת %{user_link} על %{comment_created_at}
       reassign_param: להקצות את התקלה מחדש
     reports:
-      reported_by_html: דווח בתור %{category} על ידי %{user} ב־%{updated_at}
+      reported_by_html: דווח בתור %{category} על־ידי %{user} ב־%{updated_at}
     helper:
       reportable_title:
         diary_comment: '%{entry_title}, תגובה מס׳ %{comment_id}'
@@ -1560,10 +1558,8 @@ he:
     home: מעבר למיקום הבית
     logout: יציאה מהחשבון
     log_in: כניסה לחשבון
-    log_in_tooltip: כניסה עם חשבון קיים
     sign_up: הרשמה
     start_mapping: להתחיל למפות
-    sign_up_tooltip: יצירת חשבון לעריכה
     edit: עריכה
     history: היסטוריה
     export: יצוא
@@ -1586,7 +1582,7 @@ he:
     partners_fastly: פאסטלי
     partners_bytemark: בייטמארק הוסטינג
     partners_partners: שותפים
-    tou: תנאי שימוש
+    tou: תנאי השימוש
     osm_offline: מסד הנתונים של אתר OpenStreetMap אינו מקוון כעת בשל עבודות תחזוקה
       המבוצעות בו.
     osm_read_only: מסד הנתונים של אתר OpenStreetMap נתון כעת במצב קריאה בלבד בשל עבודות
@@ -1595,11 +1591,10 @@ he:
     help: עזרה
     about: אודות
     copyright: זכויות יוצרים
+    communities: קהילות
     community: קהילה
     community_blogs: בלוגים של הקהילה
     community_blogs_title: בלוגים של חברי קהילת OpenStreetMap
-    foundation: קרן
-    foundation_title: קרן אופן סטריט מאפ
     make_a_donation:
       title: תִמכו במיזם OpenStreetMap על־ידי מתן תרומה כספית
       text: תרומה
@@ -1643,11 +1638,11 @@ he:
       subject: '[אופן סטריט מאפ OpenStreetMap] שגיאה בייבוא GPX'
     gpx_success:
       hi: שלום %{to_user},
-      loaded_successfully:
-        one: נקלט כראוי עם %{trace_points} מתוך נקודה אחת אפשרית.
-        two: נקלט כראוי עם %{trace_points} מתוך %{possible_points} נקודות אפשריות.
-        many: נקלט כראוי עם %{trace_points} מתוך %{possible_points} נקודות אפשריות.
-        other: נקלט כראוי עם %{trace_points} מתוך %{possible_points} נקודות אפשריות.
+      loaded:
+        one: נטען בהצלחה עם  נקודה אחת אפשרית.
+        two: נטען בהצלחה עם %{trace_points} נקודות מתוך %{count} נקודות אפשריות.
+        many: נטען בהצלחה עם %{trace_points} נקודות מתוך %{count} נקודות אפשריות.
+        other: נטען בהצלחה עם %{trace_points} נקודות מתוך %{count} נקודות אפשריות.
       subject: '[אופן סטריט מאפ OpenStreetMap] ייבוא GPX הצליח'
     signup_confirm:
       subject: '[אופן סטריט מאפ OpenStreetMap] ברוך בואך לאופן סטריט מאפ'
@@ -1738,8 +1733,8 @@ he:
       success: חשבונך אושר, תודה שנרשמת!
       already active: החשבון הזה כבר אושר.
       unknown token: נראה שקוד האישור הזה פג או שאינו קיים.
-      reconfirm_html: אם ברצונך לקבל שוב מכתב אימות, <a href="%{reconfirm}">נא ללחוץ
-        כאן</a>.
+      resend_html: אם צריך שנשלח לך שוב את דוא"ל האישור, %{reconfirm_link}.
+      click_here: נא ללחוץ כאן
     confirm_resend:
       failure: משתמש %{name} לא נמצא.
     confirm_email:
@@ -1780,15 +1775,13 @@ he:
     new:
       title: שליחת הודעה
       send_message_to_html: לשליחת הודעה חדשה אל %{name}
-      subject: נושא
-      body: תוכן ההודעה
       back_to_inbox: חזרה לתיבת הדואר הנכנס
     create:
       message_sent: הודעה נשלחה
       limit_exceeded: שלחת הודעות רבות לאחרונה. נא להמתין לפני שליחת הודעות נוספות.
     no_such_message:
-      title: אין הודעה כזו
-      heading: אין הודעה כזו
+      title: אין הודעה כזאת
+      heading: אין הודעה כזאת
       body: אנו מצטערים, אין הודעה עם מזהה זה.
     outbox:
       title: תיבת דואר יוצא
@@ -1807,14 +1800,10 @@ he:
         המשתמש. נא להיכנס בחשבון הנכון כדי להשיב.
     show:
       title: הודעה שנקראה
-      from: מאת
-      subject: נושא
-      date: תאריך
       reply_button: להשיב
       unread_button: לסימון כהודעה שלא נקראה
       destroy_button: מחיקה
       back: חזרה
-      to: אל
       wrong_user: נכנסת בשם „%{user}”, אבל ההודעה שביקשת לקרוא לא נשלחה לאותו המשתמש.
         נא להיכנס בחשבון הנכון כדי ללקרוא אותה.
     sent_message_summary:
@@ -1863,7 +1852,6 @@ he:
       image: תמונה
       gravatar:
         gravatar: להשתמש ב־Gravatar
-        link: https://wiki.openstreetmap.org/wiki/Gravatar
         what_is_gravatar: מה זה Gravatar?
         disabled: הגראווטר כובה.
         enabled: הצגת הגראווטר שלך הופעלה.
@@ -1889,17 +1877,8 @@ he:
       lost password link: איבדת את הסיסמה שלך?
       login_button: כניסה
       register now: להירשם עכשיו
-      with username: 'כבר יש לך חשבון OpenStreetMap? נא להיכנס עם שם משתמש וסיסמה:'
       with external: 'לחלופין, השתמשו בצד שלישי כדי להיכנס:'
-      new to osm: הגעת עכשיו ב־OpenStreetMap?
-      to make changes: כדי לשנות את נתוני OpenStreetMap, צריך שיהיה לך חשבון.
-      create account minute: נא ליצור חשבון. זה לוקח רק דקה.
       no account: אין לך חשבון?
-      account not active: סליחה, החשבון הזה עדיין אינו פעיל.<br />נא להשתמש בקישור
-        במכתב אישור החשבון כדי להפעיל את חשבונך או or <a href="%{reconfirm}">לבקש
-        מכתב אישור חדש</a>.
-      account is suspended: החשבון שלך הושעה בעקבות פעילות חשודה.<br />נא ליצור קשר
-        עם <a href="%{webmaster}">התמיכה</a> כדי לדון בזה, עמך הסליחה.
       auth failure: סליחה, לא ניתן להיכנס עם הפרטים האלה.
       openid_logo_alt: כניסה עם OpenID
       auth_providers:
@@ -1931,9 +1910,13 @@ he:
       title: יציאה
       heading: יציאה מ־OpenStreetMap
       logout_button: יציאה
+    suspended_flash:
+      suspended: החשבון שלך הושעה עקב פעילות חשודה, עמך הסליחה.
+      contact_support_html: נא ליצור קשר עם ה%{support_link} כדי לדון בהחלטה.
+      support: תמיכה
   shared:
     markdown_help:
-      title_html: פוענח בעזרת <a href="https://kramdown.gettalong.org/quickref.html">kramdown</a>
+      heading_html: פוענח באמצעות %{kramdown_link}
       headings: כותרות
       heading: כותרת
       subheading: כותרת משנה
@@ -1952,7 +1935,7 @@ he:
   site:
     about:
       next: הבא
-      copyright_html: <span>&copy;</span>תורמי<br>OpenStreetMap
+      heading_html: '%{copyright}תורמי %{br} OpenStreetMap'
       used_by_html: '%{name} מספקת נתוני מפות לאלפי אתרי אינטרנט, יישומים ומכשירים
         שונים'
       lede_text: את OpenStreetMap בונה קהילת ממפים שתורמים ומתחזקים נתונים על דרכים,
@@ -1963,29 +1946,41 @@ he:
         בתמונות מהאוויר, מכשירי GPS, ומפות שדה „לואו־טק” כדי לוודא ש־OSM
         מדויקת ומעודכנת.
       community_driven_title: מונהג על־ידי הקהילה
-      community_driven_html: |-
+      community_driven_1_html: |-
         קהילת OpenStreetMap מגוונת, בעלת תשוקה, וגדלה מיום ליום.
         בקרב התורמים שלנו יש ממפים נלהבים, מקצועני מערכות מידע גאוגרפיות (GIS), מהנדסים
         שמריצים את שרתי OSM, פעילי סיוע הומניטרי שממפים אזורי מוכי־אסון,
         ורבים אחרים.
-        למידע נוסף על הקהילה, ר׳ את <a href='https://blog.openstreetmap.org'>OpenStreetMap Blog</a>, <a href='%{diary_path}'>יומני משתמשים</a>, <a href='https://blogs.openstreetmap.org/'>יומני קהילה</a>, ואתר <a href='https://www.osmfoundation.org/'>OSM Foundation</a>.
+        למידע נוסף על הקהילה, ר׳ את %{osm_blog_link},
+        %{user_diaries_link}, %{community_blogs_link}, ואת
+        אתר %{osm_foundation_link}.
+      community_driven_osm_blog: בלוג OpenStreetMap
+      community_driven_user_diaries: יומני משתמשים
+      community_driven_community_blogs: בלוגים קהילתיים
+      community_driven_osm_foundation: קרן OSM
       open_data_title: נתונים פתוחים
-      open_data_html: |-
-        OpenStreetMap היא <strong>נתונים פתוחים</strong>: יש לך הופש להשתמש בה לכל מטרה,
+      open_data_1_html: |-
+        OpenStreetMap היא %{open_data}: יש לך הופש להשתמש בה לכל מטרה,
         כל עוד ניתן ייחוס ל־OpenStreetMap ולתורמיה. מותר לשנות את הנתונים
         ולבנות על גביהם דברים מסוימים, אך יש להפיץ את התוצאות של זה
-        לפי התנאים של אותו הרישיון. ר' את <a href='%{copyright_path}'>דף הרישיון וזכויות היוצרים</a> לפרטים נוספים.
+        לפי התנאים של אותו הרישיון. ר' את %{copyright_license_link}
+        לפרטים נוספים.
+      open_data_open_data: נתונים פתוחים
+      open_data_copyright_license: דף זכויות יוצרים ורישיון
       legal_title: משפטי
-      legal_1_html: |-
-        האתר הזה ושירותים רבים אחרים מופעלים על־ידי <a href='https://osmfoundation.org/'>קרן OpenStreetMap</a>&rlm; (OSMF) בשם הקהילה. השימוש בכל השירותים במפעילה OSMF כפוף
-        ל<a href="https://wiki.osmfoundation.org/wiki/Terms_of_Use">תנאי השימוש</a>, לרבות <a href="https://wiki.openstreetmap.org/wiki/Acceptable_Use_Policy">
-        מדיניות השימוש הקביל</a> שלנו
-        ול־<a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy">מדיניות הפרטיות</a> שלנו.
-      legal_2_html: |-
-        נא <a href='https://osmfoundation.org/Contact'>ליצור קשר עם OSMF</a>
-        אם יש לך שאלות על רישוי, זכויות יוצרים או שאלות משפטיות אחרות.
-        <br>
-        OpenStreetMap, סמל הזכוכית המגדלת, ו־State of the Map הם <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">סימנים מסחריים רשומים של קרן OSM</a>.
+      legal_1_1_html: האתר הזה ושירותים רבים אחרים מופעלים על־ידי %{openstreetmap_foundation_link}&rlm;
+        (OSMF) בשם הקהילה. השימוש בכל השירותים שמפעילה OSMF כפוף ל%{terms_of_use_link},
+        ל%{aup_link}, ול%{privacy_policy_link}
+      legal_1_1_openstreetmap_foundation: קרן אופן סטריט מאפ
+      legal_1_1_terms_of_use: תנאי שימוש
+      legal_1_1_aup: מדיניות שימוש מקובל
+      legal_1_1_privacy_policy: מדיניות פרטיות
+      legal_2_1_html: |-
+        נא %{contact_the_osmf_link}
+        אם יש לך שאלות על רישוי, זכויות יוצרים או נושאים משפטיים אחרים.
+      legal_2_1_contact_the_osmf: ליצור קשר עם OSMF
+      legal_2_2_html: OpenStreetMap, סמל הזכוכית המגדלת ו־State of the Map הם %{registered_trademarks_link}.
+      legal_2_2_registered_trademarks: סימנים מסחריים של OSMF
       partners_title: שותפים
     copyright:
       foreign:
@@ -2001,113 +1996,130 @@ he:
         mapping_link: להתחיל למפות
       legal_babble:
         title_html: זכויות יוצרים ורישיון
-        intro_1_html: |-
-          מיזם OpenStreetMap<sup><a href="#trademarks">&reg;</a></sup> הוא <i>נתונים פתוחים</i>, שמתפרסמים לפי רישיון <a
-          href="https://opendatacommons.org/licenses/odbl/">Open Data
-          Commons Open Database</a>  (ר״ת ODbL) על־ידי <a
-          href="https://osmfoundation.org/">OpenStreetMap Foundation</a> (ר״ת OSMF).
-        intro_2_html: |-
-          אתם חופשיים להעתיק, להפיץ, לשדר ולהתאים את הנתונים שלנו,
-          כל עוד אתם נותנים ייחוס ל־OpenStreetMap
-          ולתורמים למיזם. אם אתם משנים את הנתונים או את המפות שלנו או מסתמכים עליהם כדי ליצור משהו חדש,
-          מותר לכם להפיץ את התוצאות רק לפי תנאי אותו הרישיון.
-          <a href="https://opendatacommons.org/licenses/odbl/1.0/">המסמך
-          המשפטי</a> המלא מסביר את זכויותיכם ואת תחומי האחריות שלכם.
-        intro_3_1_html: |-
-          התיעוד שלנו מוגש בכפוף
-          לרישיון <a href="https://creativecommons.org/licenses/by-sa/2.0/">קריאייטיב
-          קומונז ייחוס–שיתוף־זהה 2.0</a> license (בקיצור  CC-BY-SA 2.0).
+        introduction_1_html: |-
+          OpenStreetMap%{registered_trademark_link} הוא מיזם %{open_data}, שמתפרסמים לפי תנאי
+          %{odc_odbl_link} (ר״ת ODbL) על־ידי %{osm_foundation_link} (ר״ת OSMF).
+        introduction_1_open_data: נתונים פתוחים
+        introduction_1_odc_odbl: רישיון מסד נתונים פתוח של Open Data Commons
+        introduction_1_osm_foundation: קרן אופן סטריט מאפ
+        introduction_2_html: |-
+          יש לך חופש להעתיק, להפיץ, לשדר ולהתאים את הנתונים שלנו,
+          אבל חובה לתת ייחוס ל־OpenStreetMap
+          ולתורמים למיזם. אם שינית את הנתונים או את המפות שלנו או הסתמכת עליהם כדי ליצור משהו חדש,
+          מותר לך להפיץ את התוצאות רק לפי תנאי אותו הרישיון.
+          %{legal_code_link} המלא מסביר את הזכויות שלך ואת תחומי האחריות שלך.
+        introduction_2_legal_code: המסמך המשפטי
+        introduction_3_html: התיעוד שלנו מתפרסם לפי תנאי רישיון %{creative_commons_link}
+          (ר״ת CC BY-SA 2.0).
+        introduction_3_creative_commons: קריאייטיב קומונז–ייחוס–שיתוף זהה 2.0
+        introduction_3_creative_commons_url: https://creativecommons.org/licenses/by-sa/2.0/deed.he
         credit_title_html: איך לתת ייחוס ל־OpenStreetMap
         credit_1_html: 'בעת שימוש בנתונים של OpenStreetMap, חובה לעשות את שני הדברים
           הבאים:'
-        credit_2_1_html: |-
-          <ul>
-            <li>לתת קרדיט ל־OpenStreetMap באמצעות הצגת הודעת זכויות היוצרים שלנו.</li>
-            <li>להבהיר שהנתונים זמינים לפי תנאי Open Database License.</li>
-          </ul>
-        credit_3_1_html: |-
+        credit_2_1: יש לתת ייחוס ל־OpenStreetMap על־ידי הצגת הודעת זכויות היוצרים
+          שלנו.
+        credit_2_2: יש להבהיר שהנתונים זמינים לפי רישיון מסד נתונים פתוח.
+        credit_3_html: |-
           לגבי הודעת זכויות היוצרים, יש לנו דרישות שונות לגבי איך זה צריך להיות
           מוצג, בהתאם לאופן שבו עשית שימוש בנתונים שלנו. למשל, כללים שונים
-          חלים על אופן הצגת הודעת זכויות היוצרים – תלוי אם יש לך
-          יצרו מפה ניתנת לעיון, מפה מודפסת, או תמונה סטטית. פרטים מלאים על
-          דרישות ניתן למצוא בדף
-          <a href="https://wiki.osmfoundation.org/wiki/Licence/Attribution_Guidelines">הנחיות
-          ייחוס</a>.
-        credit_4_html: |-
-          כדי להבהיר שהנתונים זמינים לפי תנאי Open Database License , באפשרותך לקשר ל<a href="https://www.openstreetmap.org/copyright">דף זכויות היוצרים הזה</a>.
+          חלים על אופן הצגת הודעת זכויות היוצרים – תלוי אם
+          יצרת מפה ניתנת לעיון, מפה מודפסת, או תמונה סטטית. פרטים מלאים על
+          דרישות ניתן למצוא בדף %{attribution_guidelines_link}.
+        credit_3_attribution_guidelines: הנחיות ייחוס
+        credit_4_1_html: |-
+          כדי להבהיר שהנתונים זמינים לפי תנאי רישיון מסד הנתונים הפתוח, באפשרותך לקשר ל%{this_copyright_page_link}.
           לחלופין, וכדרישה אם OSM מופץ על־ידיך בצורת נתונים, באפשרותך לתת שם ולקשר ישירות לרישיון (או רישיונות). באמצעי אחסון שבהם קישורים אינם אפשריים (למשל עבודות מודפסות), אנו מציעים לך להפנות את הקוראים שלך לאתר openstreetmap.org (אולי על‏‏־ידי הרחבת
           "OpenStreetMap" לכתובת המלאה הזאת) ולאתר opendatacommons.org.
           בדוגמה הזאת, הקרדיט מופיע בפינת המפה.
+        credit_4_1_this_copyright_page: דף זכויות היוצרים הזה
         attribution_example:
           alt: דוגמה לצורה הנכונה לתת ייחוס ל־OpenStreetMap באתר האינטרנט
           title: דוגמה לייחוס
         more_title_html: איך למצוא מידע נוסף
-        more_1_html: |-
-          קִראו עוד על שימוש בנתונים שלנו ועל דרכים לייחס אלינו יצירות נגזרות ב<a
-          href="http://osmfoundation.org/Licence">דף רישיון OSMF</a>.
-        more_2_html: |-
-          אף־על־פי ש־OpenStreetMap הוא מיזם נתונים פתוחים, איננו יכולים לספק
-          API מפות בחינם לכל צד שלישי.
-          ר׳ את דפי המדיניות שלנו: <a href="https://operations.osmfoundation.org/policies/api/">המדיניות השימוש ב־API</a>,
-          <a href="https://operations.osmfoundation.org/policies/tiles/">מדיניות השימוש באריחים</a>
-          ו<a href="https://operations.osmfoundation.org/policies/nominatim/">מדיניות השימוש בנומינטים</a>.
+        more_1_1_html: אפשר לקרוא עוד על השימוש בנתונים שלנו, ועל איך לתת לנו ייחוס,
+          ב־%{osmf_licence_page_link}.
+        more_1_1_osmf_licence_page: דף הרישיון של OSMF
+        more_2_1_html: |-
+          אף ש־OpenStreetMap היא נתונים פתוחים, איננו יכולים לספק
+          API של מפות ללא תשלום עבור צדדים שלישיים.
+          נא לעיין ב%{api_usage_policy_link}, ב%{tile_usage_policy_link} וב%{nominatim_usage_policy_link} שלנו.
+        more_2_1_api_usage_policy: מדינית השימוש ב־API
+        more_2_1_tile_usage_policy: מדיניות השימוש באריחים
+        more_2_1_nominatim_usage_policy: מדיניות השימוש בנומינטים
         contributors_title_html: התורמים שלנו
         contributors_intro_html: |-
           התורמים שלנו הם אלפי אנשים. אנו גם כוללים
           נתונים ברישיון פתוח מסוכנויות מיפוי לאומות
           וממקורות אחרים, בהם:
-        contributors_at_html: |-
-          <strong>אוסטריה</strong>: מכיל נתונים
-          מ<a href="https://data.wien.gv.at/">עיריית וינה</a> לפי תנאי
-          <a href="https://creativecommons.org/licenses/by/3.0/at/deed.de">CC BY</a>,
-          מ<a href="https://www.vorarlberg.at/vorarlberg/bauen_wohnen/bauen/vermessung_geoinformation/weitereinformationen/services/wmsdienste.htm">מדינת פורארלברג</a>
-          וממדינת טירול (לפי <a href="https://www.tirol.gv.at/applikationen/e-government/data/nutzungsbedingungen/">CC-BY AT עם תיקונים</a>).
-        contributors_au_html: |-
-          <strong>אוסטרליה</strong>: מכיל או מפותח באמצעות Administrative Boundaries &copy;
-          <a href="https://geoscape.com.au/legal/data-copyright-and-disclaimer/">Geoscape Australia</a>
-          ברישיון שניתן על־ידי חבר העמים האוסטרלי לפי תנאי
-          <a href="https://creativecommons.org/licenses/by/4.0/">רישיון קריאייטיב קומונז ייחוס 4.0 בין־לאומי (CC BY 4.0)</a>.
-        contributors_ca_html: |-
-          <strong>קנדה</strong>: מכיל נתונים
-          מ־GeoBase&reg;&rlm;, GeoGratis&rlm; (&copy;&rlm; Department of Natural
-          Resources Canada)&rlm;, CanVec&rlm; (&copy;&rlm; Department of Natural
-          Resources Canada), ו־StatCan&rlm; (Geography Division,
-          Statistics Canada).
-        contributors_fi_html: |-
-          <strong>פינלנד</strong>: מכיל מידע ממסד נתונים טופוגרפיים של פינלנד וממקורות מידע אחרים, תחת
-          <a href="https://www.maanmittauslaitos.fi/en/opendata-licence-version1">רישיון NLSFI</a>.
-        contributors_fr_html: |-
-          <strong>צרפת</strong>: מכיל נתונים שהגיעו במקור
-          ממנהלת המסים הכללית (Direction Générale des Impôts).
-        contributors_nl_html: |-
-          <strong>הולנד</strong>: מכיל &copy; נתונים מ־ AND&rlm;, 2007
-          (<a href="https://www.and.com">www.and.com</a>)
-        contributors_nz_html: |-
-          <strong>ניו זילנד</strong>: מכיל נתונים שהגיעו במקור
-          מ־<a href="https://data.linz.govt.nz/">LINZ Data Service</a>
-          וניתן רישיון לשימוש חוזר לפי תנאי
-          <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-        contributors_si_html: |-
-          <strong>סלובניה</strong>: מכיל נתונים מ<a href="http://www.gu.gov.si/en/">הרשות למדידת־קרקעות ולמיפוי</a> ומ<a href="http://www.mkgp.gov.si/en/">משרד החקלאות, היערנות והמזון</a>
+        contributors_at_credit_html: |-
+          %{austria}: מכילה נתונים מ%{stadt_wien_link} (תחת %{cc_by_link}), %{land_vorarlberg_link}
+          ומדינת טירול (תחת %{cc_by_at_with_amendments_link}).
+        contributors_at_austria: אוסטריה
+        contributors_at_stadt_wien: העיר וינה
+        contributors_at_cc_by: קריאייטיב קומונז ייחוס
+        contributors_at_land_vorarlberg: מדינת פורארלברג
+        contributors_at_cc_by_at_with_amendments: קריאייטיב קומונז ייחוס אוסטריה עם
+          תיקונים
+        contributors_au_credit_html: |-
+          %{australia}: משלבת או פותחה באמצעות גבולות ניהוליים &copy; %{geoscape_australia_link}
+          ברישיון הקהילייה של אוסטרליה תחת %{cc_licence_link}.
+        contributors_au_australia: אוסטרליה
+        contributors_au_geoscape_australia: Geoscape אוסטרליה
+        contributors_au_cc_licence: רישיון קריאייטיב קומונז ייחוס 4.0 בין־לאומי (CC
+          BY 4.0)
+        contributors_ca_credit_html: |-
+          %{canada}: מכילה נתונים מתוך
+          GeoBase&reg;‏, GeoGratis (&copy; מחלקת משאבי
+          הטבע של קנדה), CanVec (&copy; מחלקת משאבי
+          הטבע של קנדה), ו־StatCan (מחלקת הגאוגרפיה,
+          סוכנות הסטטיסטיקה של קנדה).
+        contributors_ca_canada: קנדה
+        contributors_fi_credit_html: |-
+          %{finland}: מכילה נתונים ממאגר הנתונים הטופוגרפי של
+          מדד הקרקע הלאומי של פינלנד
+          ומערכי נתונים אחרים, לפי תנאי %{nlsfi_license_link}.
+        contributors_fi_finland: פינלנד
+        contributors_fi_nlsfi_license: רישיון מדד הקרקע הלאומי של פינלנד
+        contributors_fr_credit_html: |-
+          %{france}: מכילה נתונים שהגיעו במקור
+          ממנהלת המיסים הכללית (Direction Générale des Impôts).
+        contributors_fr_france: צרפת
+        contributors_nl_credit_html: '%{netherlands}: מכילה © נתוני AND‏, 2007 (‏%{and_link})'
+        contributors_nl_netherlands: הולנד
+        contributors_nz_credit_html: |-
+          %{new_zealand}: מכילה נתונים שמקורם ב־%{linz_data_service_link}
+          ומורשים לשימוש חוזר לפי תנאי רישיון %{cc_by_link}.
+        contributors_nz_new_zealand: ניו זילנד
+        contributors_nz_linz_data_service: שירות הנתונים של מידע על הקרקע של ניו זילנד
+          (LINZ)
+        contributors_nz_cc_by: קריאייטיב קומונז ייחוס 4.0
+        contributors_si_credit_html: |-
+          %{slovenia}: מכילה נתונים מ%{gu_link} ומ%{mkgp_link}
           (מידע ציבורי של סלובניה).
-        contributors_es_html: |-
-          <strong>ספרד</strong>: מכיל נתונים שסופקו על ידי
-          המכון הגאוגרפי הלאומי של ספרד (<a href="http://www.ign.es/">IGN</a>) ועל ידי
-          מערכת המיפוי הלאומית (<a href="http://www.scne.es/">SCNE</a>)
-          שמותר להשתמש בהן תחת תנאי <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-        contributors_za_html: |-
-          <strong>דרום אפריקה</strong>: מכיל נתונים שהגיעו
-          מ־<a href="http://www.ngi.gov.za/">מִנהל כללי:
-          מידע גאו־מרחבי לאומי</a>, זכות יוצרים ממלכתית שמורה.
-        contributors_gb_html: |-
-          <strong>הממלכה המאוחדת</strong>: מכיל נתוני סקר מדידות
+        contributors_si_slovenia: סלובניה
+        contributors_si_gu: רשות המדידה והמיפוי
+        contributors_si_mkgp: משרד החקלאות, היערנות והמזון
+        contributors_es_credit_html: |-
+          %{spain}: מכילה נתונים שמקורם
+          במכון הלאומי הגאוגרפי הספרדי (%{ign_link})
+          ובמערכת המיפוי הלאומית (%{scne_link})
+          ושמורשים לשימוש חוזר לפי תנאי רישיון %{cc_by_link}.
+        contributors_es_spain: ספרד
+        contributors_es_ign: המכון הגאופגרפי הלאומי של ספרד
+        contributors_es_cc_by: קריאייטיב קומונז ייחוס 4.0
+        contributors_za_credit_html: '%{south_africa}: מכילה נתונים שמקורם ב%{ngi_link},
+          זכויות היוצרים של המדינה שמורות.'
+        contributors_za_south_africa: דרום אפריקה
+        contributors_za_ngi: 'מנהלת ראשית: מידע גאו־מרחבי לאומי'
+        contributors_gb_credit_html: |-
+          %{united_kingdom}: מכילה נתוני סקר מדידות
           &copy; זכויות הכתר וזכויות מסדי נתונים
-          2010–2019.
-        contributors_footer_1_html: |-
-          למידע נוסף על מקורות אלה ואחרים ששימשו
-          לשיפור OpenStreetMap, נא לראות את <a
-          href="https://wiki.openstreetmap.org/wiki/Contributors">דף
-          התורמים</a> בוויקי של OpenStreetMap.
+          2010–2023.
+        contributors_gb_united_kingdom: הממלכה המאוחדת
+        contributors_2_html: |-
+          לפרטים נוספים על אלה ועל מקורות אחרים שנעשה בהם שימוש
+          כדי לעזור לשפר את OpenStreetMap, נא לעיין ב%{contributors_page_link} בוויקי של OpenStreetMap.
+        contributors_2_contributors_page: דף התורמים
         contributors_footer_2_html: |-
           הכללה של נתונים ב־OpenStreetMap אינה אומרת שהספק המקורי
           של הנתוהים תומך ב־OpenStreetMap, לוקח על עצמו אחריות כלשהי, או
@@ -2117,17 +2129,19 @@ he:
           אנו מזכירים לתורמים ל־OSM לעולם לא להוסיף נתונים משום מקור
           שמוגבל בזכויות יוצרים (למשל מפות גוגל או מפות מודפסות) ללא
           אישור מפורש מבעלי הזכויות.
-        infringement_2_html: |-
-          אם נראה לך שחומר שמוגבל בזכויות יוצרים נוסף באופן לא הולם
-          אל מסד הנתונים של OpenStreetMap או אל האתר הזה, נא לפנות
-          אל <a href="https://wiki.osmfoundation.org/wiki/Takedown_procedure">נוהל
-          ההסרה</a> שלנו או כתבו תלונה ישירות
-          <a href="https://dmca.openstreetmap.org/">בדף התלונות המקוון שלנו</a>.
-        trademarks_title_html: <span id="trademarks"></span>סימנים מסחריים
-        trademarks_1_html: OpenStreetMap, סמל הזכוכית המגדלת ו־State of the Map הם
-          סימנים מסחריים של קרן OpenStreetMap. אם יש לך שאלות על השימוש שלך בסימנים,
-          ר' את <a href="https://wiki.osmfoundation.org/wiki/Trademark_Policy">מדיניות
-          הסימנים המסחריים שלנו</a>.
+        infringement_2_1_html: |-
+          אם נראה לך שחומר המוגבל בזכויות יוצרים התווסף באופן בלתי־הולם
+          למסד הנתונים של OpenStreetMap או לאתר הזה, נא לעיין
+          ב%{takedown_procedure_link} שלנו או להגיש בקשה ישירות
+          ב%{online_filing_page_link} שלנו.
+        infringement_2_1_takedown_procedure: הליך ההסרה
+        infringement_2_1_online_filing_page: דף ההגשה המקוון
+        trademarks_title: סימנים מסחריים
+        trademarks_1_1_html: |-
+          OpenStreetMap, לוגו הזכוכית המגדלת ו־State of the Map הם סימנים מסחריים רשומים של
+          קרן OpenStreetMap. אם יש לך שאלות לגבי השימוש שלך בסימנים,
+          ר׳ את %{trademark_policy_link} שלנו.
+        trademarks_1_1_trademark_policy: מדיניות הסימנים המסחריים
     index:
       js_1: הדפדפן שבו אתה משתמש אינו תומך ב־JavaScript, או שכיבית את השימוש ב־JavaScript.
       js_2: אתר OpenStreetMap משתמש ב־JavaScript למפה המחליקה.
@@ -2145,8 +2159,8 @@ he:
       user_page_link: דף המשתמש
       anon_edits_link_text: ר' הסבר מדוע זה כך.
       id_not_configured: לא התבצעו הגדרות של iD
-      no_iframe_support: הדפדפן שלך אינו תומך באלמנטים מסוג iframe של HTML, ואלו חיוניים
-        עבור תכונה זו.
+      no_iframe_support: הדפדפן שלך אינו תומך במסגרות iframe של HTML, שחיוניות לתכונה
+        הזאת.
     export:
       title: יצוא
       area_to_export: האזור לייצוא
@@ -2156,8 +2170,9 @@ he:
       map_image: תמונת מפה (תצוגת שכבה תקנית)
       embeddable_html: HTML שניתן להטמעה
       licence: רישיון
-      export_details_html: המידע ב־OpenStreetMap מוגש בכפוף ל<a href="href="https://opendatacommons.org/licenses/odbl/1.0/">רישיון
-        Open Data Commons לנתונים פתוחים</a> (ODbL).
+      licence_details_html: נתוני OpenStreetMap מתפרסמים עכשיו לפי רישיון %{odbl_link}
+        (ODbL).
+      odbl: רישיון מסד נתונים פתוח של Open Data Commons
       too_large:
         advice: 'אם הייבוא הנ״ל נכשל, נא לנסות להשתמש באחד המקורות להלן:'
         body: 'האזור גדול מכדי שאפשר יהיה לייצא אותו בתור נתוני XML של OpenStreetMap.
@@ -2172,9 +2187,6 @@ he:
         geofabrik:
           title: הורדות של Geofabrik
           description: עותקים מעודכנים באופן קבוע של יבשות, מדינות וערים נבחרות
-        metro:
-          title: מובאות מטרו
-          description: מובאות חלקיות לערים עולמיות גדולות ואזורים בסביבתן
         other:
           title: מקורות אחרים
           description: מקורות נוספים רשומים בוויקי של OpenStreetMap
@@ -2200,16 +2212,17 @@ he:
             אם שמת לב לבעיה על נתוני המפה שלנו, למשל שדרך או שכתובת שלך חסרה, הדרך הטובה ביותר
             להמשיך היא להצטרף לקהילת OpenStreetMap ולתקן את הנתונים בעצמך.
         add_a_note:
-          instructions_html: |-
-            צריך פשוט ללחוץ על <a class='icon note'></a> או על אותו הסמל בתצוגת המפה.
+          instructions_1_html: |-
+            צריך פשוט ללחוץ על %{note_icon} או על אותו הסמל בתצוגת המפה.
             זה יוסיף למפה סמן שאפשר להזיז
-            באמצעות גרירה. יש להוסיף שם הערה ולשמור אותה וממפים אחרים יחקרו את זה.
+            באמצעות גרירה. יש להוסיף את ההערה שלך, ואז ללחוץ שמירה, וממפים אחרים יחקרו את זה.
       other_concerns:
         title: דאגות אחרות
-        explanation_html: אם יש לך דאגות לגבי איך שהנתונים שלנו משמשים או על התוכן,
-          נא לקרוא את <a href='/copyright'>דף זכויות היוצרים</a> שלנו למידע משפטי
-          נוסף, או ליצור קשר עם <a href='https://wiki.osmfoundation.org/wiki/Working_Groups'>קבוצת
-          העבודה המתאימה ב־OSMF</a>.
+        concerns_html: אם יש לך חששות לגבי אופן השימוש בנתונים שלנו או לגבי התוכן,
+          נא לעיין ב%{copyright_link} שלנו לקבלת מידע משפטי נוסף, או ליצור קשר עם
+          %{working_group_link} המתאימה.
+        copyright: דף זכויות היוצרים
+        working_group: קבוצת עבודת ה־OSMF
     help:
       title: קבלת עזרה
       introduction: |-
@@ -2230,9 +2243,6 @@ he:
         title: רשימות תפוצה
         description: לשאול שאלה או לדון בדברים מעניינים ברשימות תפוצה נושאים ואזוריות
           רבות.
-      forums:
-        title: פורומים (היסטוריים)
-        description: שאלות ודיונים לאנשים שמעדיפים ממשק בסגנון פורום.
       community:
         title: פורום קהילתי
         description: מקום משותף לשיחות על OpenStreetMap.
@@ -2252,10 +2262,18 @@ he:
     potlatch:
       removed: עורך הOpenStreetMap ברירת המחדל שלך מוגדר כPotlatch. בגלל שנגן הפלאש
         של אדובי כבר לא נתמך, Potlatch כבר לא זמין בדפדפן.
-      desktop_html: ניתן עדיין להשתמש בPotlatch על ידי <a href="https://www.systemed.net/potlatch/">הורדת
-        יישום שולחן העבודה ל-Windows או ל-Mac</a>.
-      id_html: לחלופין, ניתן להגדיר את עורך בררת המחדל שלך ל־iD, שמופעל בדפדפן כמו
-        ש־Potlach עשה בעבר. <a href="%{settings_url}">ניתן לשנות את ההעדפות שלך כאן</a>.
+      desktop_application_html: עדיין אפשר להשתמש ב־Potlatch על־ידי %{download_link}.
+      download: הורדת יישום שולחן העבודה עבור מחשבי מאק וחלונות
+      id_editor_html: לחלופין, ניתן להגדיר את עורך ברירת המחדל שלך ל־iD, שמופעל בדפדפן
+        כמו ש־Potlach עשה בעבר. %{change_preferences_link}
+      change_preferences: אפשר לשנות את ההעדפות שלך כאן
+    any_questions:
+      title: יש שאלות?
+      paragraph_1_html: |-
+        ל־OpenStreetMap יש כמה משובים ללימוד על הפרויקט, לשאלות ותשובות, ולדיון ותיעוד משותפים של נושאי מיפוי.
+        %{help_link}. יש לך קשר לארגון שמתכנן לעשות משהו עם OpenStreetMap? %{welcome_mat_link}
+      get_help_here: כאן ניתן לקבל עזרה
+      welcome_mat: בדוק את אזור קבלת הפנים
     sidebar:
       search_results: תוצאות החיפוש
       close: לסגירה
@@ -2342,48 +2360,69 @@ he:
           toilets: שירותים
     welcome:
       title: ברוך בואך!
-      introduction_html: ברוך בואך ל־OpenStreetMap, מפה חופשית של העולם, שאפשר לערוך.
-        עכשיו שנרשמת, הכול מוכן ואפשר להתחיל לצייר מפות. הנה מדריך קצת שייתן לך את
-        הדברים החשובים שכדאי לך לדעת.
+      introduction: ברוך בואך ל־OpenStreetMap, מפה חופשית של העולם, שאפשר לערוך. עכשיו
+        שנרשמת, הכול מוכן ואפשר להתחיל לצייר מפות. הנה מדריך קצת שייתן לך את הדברים
+        החשובים שכדאי לך לדעת.
       whats_on_the_map:
         title: מה על המפה
-        on_html: OpenStreetMap הוא מקום למיפוי דברים אמתיים ונוכחיים – הוא מכיל מיליוני
-          מבנים, דרכים ופרטים אחרים על מקומות. אפשר למפות כל ישות מהעולם האמתי שמעניין
-          אותך.
-        off_html: מה שאין פה זה מידע דעתני כמו דירוגים, מקומות היסטוריים או היפותטיים
-          ונתונים ומקורות שמוגבלים בזכויות יוצרים. אנו דורשים ממך לא להוסיף  מידע
-          ממפות מקוונות או מודפסות אלא אם יש לך אישור מיוחד לכך.
+        on_the_map_html: OpenStreetMap הוא מקום למיפוי דברים %{real_and_current} –
+          הוא מכיל מיליוני מבנים, דרכים ופרטים אחרים על מקומות. אפשר למפות כל ישות
+          מהעולם האמיתי שמעניינת אותך.
+        real_and_current: אמיתיים ונוכחיים
+        off_the_map_html: מה ש%{doesnt} פה זה מידע דעתני כמו דירוגים, מקומות היסטוריים
+          או היפותטיים ונתונים ומקורות שמוגבלים בזכויות יוצרים. אנו דורשים ממך לא
+          להוסיף מידע ממפות מקוונות או מודפסות אלא אם יש לך אישור מיוחד לכך.
+        doesnt: אינו
       basic_terms:
         title: מונחים בסיסיים למיפוי
-        paragraph_1_html: למיזם OpenStreetMap יש עגה משלו. הנה מספר מילות מפתח שיהיו
-          שימושיות.
-        editor_html: <strong>עורך</strong> הוא תכנה או אתר לעריכת המפה.
-        node_html: <strong>נקודה</strong> מייצגת מיקום נקודתי, כגון מסעדה אחת או עץ
-          אחד.
-        way_html: <strong>נתיב</strong> הוא קו או אזור כמו דרך, זרם, אגם או מבנה.
-        tag_html: <strong>תג</strong> הוא פיסת מידע על נקודה או על קו כמו שם של מסעדה
-          או מגבלת מהירות בדרך.
+        paragraph_1: למיזם OpenStreetMap יש עגה משלו. הנה מספר מילות מפתח שיהיו שימושיות.
+        an_editor_html: '%{editor} הוא תוכנה או אתר שבאפשרותך להשתמש בה לעריכת המפה.'
+        a_node_html: '%{node} היא נקודה במפה, כמו מסעדה בודדת או עץ.'
+        a_way_html: '%{way} היא קו או שטח, כגון כביש, יובל, נחל או בניין.'
+        a_tag_html: '%{tag} הוא חלקיק של מידע על נקודה או דרך, כגון שם של מסעדה או
+          מגבלת מהירות בכביש.'
+        editor: עורך
+        node: נקודה
+        way: דרך
+        tag: תג
       rules:
         title: חוקים!
-        paragraph_1_html: ל־OpenStreetMap יש מעט חוקים פורמליים, אבל אנחנו מצפים מכל
-          המשתתפים לשתף פעולה ולתקשר עם הקהילה. אם אתם שוקלים לבצע פעולות כלשהן מלבד
-          עריכה ידנית, אנא קראו את המדריכים על <a href='https://wiki.openstreetmap.org/wiki/Import/Guidelines'>יבוא</a>
-          ועל <a href='https://wiki.openstreetmap.org/wiki/Automated_Edits_code_of_conduct'>עריכות
-          אוטומטיות</a>.
-      questions:
-        title: יש שאלות?
-        paragraph_1_html: |-
-          ב־OpenStreetMap יש מספר משאבים ללימוד על המיזם, לשאלות ותשובות,
-          ולדיון ותיעוד שיתופי של נושאי מיפוי.
-          <a href='%{help_url}'>מקום לקבל עזרה</a>. יש לך מעורבות בארגון שעושה תכניות על OpenStreetMap? מזמינים אותך לפגוש את מחצלת הכניסה</a>.
+        para_1_html: ל־OpenStreetMap יש מעט כללים רשמיים אך אנו מצפים להשתתפות של
+          כל מי שחפץ וגם ליצור קשר עם הקהילה. אם שקלת פעילויות כלשהן חוץ מעריכה ידנית,
+          נא לקרוא ולעקוב אחר הקווים המנחים על %{imports_link} ו%{automated_edits_link}.
+        imports: מחזורי יבוא
+        automated_edits: עריכות אוטומטית
       start_mapping: להתחיל למפות
       add_a_note:
         title: אין לך זמן לערוך? אפשר להוסיף הערה!
-        paragraph_1_html: אם רק רצית לתקן משהו קטן ואין לך זמן להירשם וללמוד איך לערוך,
-          קל להוסיף הערה.
-        paragraph_2_html: 'צריך פשוט ללכת אל <a href=''%{map_url}''>המפה</a> וללחוץ
-          על סמל ההערה: <span class=''icon note''></span>. זה יוסיף למפה סמן, שאפשר
-          לגרור. אחרי הוספת ההערה יש ללחוץ על שמירה וממפים אחרים יבדקו את זה.'
+        para_1: אם רק רצית לתקן משהו קטן ואין לך זמן להירשם וללמוד איך לערוך, קל להוסיף
+          הערה.
+        para_2_html: |-
+          צריך פשוט לגשת ל%{map_link} וללחוץ על סמל הפתק: %{note_icon}.
+          הפעולה הזאת תוסיף סמן למפה, שניתן להעביר בגרירה.
+          אפשר להוסיף את ההודעה שלך, ללחוץ על שמירה וממפים אחרים יחקרו את זה.
+        the_map: מפה
+    communities:
+      title: קהילות
+      lede_text: "אנשים מכל רחבי העולם תורמים או משתמשים ב־OpenStreetMap.\nבעוד שרבים
+        משתתפים כיחידים, אחרים יצרו קהילות.\nהקבוצות האלו מגיעות במגוון גדלים ומייצגות
+        אזורים גאוגרפיים מעיירות קטנות ועד אזורים גדולים מרובי מדינות. \nהן יכולות
+        להיות רשמיות או לא רשמיות."
+      local_chapters:
+        title: עמותות מקומיות
+        about_text: |-
+          עמותות מקומיות הן קבוצות ברמת המדינה או האזור שעשו את הצעד הרשמי של
+          הקמת ישויות משפטיות ללא מטרות רווח. הן מייצגות את המפה ואת הממפים של האזור בעת
+          התעסקות עם שלטון, עסקים, ותקשורת במקום. הן גם יצרו שותפות
+          עם OpenStreetMap Foundation (בקיצור OSMF), וזה מעניק להן זיקה לגוף המשפטי שמנהל זכויות היוצרים.
+        list_text: 'הקהילות הבאות הוקמו רשמית כעמותות מקומיו:'
+      other_groups:
+        title: קבוצות אחרות
+        other_groups_html: |-
+          אין צורך להקים קבוצה באופן רשמי באותה מידה כמו העמותות המקומיות.
+          אומנם, קבוצות רבות קיימות בהצלחה רבה ככינוס בלתי־רשמי של אנשים או כקבוצה
+          קהילתית. כל אחד יכול להקים אותן או להצטרף אליהן. אפשר לקרוא עוד ב%{communities_wiki_link}.
+        communities_wiki: דף הוויקי של קהילות
   traces:
     visibility:
       private: פרטי (משותף רק כאלמוני, נקודות לא ממוינות)
@@ -2442,8 +2481,10 @@ he:
     trace:
       pending: בהמתנה
       count_points:
-        one: נקודה
-        other: '%{count} נקודות'
+        one: נקודה.
+        two: שתי נקודות.
+        many: '%{count} נקודות.'
+        other: '%{count} נקודות.'
       more: עוד
       trace_details: הצגת פרטי מסלול
       view_map: הצגת מפה
@@ -2460,9 +2501,10 @@ he:
       public_traces_from: מסלולי GPS ציבוריים מאת %{user}
       description: עיון בהעלאות אחרונות של הקלטות GPS
       tagged_with: ' מתויג עם %{tags}'
-      empty_html: אין פה עדיין שום דבר. אפשר <a href='%{upload_link}'>להעלות מידע
-        חדש</a> או ללמוד עוד על מעקב מסלולים ב־GPS ב<a href='https://wiki.openstreetmap.org/wiki/Beginners_Guide_1.2'>דף
-        הוויקי</a>.
+      empty_title: עוד אין כאן כלום
+      empty_upload_html: אפשר %{upload_link} או ללמוד עוד על מעקב GPS עם %{wiki_link}.
+      upload_new: להעלות מעקב חדש
+      wiki_page: דף הוויקי
       upload_trace: העלאת מסלול
       all_traces: כל המסלולים
       my_traces: המסלולים שלי
@@ -2629,17 +2671,15 @@ he:
     new:
       title: הרשמה
       no_auto_account_create: למרבה הצער, כעת איננו יכולים ליצור לך חשבון באופן אוטומטי.
-      contact_support_html: נא ליצור קשר עם <a href="%{support}">התמיכה</a> כדי לארגן
+      please_contact_support_html: נא ליצור קשר עם %{support_link} כדי לארגן יצירת
         חשבון - נשתדל לטפל בבקשה במהירות האפשרית.
+      support: תמיכה
       about:
         header: חופשית וניתנת לעריכה
-        html: |-
-          <p>להבדיל ממפות אחרות, OpenStreetMap נוצרת כולה על־ידי אנשים כמוך,
-          וכולם חופשיים לתקן, לעדכן ולהוריד אותה ולהשתמש בה.</p>
-          <p>כדי להתחיל לתרום יש להירשם. אנו נשלח דואר אלקטרוני כדי לאמת את חשבונך.</p>
-      email address: 'כתובת דוא״ל:'
-      confirm email address: 'אימות כתובת דוא״ל:'
-      display name: 'שם להצגה:'
+        paragraph_1: בניגוד למפות אחרות, OpenStreetMap נוצרה לחלוטין על־ידי אנשים
+          כמוך והיא חופשית לתיקונים, עדכונים, הורדה ושימוש של כל מי שחפץ.
+        paragraph_2: אפשר להירשם כדי להתחיל לתרום. אנו נשלח לך הודעת דוא״ל כדי לאשר
+          את החשבון שלך.
       display name description: שם המשתמש שלך, שמוצג בפומבי. אפשר לשנות את זה בהעדפות
         שלך.
       external auth: 'אימות עם צד שלישי:'
@@ -2648,6 +2688,10 @@ he:
         יכולים להזדקק לכזה.
       continue: הרשמה
       terms accepted: תודה על קבלת תנאי התרומה החדשים!
+      email_confirmation_help_html: הכתובת שלך אינה מוצגת בפומבי, ר' את %{privacy_policy_link}
+        שלנו למידע נוסף.
+      privacy_policy: מדיניות הפרטיות
+      privacy_policy_title: מדיניות הפרטיות של OSMF כולל סעיף על כתובות דוא"ל
     terms:
       title: תנאים
       heading: תנאים
@@ -2656,14 +2700,16 @@ he:
         את שתי התיבות עם הסיום ואז ללחוץ על כפתור ההמשך.
       contributor_terms_explain: הסכם זה מאגד את תנאי התרומות הקיימות והעתידיות שלך.
       read_ct: קראתי את תנאי התורמים לעיל ואני מסכימ/ה לתנאים אלו
-      tou_explain_html: '%{tou_link} אלו מאגדים את תנאי השימוש באתר ובתשתית נוספת
-        שמסופקת על ידי ה־OSMF. נא ללחוץ על הקישור, לקרוא ולהסכים לטקסט.'
+      tou_explain_html: '%{tou_link} האלה מאגדים את תנאי השימוש באתר ובתשתית נוספת
+        שמסופקת על־ידי ה־OSMF. נא ללחוץ על הקישור, לקרוא ולהסכים לטקסט.'
       read_tou: קראתי את תנאי השימוש ואני מסכימ/ה לתנאים אלו
       consider_pd: בנוסף לכתוב לעיל, מבחינתי כל עריכותיי שייכות לנחלת הכלל
       consider_pd_why: מה זה?
       consider_pd_why_url: https://wiki.osmfoundation.org/wiki/License_and_Legal_FAQ/Why_would_I_want_my_contributions_to_be_public_domain
-      guidance_html: מידע שעוזר להבין את התנאים האלהa <a href="%{summary}">תקציר קריא</a>
-        וכמה <a href="%{translations}">תרגומים בלתי־רשמיים</a>
+      guidance_info_html: 'מידע שיעזור להבין את המונחים האלה: %{readable_summary_link}
+        וכמה %{informal_translations_link}'
+      readable_summary: תקציר קריא לבני־אדם
+      informal_translations: תרגומים בלתי־פורמליים
       continue: להמשיך
       declined: https://wiki.openstreetmap.org/wiki/He:Contributor_Terms_Declined
       decline: סירוב
@@ -2686,7 +2732,6 @@ he:
       deleted: נמחק
     show:
       my diary: היומן שלי
-      new diary entry: רשומה חדשה ביומן
       my edits: העריכות שלי
       my traces: המסלולים שלי
       my notes: הערות המפה שלי
@@ -2715,8 +2760,6 @@ he:
       created from: 'נוצר מתוך:'
       status: 'מצב:'
       spam score: 'דירוג זיבול:'
-      description: תיאור
-      user location: מיקום המשתמש
       role:
         administrator: לחשבון הזה יש הרשאות מפעיל
         moderator: זהו חשבון מנהל
@@ -2731,7 +2774,6 @@ he:
       comments: הערות
       create_block: חסימת משתמש זה
       activate_user: הפעלת משתמש זה
-      deactivate_user: כיבוי משתמש זה
       confirm_user: אישור משתמש זה
       unconfirm_user: ביטול אישור המשתמש הזה
       unsuspend_user: ביטול השעיית המשתמש הזה
@@ -2740,8 +2782,6 @@ he:
       delete_user: מחיקת משתמש זה
       confirm: אישור
       report: דיווח על המשתמש
-    set_home:
-      flash success: מיקום ראשי נשמר בהצלחה
     go_public:
       flash success: כל העריכות שלך ציבוריות עכשיו ויש לך הרשאה לערוך.
     index:
@@ -2759,15 +2799,9 @@ he:
       title: החשבון הושעה
       heading: החשבון הושעה
       support: תמיכה
-      body_html: |-
-        <p>
-          חשבונך הושעה באופן אוטומטי עקב
-          פעילות חשודה.
-        </p>
-        <p>
-          החלטה זו תיבחן על־ידי מנהל מערכת בתוך זמן קצר, או
-          שניתן לפנות אל %{webmaster} כדי לדון בזה.
-        </p>
+      automatically_suspended: סליחה, החשבון שלך הושעה עקב פעילות חשודה.
+      contact_support_html: ההחלטה הזאת תיבדק על־ידי מנהל מערכת בקרוב, או שתוכל ליצור
+        קשר עם %{support_link} אם ברצונך לדון בזה.
     auth_failure:
       connection_failed: התחברות לספק אימות נכשלה
       invalid_credentials: נתוני הזדהות בלתי־תקינים
@@ -2812,8 +2846,6 @@ he:
       title: יצירת חסימה של %{name}
       heading_html: יצירת חסימה של %{name}
       period: למשך כמה זמן מעכשיו החשבון ייחסם מביצוע פעולות API.
-      tried_contacting: יצרתי קשר עם המשתמש וביקשתי להפסיק.
-      tried_waiting: נתתי למשתמש זמן סביר להשיב על ההודעות האלו.
       back: הצגת כל החסימות
     edit:
       title: חסימת עריכה על %{name}
@@ -2825,8 +2857,6 @@ he:
       block_expired: ייתכן שהחסימה כבר פקעה ואי־אפשר לערוך אותה.
       block_period: תקופת החסימה צריכה להיות אחד הערכים שאפשר לבחור ברשימה הנפתחת.
     create:
-      try_contacting: נא לנסות ליצור קשר עם משתמש לפני חסימתו ולתת לו זמן סביר להשיב.
-      try_waiting: נא לתת למשתמש זמן סביר להשיב לפני החסימה.
       flash: נוצרה חסימה על חשבון %{name}
     update:
       only_creator_can_edit: רק המנהל שיצר את החסימה הזאת יכול לערוך אותה.
@@ -2855,8 +2885,10 @@ he:
           many: '%{count} שעות'
           other: '%{count} שעות'
         days:
-          one: יום אחד
-          other: '%{count} ימים'
+          one: שעה
+          two: שעתיים
+          many: '%{count} שעות'
+          other: '%{count} שעות'
         weeks:
           one: שבוע אחד
           two: שבועיים
@@ -2870,7 +2902,7 @@ he:
         years:
           one: שנה אחת
           two: שנתיים
-          many: '%{count} שנים'
+          many: '%{count} שנה'
           other: '%{count} שנים'
     blocks_on:
       title: חסימות של %{name}
@@ -2919,6 +2951,40 @@ he:
       description: תיאור
       created_at: 'יצירה:'
       last_changed: 'שינוי אחרון:'
+    show:
+      title: 'הערה: %{id}'
+      description: תיאור
+      open_title: הערה שלא נפתרה מס׳ %{note_name}
+      closed_title: הערה פתורה מס׳ %{note_name}
+      hidden_title: הערה מוסתרת מס׳ %{note_name}
+      event_opened_by_html: נוצר על־ידי %{user} %{time_ago}
+      event_opened_by_anonymous_html: נוצר על־ידי אלמוני %{time_ago}
+      event_commented_by_html: הערה מאת %{user} %{time_ago}
+      event_commented_by_anonymous_html: תגובה מאת אלמוני %{time_ago}
+      event_closed_by_html: נוצר על־ידי %{user} %{time_ago}
+      event_closed_by_anonymous_html: נפתר על־ידי אלמוני %{time_ago}
+      event_reopened_by_html: הופעל מחדש על־ידי %{user} %{time_ago}
+      event_reopened_by_anonymous_html: הופעל מחדש על־ידי אלמוני %{time_ago}
+      event_hidden_by_html: הוסתר על־ידי %{user} %{time_ago}
+      report: לדווח על ההערה הזאת
+      anonymous_warning: ההערה הזאת כוללת תגובות ממשתמשים אלמוניים שצריך לאמת באופן
+        עצמאי.
+      hide: להסתיר
+      resolve: לפתור
+      reactivate: הפעלה מחדש
+      comment_and_resolve: להגיב ולפתור
+      comment: להגיב
+      report_link_html: אם ההערה הזאת מכילה מידע רגיש שיש להסיר, אפשר %{link}.
+      other_problems_resolve: עבור כל שאר הבעיות עם ההערה, נא לפתור אותה בעצמך באמצעות
+        הערה.
+      other_problems_resolved: עבור כל שאר הבעיות, מספיק לפתור.
+      disappear_date_html: הערה שנפתרה תיעלם מהמפה בעוד %{disappear_in}.
+    new:
+      title: הערה חדשה
+      intro: יש פה טעות או שחסר משהו? אנו מבקשים ממך לספר את זה לממפים אחרים. לשם
+        כך צריך להזיז את הסמן למקום הנכון ולכתוב הערה שמסבירה את הבעיה.
+      advice: /start
+      add: הוספת הערה
   javascripts:
     close: סגירה
     share:
@@ -2954,15 +3020,15 @@ he:
       locate:
         title: הצגת המיקום שלי
         metersPopup:
-          one: המרחק שלך מהנקודה הזאת הוא בטווח מטר
-          two: המרחק שלך הוא בטווח של %{count} מטרים מנקודה זו
-          many: המרחק שלך הוא בטווח של %{count} מטרים מנקודה זו
-          other: המרחק שלך הוא בטווח של %{count} מטרים מנקודה זו
+          one: המרחק שלך מהנקודה הזאת הוא פחות ממטר
+          two: המרחק שלך מהנקודה הזאת הוא עד %{count} מטרים
+          many: המרחק שלך מהנקודה הזאת הוא עד %{count} מטר
+          other: המרחק שלך מהנקודה הזאת הוא עד %{count} מטרים
         feetPopup:
-          one: המרחק שלך מהנקודה הזאת הוא בטווח רגל
-          two: המרחק שלך הוא בטווח של %{count} רגליים מנקודה זו
-          many: המרחק שלך הוא בטווח של %{count} רגליים מנקודה זו
-          other: המרחק שלך הוא בטווח של %{count} רגליים מנקודה זו
+          one: המרחק שלך מהנקודה הזאת הוא פחות מרגל
+          two: המרחק שלך מהנקודה הזאת הוא עד %{count} רגל
+          many: המרחק שלך מהנקודה הזאת הוא עד %{count} רגל
+          other: המרחק שלך מהנקודה הזאת הוא עד %{count} רגל
       base:
         standard: תקני
         cyclosm: CyclOSM
@@ -2977,17 +3043,17 @@ he:
         gps: מסלולי GPS ציבוריים
         overlays: הפעלת שכבות לפתרון תקלות במפה
         title: שכבות
-      copyright: © <a href='%{copyright_url}'>מתנדבי OpenStreetMap</a>
-      donate_link_text: <a class='donate-attr' href='%{donate_url}'>לתרום</a>
-      terms: <a href='%{terms_url}' target='_blank'>תנאי אתר ו־API</a>
-      cyclosm: האריחים סוגננו על ידי <a href='%{cyclosm_url}' target='_blank'>CyclOSM</a>
-        באירוח שרת <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap France</a>
-      thunderforest: האריחים באדיבות <a href='%{thunderforest_url}' target='_blank'>אנדי
-        אלן</a>
-      opnvkarte: האריחים באדיבות <a href='%{memomaps_url}' target='_blank'>MeMoMaps</a>
-      hotosm: האריחים סוגננו על ידי <a href='%{hotosm_url}' target='_blank'>הצוות
-        ההומניטרי של OpenStreetMap</a> באירוח <a href='%{osmfrance_url}' target='_blank'>OpenStreetMap
-        צרפת</a>
+      openstreetmap_contributors: תורמי OpenStreetMap
+      make_a_donation: תרומה
+      website_and_api_terms: תנאי אתר ו־API
+      cyclosm_credit: סגנון אריחים מאת %{cyclosm_link} מתארח אצל %{osm_france_link}
+      osm_france: OpenStreetMap צרפת
+      thunderforest_credit: אריחים באדיבות %{thunderforest_link}
+      andy_allan: אנדי אלן
+      opnvkarte_credit: אריחים באדיבות %{memomaps_link}
+      memomaps: ממומאפס
+      hotosm_credit: סגנון אריחים מאת %{hotosm_link} מתארח אצל %{osm_france_link}
+      hotosm_name: צוות OpenStreetMap הומניטרי
     site:
       edit_tooltip: עריכת המפה
       edit_disabled_tooltip: להתקרב כדי לערוך את המפה
@@ -2996,7 +3062,7 @@ he:
       map_notes_zoom_in_tooltip: התקרבות כדי לראות הערות על המפה
       map_data_zoom_in_tooltip: יש לקרב את המפה כדי לראות נתוני מפה
       queryfeature_tooltip: שאילתת ישויות
-      queryfeature_disabled_tooltip: תקריב לשאילתת ישויות
+      queryfeature_disabled_tooltip: תקריב כדי להריץ שאילתת ישויות
     changesets:
       show:
         comment: להגיב
@@ -3004,22 +3070,6 @@ he:
         unsubscribe: ביטול מינוי
         hide_comment: הסתרה
         unhide_comment: ביטול הסתרה
-    notes:
-      new:
-        intro: יש פה טעות או שחסר משהו? אנו מבקשים ממך לספר את זה לממפים אחרים. לשם
-          כך צריך להזיז את הסמן למקום הנכון ולכתוב הערה שמסבירה את הבעיה.
-        advice: /start
-        add: הוספת הערה
-      show:
-        anonymous_warning: ההערה הזאת כוללת תגובות ממשתמשים אלמוניים שצריך לאמת באופן
-          עצמאי.
-        hide: להסתיר
-        resolve: לפתור
-        reactivate: הפעלה מחדש
-        comment_and_resolve: להגיב ולפתור
-        comment: להגיב
-        report_link_html: אם ההערה הזאת מכילה מידע רגיש שיש להסיר, אפשר %{link}. עבור
-          כל שאר הבעיות עם ההערה, נא לפתור אותה בעצמך באמצעות הערה.
     edit_help: יש להזיז את המפה ולהתמקד על מיקום שברצונך לערוך ואז ללחוץ כאן.
     directions:
       ascend: מעלה
@@ -3030,9 +3080,14 @@ he:
         graphhopper_bicycle: באופניים (GraphHopper)
         graphhopper_car: במכונית (GraphHopper)
         graphhopper_foot: ברגל (GraphHopper)
+        fossgis_valhalla_bicycle: אופניים (Valhalla)
+        fossgis_valhalla_car: במכונית (Valhalla)
+        fossgis_valhalla_foot: ברגל (Valhalla)
       descend: מטה
       directions: כיוונים
       distance: מרחק
+      distance_m: '%{distance} מ׳'
+      distance_km: '%{distance} ק״מ'
       errors:
         no_route: לא מצאנו נתיב שמחבר בין שני המקומות האלה.
         no_place: סליחה – לא מצאנו את %{place}.
@@ -3120,7 +3175,7 @@ he:
       directions_to: כיוונים הנה
       add_note: להוסיף הערה כאן
       show_address: להציג כתובת
-      query_features: אפשרויות שאילתה
+      query_features: שאילתת ישויות
       centre_map: למרכז את המפה כאן
   redactions:
     edit:

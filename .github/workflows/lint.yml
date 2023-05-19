@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 env:
   os: ubuntu-20.04
-  ruby: 2.7
+  ruby: '3.0'
 jobs:
   rubocop:
     name: RuboCop
@@ -54,11 +54,11 @@ jobs:
         restore-keys: |
           yarn-${{ env.os }}-
     - name: Install node modules
-      run: bundle exec rake yarn:install
+      run: bundle exec bin/yarn install
     - name: Create dummy database configuration
       run: cp config/example.database.yml config/database.yml
     - name: Run eslint
-      run: bundle exec rake eslint
+      run: bundle exec rails eslint
   brakeman:
     name: Brakeman
     runs-on: ubuntu-20.04

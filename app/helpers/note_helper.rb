@@ -3,13 +3,13 @@ module NoteHelper
 
   def note_event(event, at, by)
     if by.nil?
-      t("browse.note.#{event}_by_anonymous_html",
-        :when => friendly_date_ago(at),
-        :exact_time => l(at))
+      t("notes.show.event_#{event}_by_anonymous_html",
+        :time_ago => tag.abbr(friendly_date_ago(at),
+                              :title => l(at)))
     else
-      t("browse.note.#{event}_by_html",
-        :when => friendly_date_ago(at),
-        :exact_time => l(at),
+      t("notes.show.event_#{event}_by_html",
+        :time_ago => tag.abbr(friendly_date_ago(at),
+                              :title => l(at)),
         :user => note_author(by))
     end
   end
@@ -22,5 +22,10 @@ module NoteHelper
     else
       link_to h(author.display_name), link_options.merge(:controller => "/users", :action => "show", :display_name => author.display_name)
     end
+  end
+
+  def disappear_in(note)
+    date = note.freshly_closed_until
+    tag.span(distance_of_time_in_words(date, Time.now.utc), :title => l(date, :format => :friendly))
   end
 end
