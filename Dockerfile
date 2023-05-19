@@ -2,6 +2,13 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install yarn (yarnpkg in ubuntu:22.04 is broken and also nodejs is too old there)
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt install --no-install-recommends -y nodejs npm
+RUN npm i --global yarn
+
 # Install system packages then clean up to minimize image size
 RUN apt-get update \
  && apt-get install --no-install-recommends -y \
@@ -24,7 +31,6 @@ RUN apt-get update \
       ruby3.0-dev \
       tzdata \
       unzip \
-      yarnpkg \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
