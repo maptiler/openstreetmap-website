@@ -2954,8 +2954,6 @@ en:
         hot: Humanitarian
         opnvkarte: ÖPNVKarte
         openmaptiles_osm: OpenMapTiles
-        openmaptiles_outdoor: MapTiler Outdoor
-        openmaptiles_streets: MapTiler Streets
       layers:
         header: Map Layers
         notes: Map Notes

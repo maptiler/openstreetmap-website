@@ -57,18 +57,6 @@ var OpenMapTiles = MapTiler.extend({
   }
 });
 
-var MapTilerStreets = MapTiler.extend({
-  options: {
-    style: 'https://api.maptiler.com/maps/streets/style.json?key=lmYA16sOOOz9r6DH7iA9',
-  }
-});
-
-var MapTilerOutdoor = MapTiler.extend({
-  options: {
-    style: 'https://api.maptiler.com/maps/outdoor/style.json?key=lmYA16sOOOz9r6DH7iA9',
-  }
-});
-
 L.OSM.Map = L.Map.extend({
   initialize: function (id, options) {
     L.Map.prototype.initialize.call(this, id, options);
@@ -128,16 +116,6 @@ L.OSM.Map = L.Map.extend({
       maptiler_url: "https://www.maptiler.com/",
       terrain_3d_url: "https://labs.maptiler.com/showcase/osm-3d-terrain/#style=openstreetmap&lang={lang}&mode=3d&position={pos}"
     });
-    var maptiler_streets_link = I18n.t("javascripts.map.maptiler", {
-      openmaptiles_url: "https://openmaptiles.org/",
-      maptiler_url: "https://www.maptiler.com/",
-      terrain_3d_url: "https://www.maptiler.com/maps/#style=streets&lang={lang}&mode=3d&position={pos}"
-    });
-    var maptiler_outdoor_link = I18n.t("javascripts.map.maptiler", {
-      openmaptiles_url: "https://openmaptiles.org/",
-      maptiler_url: "https://www.maptiler.com/",
-      terrain_3d_url: "https://www.maptiler.com/maps/#style=outdoor&lang={lang}&mode=3d&position={pos}"
-    });
 
     this.baseLayers = [];
 
@@ -192,20 +170,6 @@ L.OSM.Map = L.Map.extend({
       code: "H",
       keyid: "hot",
       name: I18n.t("javascripts.map.base.hot")
-    }));
-
-    this.baseLayers.push(new MapTilerStreets({
-      attribution: copyright + ". " + maptiler_streets_link + ". " + terms,
-      code: "S",
-      keyid: "openmaptiles_streets",
-      name: I18n.t("javascripts.map.base.openmaptiles_streets")
-    }));
-
-    this.baseLayers.push(new MapTilerOutdoor({
-      attribution: copyright + ". " + maptiler_outdoor_link + ". " + terms,
-      code: "R",
-      keyid: "openmaptiles_outdoor",
-      name: I18n.t("javascripts.map.base.openmaptiles_outdoor")
     }));
 
     this.noteLayer = new L.FeatureGroup();
